@@ -1,0 +1,27 @@
+name: Test
+on: [pull_request]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: Install Ruby Dependencies
+        run: bundle install --path vendor/bundle
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - name: Build Gem
+        run: gem build patch_ruby.gemspec
+
+      - name: Install Gem
+        run: gem install patch_ruby.gemspec
