@@ -24,8 +24,3 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
 
-      - name: Build Gem
-        run: gem build patch_ruby.gemspec
-
-      - name: Install Gem
-        run: gem install patch_ruby.gemspec
