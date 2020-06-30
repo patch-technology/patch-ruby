@@ -34,10 +34,10 @@ require 'patch_ruby/api/orders_api'
 require 'patch_ruby/api/preferences_api'
 require 'patch_ruby/api/projects_api'
 
-module PatchRuby
+module Patch
   class << self
     # Customize default settings for the SDK using block.
-    #   PatchRuby.configure do |config|
+    #   Patch.configure do |config|
     #     config.username = "xxx"
     #     config.password = "xxx"
     #   end

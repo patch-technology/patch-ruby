@@ -12,7 +12,7 @@ OpenAPI Generator version: 4.3.1
 
 require 'cgi'
 
-module PatchRuby
+module Patch
   class ProjectsApi
     attr_accessor :api_client
 

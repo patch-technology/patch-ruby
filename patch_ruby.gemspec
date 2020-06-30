@@ -17,11 +17,11 @@ require "patch_ruby/version"
 
 Gem::Specification.new do |s|
   s.name        = "patch_ruby"
-  s.version     = PatchRuby::VERSION
+  s.version     = Patch::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Patch Technology"]
-  s.email       = ["engineers@usepatch.com"]
-  s.homepage    = "https://usepatch.com"
+  s.email       = ["info@usepatch.com"]
+  s.homepage    = "https://www.usepatch.com"
   s.summary     = "Ruby wrapper for the Patch API"
   s.description = "Ruby wrapper for the Patch API"
   s.license     = 'MIT'

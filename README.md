@@ -33,7 +33,7 @@ After installing the gem, you'll have to configure it with your API key which is
 ```ruby
 require 'patch_ruby'
 
-PatchRuby.configure do |config|
+Patch.configure do |config|
   # Configure the Patch gem with your API key here
   config.access_token = 'key_test_1234'
 end
@@ -42,7 +42,7 @@ end
 Once configured, you can test it out:
 ```ruby
 # Retrieve and print all your orders
-orders_api = PatchRuby::OrdersApi.new
+orders_api = Patch::OrdersApi.new
 
 begin
   orders_response = orders_api.retrieve_orders
@@ -51,7 +51,7 @@ begin
     puts "Order ID: #{order.id}, Order State: #{order.state}"
   end
 # Rescue from any Patch API errors
-rescue PatchRuby::ApiError => e
+rescue Patch::ApiError => e
   puts "Failed to retrieve Orders with status code #{e.code}: #{e.message}"
 end
 ```

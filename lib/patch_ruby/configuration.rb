@@ -10,7 +10,7 @@ OpenAPI Generator version: 4.3.1
 
 =end
 
-module PatchRuby
+module Patch
   class Configuration
     # Defines url scheme
     attr_accessor :scheme

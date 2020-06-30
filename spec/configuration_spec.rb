@@ -12,14 +12,14 @@ OpenAPI Generator version: 4.3.1
 
 require 'spec_helper'
 
-describe PatchRuby::Configuration do
-  let(:config) { PatchRuby::Configuration.default }
+describe Patch::Configuration do
+  let(:config) { Patch::Configuration.default }
 
   before(:each) do
     # uncomment below to setup host and base_path
     # require 'URI'
     # uri = URI.parse("https://api.usepatch.com")
-    # PatchRuby.configure do |c|
+    # Patch.configure do |c|
     #   c.host = uri.host
     #   c.base_path = uri.path
     # end

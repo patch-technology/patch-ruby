@@ -10,7 +10,7 @@ OpenAPI Generator version: 4.3.1
 
 =end
 
-module PatchRuby
+module Patch
   class ApiError < StandardError
     attr_reader :code, :response_headers, :response_body
 

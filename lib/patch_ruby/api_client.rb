@@ -16,7 +16,7 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 
-module PatchRuby
+module Patch
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
     attr_accessor :config
@@ -237,7 +237,7 @@ module PatchRuby
         end
       else
         # models, e.g. Pet
-        PatchRuby.const_get(return_type).build_from_hash(data)
+        Patch.const_get(return_type).build_from_hash(data)
       end
     end
 

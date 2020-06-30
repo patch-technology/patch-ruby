@@ -10,6 +10,6 @@ OpenAPI Generator version: 4.3.1
 
 =end
 
-module PatchRuby
+module Patch
   VERSION = '1.0.0'
 end
