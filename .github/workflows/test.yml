@@ -19,7 +19,7 @@ jobs:
           ruby-version: 2.7.1
 
       - name: Install Ruby Dependencies
-        run: bundle install --path vendor/bundle
+        run: bundle install
 
       - name: Run RSpec
         run: bundle exec rspec
