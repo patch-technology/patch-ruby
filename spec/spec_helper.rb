@@ -108,4 +108,11 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # Configure the Patch gem
+  Patch.configure do |config|
+    # TODO replace with an environment variable
+    config.access_token = ENV['PATCH_RUBY_API_KEY']
+    config.host = 'https://api.staging-patch.com/'
+  end
 end
