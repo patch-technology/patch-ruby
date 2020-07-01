@@ -3,6 +3,12 @@ require 'spec_helper'
 RSpec.describe 'Preferences Integration' do
   it "supports create, delete, retrieve and list" do
     VCR.use_cassette('preferences') do
+      # Configure the Patch gem
+      Patch.configure do |config|
+        config.access_token = ENV['PATCH_RUBY_API_KEY']
+        config.host = 'https://api.staging-patch.com/'
+      end
+
       retrieve_projects_response = Patch::Project.retrieve_projects
       expect(retrieve_projects_response.data.length).not_to be_zero
       project_id = retrieve_projects_response.data.first.id

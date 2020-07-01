@@ -3,6 +3,12 @@ require 'spec_helper'
 RSpec.describe 'Orders Integration' do
   it "supports create, place, cancel, retrieve and list" do
     VCR.use_cassette('orders') do
+      # Configure the Patch gem
+      Patch.configure do |config|
+        config.access_token = ENV['PATCH_RUBY_API_KEY']
+        config.host = 'https://api.staging-patch.com/'
+      end
+
       create_order_response = Patch::Order.create_order(body: { mass_g: 100 })
       order_id = create_order_response.data.id
 

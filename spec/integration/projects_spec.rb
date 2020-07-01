@@ -3,6 +3,12 @@ require 'spec_helper'
 RSpec.describe 'Projects Integration' do
   it "supports retrieve and list" do
     VCR.use_cassette('projects') do
+      # Configure the Patch gem
+      Patch.configure do |config|
+        config.access_token = ENV['PATCH_RUBY_API_KEY']
+        config.host = 'https://api.staging-patch.com/'
+      end
+
       # START receive_projects
       page_limit = 1
       next_page = 1

@@ -119,10 +119,4 @@ RSpec.configure do |config|
       interaction.request.headers['Authorization'].first
     end
   end
-
-  # Configure the Patch gem
-  Patch.configure do |config|
-    config.access_token = ENV['PATCH_RUBY_API_KEY']
-    config.host = ENV'https://api.staging-patch.com/'
-  end
 end
