@@ -14,8 +14,16 @@ RSpec.describe 'Orders Integration' do
     # place_order_response = Patch::Order.cancel_order(order_id)
     # expect(place_order_response.data.state).to eq 'cancelled'
 
-    # TODO add pagination
-    retrieve_orders_response = Patch::Order.retrieve_orders
-    expect(retrieve_orders_response.data).to be_a(Array)
+    page_limit = 1
+    next_page = 1
+    orders = []
+
+    while !next_page.nil? && next_page <= page_limit
+      retrieve_orders_response = Patch::Order.retrieve_orders(page: next_page)
+      next_page = retrieve_orders_response.meta.next_page
+      orders += retrieve_orders_response.data
+    end
+
+    expect(orders.length).not_to be_zero
   end
 end
