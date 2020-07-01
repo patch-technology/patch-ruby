@@ -1,0 +1,143 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.staging-patch.com/v1/projects?page=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Wed, 01 Jul 2020 20:00:44 GMT
+      content-type:
+      - application/json; charset=utf-8
+      vary:
+      - Accept-Encoding
+      - Origin
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"67d3655e08e10760edfe532373817fa0"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 9812b242facabd40abe7aec165d39429
+      x-runtime:
+      - '0.028850'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"pro_test_cee5bba9672799a693891aff340b3106","country":"US","description":"This
+        project is an example.","developer":"Patch Test Developer","latitude":45.0,"longitude":45.0,"name":"Patch''s
+        Test Offset Project","production":false,"verifier":"Test verifier"}],"error":null,"meta":{"next_page_url":null,"prev_page_url":null},"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/projects?page=1
+  recorded_at: Wed, 01 Jul 2020 20:00:44 GMT
+- request:
+    method: get
+    uri: https://api.staging-patch.com/v1/projects/pro_test_cee5bba9672799a693891aff340b3106
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Wed, 01 Jul 2020 20:00:44 GMT
+      content-type:
+      - application/json; charset=utf-8
+      vary:
+      - Accept-Encoding
+      - Origin
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"1bee28f83050ddecdadeaebcf81c6d6f"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 58d7abcd242b0bf2c93340967168d32f
+      x-runtime:
+      - '0.020281'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"pro_test_cee5bba9672799a693891aff340b3106","country":"US","description":"This
+        project is an example.","developer":"Patch Test Developer","latitude":45.0,"longitude":45.0,"name":"Patch''s
+        Test Offset Project","production":false,"verifier":"Test verifier"},"error":null,"meta":null,"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/projects/pro_test_cee5bba9672799a693891aff340b3106
+  recorded_at: Wed, 01 Jul 2020 20:00:44 GMT
+recorded_with: VCR 6.0.0
