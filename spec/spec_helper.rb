@@ -114,6 +114,7 @@ RSpec.configure do |config|
   VCR.configure do |config|
     config.cassette_library_dir = 'fixtures/vcr_cassettes'
     config.hook_into :typhoeus
+    # Filter out API tokens from VCR cassettes so they aren't committed to source control
     config.filter_sensitive_data('<AUTH>') do |interaction|
       interaction.request.headers['Authorization'].first
     end
@@ -121,8 +122,7 @@ RSpec.configure do |config|
 
   # Configure the Patch gem
   Patch.configure do |config|
-    # TODO replace with an environment variable
     config.access_token = ENV['PATCH_RUBY_API_KEY']
-    config.host = 'https://api.staging-patch.com/'
+    config.host = ENV'https://api.staging-patch.com/'
   end
 end
