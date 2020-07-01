@@ -76,11 +76,15 @@ module Patch
       }
     end
 
-    # List of attributes with nullable: true
-    def self.openapi_nullable
-      Set.new([
-        :'price_cents_usd',
-      ])
+    # Allows models with corresponding API classes to delegate API operations to those API classes
+    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
+    # Eg. Order.create_order delegates to OrdersApi.new.create_order
+    def self.method_missing(message, *args, &block)
+      if Object.const_defined?('Patch::OrdersApi::OPERATIONS') && Patch::OrdersApi::OPERATIONS.include?(message)
+        Patch::OrdersApi.new.send(message, *args)
+      else
+        super
+      end
     end
 
     # Initializes the object

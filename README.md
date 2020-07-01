@@ -41,11 +41,8 @@ end
 
 Once configured, you can test it out:
 ```ruby
-# Retrieve and print all your orders
-orders_api = Patch::OrdersApi.new
-
 begin
-  orders_response = orders_api.retrieve_orders
+  orders_response = Patch::Order.retrieve_orders
 
   orders_response.data.each do |order|
     puts "Order ID: #{order.id}, Order State: #{order.state}"

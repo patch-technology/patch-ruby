@@ -14,6 +14,13 @@ require 'cgi'
 
 module Patch
   class PreferencesApi
+    OPERATIONS = [
+      :create_preference,
+      :delete_preference,
+      :retrieve_preference,
+      :retrieve_preferences,
+    ]
+
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
