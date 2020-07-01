@@ -13,32 +13,24 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class ProjectListResponse
-    attr_accessor :success
+  class MetaIndexObject
+    attr_accessor :prev_page
 
-    attr_accessor :error
-
-    attr_accessor :data
-
-    attr_accessor :meta
+    attr_accessor :next_page
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'success' => :'success',
-        :'error' => :'error',
-        :'data' => :'data',
-        :'meta' => :'meta'
+        :'prev_page' => :'prev_page',
+        :'next_page' => :'next_page'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'success' => :'Boolean',
-        :'error' => :'Object',
-        :'data' => :'Array<Project>',
-        :'meta' => :'MetaIndexObject'
+        :'prev_page' => :'Integer',
+        :'next_page' => :'Integer'
       }
     end
 
@@ -46,8 +38,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::ProjectListResponsesApi::OPERATIONS') && Patch::ProjectListResponsesApi::OPERATIONS.include?(message)
-        Patch::ProjectListResponsesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::MetaIndexObjectsApi::OPERATIONS') && Patch::MetaIndexObjectsApi::OPERATIONS.include?(message)
+        Patch::MetaIndexObjectsApi.new.send(message, *args)
       else
         super
       end
@@ -57,33 +49,23 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::ProjectListResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::MetaIndexObject` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::ProjectListResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::MetaIndexObject`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'success')
-        self.success = attributes[:'success']
+      if attributes.key?(:'prev_page')
+        self.prev_page = attributes[:'prev_page']
       end
 
-      if attributes.key?(:'error')
-        self.error = attributes[:'error']
-      end
-
-      if attributes.key?(:'data')
-        if (value = attributes[:'data']).is_a?(Array)
-          self.data = value
-        end
-      end
-
-      if attributes.key?(:'meta')
-        self.meta = attributes[:'meta']
+      if attributes.key?(:'next_page')
+        self.next_page = attributes[:'next_page']
       end
     end
 
@@ -105,10 +87,8 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          success == o.success &&
-          error == o.error &&
-          data == o.data &&
-          meta == o.meta
+          prev_page == o.prev_page &&
+          next_page == o.next_page
     end
 
     # @see the `==` method
@@ -120,7 +100,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [success, error, data, meta].hash
+      [prev_page, next_page].hash
     end
 
     # Builds the object from hash

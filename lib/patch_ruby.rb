@@ -19,6 +19,7 @@ require 'patch_ruby/configuration'
 # Models
 require 'patch_ruby/models/allocation'
 require 'patch_ruby/models/error_response'
+require 'patch_ruby/models/meta_index_object'
 require 'patch_ruby/models/order'
 require 'patch_ruby/models/order_list_response'
 require 'patch_ruby/models/order_response'

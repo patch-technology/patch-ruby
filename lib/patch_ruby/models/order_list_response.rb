@@ -20,12 +20,15 @@ module Patch
 
     attr_accessor :data
 
+    attr_accessor :meta
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'success' => :'success',
         :'error' => :'error',
-        :'data' => :'data'
+        :'data' => :'data',
+        :'meta' => :'meta'
       }
     end
 
@@ -34,7 +37,8 @@ module Patch
       {
         :'success' => :'Boolean',
         :'error' => :'Object',
-        :'data' => :'Array<Order>'
+        :'data' => :'Array<Order>',
+        :'meta' => :'MetaIndexObject'
       }
     end
 
@@ -77,6 +81,10 @@ module Patch
           self.data = value
         end
       end
+
+      if attributes.key?(:'meta')
+        self.meta = attributes[:'meta']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -99,7 +107,8 @@ module Patch
       self.class == o.class &&
           success == o.success &&
           error == o.error &&
-          data == o.data
+          data == o.data &&
+          meta == o.meta
     end
 
     # @see the `==` method
@@ -111,7 +120,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [success, error, data].hash
+      [success, error, data, meta].hash
     end
 
     # Builds the object from hash
