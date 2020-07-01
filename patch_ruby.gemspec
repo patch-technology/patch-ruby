@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.version     = Patch::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Patch Technology"]
-  s.email       = ["info@usepatch.com"]
+  s.email       = ["developers@usepatch.com"]
   s.homepage    = "https://www.usepatch.com"
   s.summary     = "Ruby wrapper for the Patch API"
   s.description = "Ruby wrapper for the Patch API"
