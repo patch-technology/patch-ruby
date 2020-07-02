@@ -112,7 +112,7 @@ RSpec.configure do |config|
 
   # VCR
   VCR.configure do |config|
-    config.cassette_library_dir = 'fixtures/vcr_cassettes'
+    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
     config.hook_into :typhoeus
     # Filter out API tokens from VCR cassettes so they aren't committed to source control
     config.filter_sensitive_data('<AUTH>') do |interaction|

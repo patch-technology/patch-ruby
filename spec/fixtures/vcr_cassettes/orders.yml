@@ -8,7 +8,7 @@ http_interactions:
       string: '{"mass_g":100}'
     headers:
       User-Agent:
-      - OpenAPI-Generator/1.0.0/ruby
+      - OpenAPI-Generator/1.0.0.pre/ruby
       Content-Type:
       - application/json
       Accept:
@@ -25,7 +25,7 @@ http_interactions:
       server:
       - nginx/1.17.8
       date:
-      - Wed, 01 Jul 2020 19:56:50 GMT
+      - Thu, 02 Jul 2020 17:44:24 GMT
       content-type:
       - application/json; charset=utf-8
       x-frame-options:
@@ -41,13 +41,13 @@ http_interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       etag:
-      - W/"3da78d090d0b5c853dd94d057a136eac"
+      - W/"1ebf12734967f4e68ae687ff399373e3"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 2b8edf204a8909df50ef4c901792e0ea
+      - c396d4bff9b05bc45daeb35ccfe99309
       x-runtime:
-      - '0.053136'
+      - '0.050041'
       strict-transport-security:
       - max-age=15724800; includeSubDomains
       vary:
@@ -62,21 +62,21 @@ http_interactions:
       - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"ord_test_356659ea17804a53ea1cb506a7c8c6a7","allocation_state":"allocated","allocations":[{"id":"all_test_839644c866730b698da16e89899bc003","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+      string: '{"data":{"id":"ord_test_6d00ac52eb0404514a8c9688120ad886","allocation_state":"allocated","allocations":[{"id":"all_test_f54345ee0518704dea3bf25fc8f6c621","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},"error":null,"meta":null,"success":true}'
     http_version: '2'
     adapter_metadata:
       effective_url: https://api.staging-patch.com/v1/orders
-  recorded_at: Wed, 01 Jul 2020 19:56:50 GMT
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
 - request:
     method: get
-    uri: https://api.staging-patch.com/v1/orders/ord_test_356659ea17804a53ea1cb506a7c8c6a7
+    uri: https://api.staging-patch.com/v1/orders/ord_test_6d00ac52eb0404514a8c9688120ad886
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - OpenAPI-Generator/1.0.0/ruby
+      - OpenAPI-Generator/1.0.0.pre/ruby
       Content-Type:
       - application/json
       Accept:
@@ -93,7 +93,7 @@ http_interactions:
       server:
       - nginx/1.17.8
       date:
-      - Wed, 01 Jul 2020 19:56:50 GMT
+      - Thu, 02 Jul 2020 17:44:24 GMT
       content-type:
       - application/json; charset=utf-8
       vary:
@@ -112,13 +112,13 @@ http_interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       etag:
-      - W/"3da78d090d0b5c853dd94d057a136eac"
+      - W/"1ebf12734967f4e68ae687ff399373e3"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - a2007ad9cfe4f7b0e2db695f7cf99b28
+      - 8e5172fc91047ea0b802325e28b20f68
       x-runtime:
-      - '0.021946'
+      - '0.022674'
       strict-transport-security:
       - max-age=15724800; includeSubDomains
       access-control-allow-origin:
@@ -131,12 +131,12 @@ http_interactions:
       - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"ord_test_356659ea17804a53ea1cb506a7c8c6a7","allocation_state":"allocated","allocations":[{"id":"all_test_839644c866730b698da16e89899bc003","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+      string: '{"data":{"id":"ord_test_6d00ac52eb0404514a8c9688120ad886","allocation_state":"allocated","allocations":[{"id":"all_test_f54345ee0518704dea3bf25fc8f6c621","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},"error":null,"meta":null,"success":true}'
     http_version: '2'
     adapter_metadata:
-      effective_url: https://api.staging-patch.com/v1/orders/ord_test_356659ea17804a53ea1cb506a7c8c6a7
-  recorded_at: Wed, 01 Jul 2020 19:56:50 GMT
+      effective_url: https://api.staging-patch.com/v1/orders/ord_test_6d00ac52eb0404514a8c9688120ad886
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
 - request:
     method: get
     uri: https://api.staging-patch.com/v1/orders?page=1
@@ -145,7 +145,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - OpenAPI-Generator/1.0.0/ruby
+      - OpenAPI-Generator/1.0.0.pre/ruby
       Content-Type:
       - application/json
       Accept:
@@ -162,7 +162,7 @@ http_interactions:
       server:
       - nginx/1.17.8
       date:
-      - Wed, 01 Jul 2020 19:56:50 GMT
+      - Thu, 02 Jul 2020 17:44:24 GMT
       content-type:
       - application/json; charset=utf-8
       vary:
@@ -181,13 +181,13 @@ http_interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       etag:
-      - W/"266a9f6df37c72e9f8a05e37c80e0334"
+      - W/"82f6a48e5b41681ace087771cd7b8b33"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - d43f99aa03af9e8eecead74c07c2f163
+      - 834dbe28552d5f2ce46d3bdd82db5aee
       x-runtime:
-      - '0.039901'
+      - '0.076269'
       strict-transport-security:
       - max-age=15724800; includeSubDomains
       access-control-allow-origin:
@@ -200,7 +200,13 @@ http_interactions:
       - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"ord_test_356659ea17804a53ea1cb506a7c8c6a7","allocation_state":"allocated","allocations":[{"id":"all_test_839644c866730b698da16e89899bc003","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+      string: '{"data":[{"id":"ord_test_6d00ac52eb0404514a8c9688120ad886","allocation_state":"allocated","allocations":[{"id":"all_test_f54345ee0518704dea3bf25fc8f6c621","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_26c3cc6bcc823154b244653052ffc93e","allocation_state":"allocated","allocations":[{"id":"all_test_da286dca43e07def48c5333f971c0673","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"draft"},{"id":"ord_test_d22cae8d4a65ad93a255d1bf8b2a0701","allocation_state":"allocated","allocations":[{"id":"all_test_ad2a03492c746cefd7ebebe3bdd1d286","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_3566497ae59fff4d84c13261b89b2b91","allocation_state":"allocated","allocations":[{"id":"all_test_337eb3c65c52e6becbef3c693465654a","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_f4c126c763b33ea12b7491118d5fdb18","allocation_state":"allocated","allocations":[],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"cancelled"},{"id":"ord_test_5bd267b45da3d5c489b5b906f41bae0b","allocation_state":"allocated","allocations":[{"id":"all_test_e7a874eab4be84503d56605296816f35","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_438094fb6759af55933349eb2ced84f5","allocation_state":"allocated","allocations":[],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"cancelled"},{"id":"ord_test_7205af2299044d533e254e6efaeed361","allocation_state":"allocated","allocations":[{"id":"all_test_9c458c03ec0e19a22a7a795c23eb6877","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_f8ec57342fefc401a441f7cbf072f5b1","allocation_state":"allocated","allocations":[],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"cancelled"},{"id":"ord_test_356659ea17804a53ea1cb506a7c8c6a7","allocation_state":"allocated","allocations":[{"id":"all_test_839644c866730b698da16e89899bc003","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_24dbbc4e4c6ac98b97058146c40184b4","allocation_state":"allocated","allocations":[{"id":"all_test_7246511019b601ff735e0b520934fc3b","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_b5f49dc84442aa1c77ff2a2caa30f19c","allocation_state":"allocated","allocations":[{"id":"all_test_4c1f00cbe24efce25fc4bc4957d5fadc","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_79b8ae05254d3695fc75e7dd8ed8ae91","allocation_state":"allocated","allocations":[{"id":"all_test_2c82280f135e8030d39a66eb4e21b621","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
@@ -215,9 +221,9 @@ http_interactions:
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_4354a934504498c953ed2a188ab4cf01","allocation_state":"allocated","allocations":[{"id":"all_test_031c0937a65f3c3f57299b86e25c02f7","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_236ffceadec1cc2321f0e9f7a5fba6b7","allocation_state":"allocated","allocations":[{"id":"all_test_0e0b5fafb7f8b7f2e4d5eff72288a88c","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
         Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},{"id":"ord_test_47964e77ad9f6ee9d4f8c8650f7da804","allocation_state":"allocated","allocations":[{"id":"all_test_6bb9a87e8703e10728a574cdfeeda7bf","mass_g":5999,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
-        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":5999,"price_cents_usd":"1.0","production":false,"state":"placed"}],"error":null,"meta":{"next_page_url":null,"prev_page_url":null},"success":true}'
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":5999,"price_cents_usd":"1.0","production":false,"state":"placed"}],"error":null,"meta":{"next_page":null,"prev_page":null},"success":true}'
     http_version: '2'
     adapter_metadata:
       effective_url: https://api.staging-patch.com/v1/orders?page=1
-  recorded_at: Wed, 01 Jul 2020 19:56:50 GMT
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
 recorded_with: VCR 6.0.0

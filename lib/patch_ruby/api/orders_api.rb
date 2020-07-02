@@ -157,17 +157,17 @@ module Patch
     # Placing an order confirms an order's allocation of offsets. Only orders that are in the `draft` state can be placed 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [OrderResponse]
     def place_order(id, opts = {})
-      place_order_with_http_info(id, opts)
-      nil
+      data, _status_code, _headers = place_order_with_http_info(id, opts)
+      data
     end
 
     # Place an order
     # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
     def place_order_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: OrdersApi.place_order ...'
@@ -194,7 +194,7 @@ module Patch
       post_body = opts[:body] 
 
       # return_type
-      return_type = opts[:return_type] 
+      return_type = opts[:return_type] || 'OrderResponse' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']

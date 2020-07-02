@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - OpenAPI-Generator/1.0.0/ruby
+      - OpenAPI-Generator/1.0.0.pre/ruby
       Content-Type:
       - application/json
       Accept:
@@ -25,7 +25,7 @@ http_interactions:
       server:
       - nginx/1.17.8
       date:
-      - Wed, 01 Jul 2020 20:00:44 GMT
+      - Thu, 02 Jul 2020 17:44:24 GMT
       content-type:
       - application/json; charset=utf-8
       vary:
@@ -44,13 +44,13 @@ http_interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       etag:
-      - W/"67d3655e08e10760edfe532373817fa0"
+      - W/"4cb5a00231b4a4af0a924c8965c78a3c"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 9812b242facabd40abe7aec165d39429
+      - e1e6cbb673e72cc20c3378bb78772040
       x-runtime:
-      - '0.028850'
+      - '0.022308'
       strict-transport-security:
       - max-age=15724800; includeSubDomains
       access-control-allow-origin:
@@ -65,11 +65,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"data":[{"id":"pro_test_cee5bba9672799a693891aff340b3106","country":"US","description":"This
         project is an example.","developer":"Patch Test Developer","latitude":45.0,"longitude":45.0,"name":"Patch''s
-        Test Offset Project","production":false,"verifier":"Test verifier"}],"error":null,"meta":{"next_page_url":null,"prev_page_url":null},"success":true}'
+        Test Offset Project","production":false,"verifier":"Test verifier"}],"error":null,"meta":{"next_page":null,"prev_page":null},"success":true}'
     http_version: '2'
     adapter_metadata:
       effective_url: https://api.staging-patch.com/v1/projects?page=1
-  recorded_at: Wed, 01 Jul 2020 20:00:44 GMT
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
 - request:
     method: get
     uri: https://api.staging-patch.com/v1/projects/pro_test_cee5bba9672799a693891aff340b3106
@@ -78,7 +78,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - OpenAPI-Generator/1.0.0/ruby
+      - OpenAPI-Generator/1.0.0.pre/ruby
       Content-Type:
       - application/json
       Accept:
@@ -95,7 +95,7 @@ http_interactions:
       server:
       - nginx/1.17.8
       date:
-      - Wed, 01 Jul 2020 20:00:44 GMT
+      - Thu, 02 Jul 2020 17:44:25 GMT
       content-type:
       - application/json; charset=utf-8
       vary:
@@ -118,9 +118,9 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 58d7abcd242b0bf2c93340967168d32f
+      - c4bc4dc7cf503c5673a9818e4830360d
       x-runtime:
-      - '0.020281'
+      - '0.033308'
       strict-transport-security:
       - max-age=15724800; includeSubDomains
       access-control-allow-origin:
@@ -139,5 +139,5 @@ http_interactions:
     http_version: '2'
     adapter_metadata:
       effective_url: https://api.staging-patch.com/v1/projects/pro_test_cee5bba9672799a693891aff340b3106
-  recorded_at: Wed, 01 Jul 2020 20:00:44 GMT
+  recorded_at: Thu, 02 Jul 2020 17:44:25 GMT
 recorded_with: VCR 6.0.0

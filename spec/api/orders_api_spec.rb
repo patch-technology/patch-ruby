@@ -61,7 +61,7 @@ describe 'OrdersApi' do
   # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
   # @param id 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [OrderResponse]
   describe 'place_order test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
