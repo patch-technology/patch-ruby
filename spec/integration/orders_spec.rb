@@ -6,7 +6,7 @@ RSpec.describe 'Orders Integration' do
       # Configure the Patch gem
       Patch.configure do |config|
         config.access_token = ENV['PATCH_RUBY_API_KEY']
-        config.host = 'https://api.staging-patch.com/'
+        config.host = ENV['PATCH_RUBY_HOST']
       end
 
       create_order_response = Patch::Order.create_order(mass_g: 100)

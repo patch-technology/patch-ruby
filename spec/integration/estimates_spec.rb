@@ -6,7 +6,7 @@ RSpec.describe 'Estimates Integration' do
       # Configure the Patch gem
       Patch.configure do |config|
         config.access_token = ENV['PATCH_RUBY_API_KEY']
-        config.host = 'https://api.staging-patch.com/'
+        config.host = ENV['PATCH_RUBY_HOST']
       end
 
       create_estimate_response = Patch::Estimate.create_mass_estimate(mass_g: 100)
