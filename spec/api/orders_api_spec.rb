@@ -47,8 +47,8 @@ describe 'OrdersApi' do
   # unit tests for create_order
   # Creates an order
   # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first. 
+  # @param create_order_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
   # @return [OrderResponse]
   describe 'create_order test' do
     it 'should work' do

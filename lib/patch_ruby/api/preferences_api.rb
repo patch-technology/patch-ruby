@@ -28,22 +28,26 @@ module Patch
     end
     # creates a project preference
     # Creates a project preference for the given organization. If you have a `preference` in place, all of your orders will be directed to the project the preference points to. 
+    # @param create_preference_request [CreatePreferenceRequest] 
     # @param [Hash] opts the optional parameters
-    # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
     # @return [PreferenceResponse]
-    def create_preference(opts = {})
-      data, _status_code, _headers = create_preference_with_http_info(opts)
+    def create_preference(create_preference_request, opts = {})
+      data, _status_code, _headers = create_preference_with_http_info(create_preference_request, opts)
       data
     end
 
     # creates a project preference
     # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to. 
+    # @param create_preference_request [CreatePreferenceRequest] 
     # @param [Hash] opts the optional parameters
-    # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
     # @return [Array<(PreferenceResponse, Integer, Hash)>] PreferenceResponse data, response status code and response headers
-    def create_preference_with_http_info(opts = {})
+    def create_preference_with_http_info(create_preference_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PreferencesApi.create_preference ...'
+      end
+      # verify the required parameter 'create_preference_request' is set
+      if @api_client.config.client_side_validation && create_preference_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_preference_request' when calling PreferencesApi.create_preference"
       end
       # resource path
       local_var_path = '/v1/preferences'
@@ -62,7 +66,7 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'unknown_base_type']) 
+      post_body = opts[:body] || @api_client.object_to_http_body(create_preference_request) 
 
       # return_type
       return_type = opts[:return_type] || 'PreferenceResponse' 

@@ -91,22 +91,26 @@ module Patch
 
     # Creates an order
     # Creates an order in the `placed` state. To create a `draft` order, create an estimate first. 
+    # @param create_order_request [CreateOrderRequest] 
     # @param [Hash] opts the optional parameters
-    # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
     # @return [OrderResponse]
-    def create_order(opts = {})
-      data, _status_code, _headers = create_order_with_http_info(opts)
+    def create_order(create_order_request, opts = {})
+      data, _status_code, _headers = create_order_with_http_info(create_order_request, opts)
       data
     end
 
     # Creates an order
     # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first. 
+    # @param create_order_request [CreateOrderRequest] 
     # @param [Hash] opts the optional parameters
-    # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
-    def create_order_with_http_info(opts = {})
+    def create_order_with_http_info(create_order_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: OrdersApi.create_order ...'
+      end
+      # verify the required parameter 'create_order_request' is set
+      if @api_client.config.client_side_validation && create_order_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_order_request' when calling OrdersApi.create_order"
       end
       # resource path
       local_var_path = '/v1/orders'
@@ -125,7 +129,7 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'unknown_base_type']) 
+      post_body = opts[:body] || @api_client.object_to_http_body(create_order_request) 
 
       # return_type
       return_type = opts[:return_type] || 'OrderResponse' 

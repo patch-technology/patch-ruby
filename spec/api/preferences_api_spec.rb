@@ -35,8 +35,8 @@ describe 'PreferencesApi' do
   # unit tests for create_preference
   # creates a project preference
   # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to. 
+  # @param create_preference_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
   # @return [PreferenceResponse]
   describe 'create_preference test' do
     it 'should work' do
