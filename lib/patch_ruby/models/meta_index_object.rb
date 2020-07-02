@@ -13,28 +13,24 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class ProjectResponse
-    attr_accessor :success
+  class MetaIndexObject
+    attr_accessor :prev_page
 
-    attr_accessor :error
-
-    attr_accessor :data
+    attr_accessor :next_page
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'success' => :'success',
-        :'error' => :'error',
-        :'data' => :'data'
+        :'prev_page' => :'prev_page',
+        :'next_page' => :'next_page'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'success' => :'Boolean',
-        :'error' => :'Object',
-        :'data' => :'Project'
+        :'prev_page' => :'Integer',
+        :'next_page' => :'Integer'
       }
     end
 
@@ -42,8 +38,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::ProjectResponsesApi::OPERATIONS') && Patch::ProjectResponsesApi::OPERATIONS.include?(message)
-        Patch::ProjectResponsesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::MetaIndexObjectsApi::OPERATIONS') && Patch::MetaIndexObjectsApi::OPERATIONS.include?(message)
+        Patch::MetaIndexObjectsApi.new.send(message, *args)
       else
         super
       end
@@ -53,27 +49,23 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::ProjectResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::MetaIndexObject` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::ProjectResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::MetaIndexObject`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'success')
-        self.success = attributes[:'success']
+      if attributes.key?(:'prev_page')
+        self.prev_page = attributes[:'prev_page']
       end
 
-      if attributes.key?(:'error')
-        self.error = attributes[:'error']
-      end
-
-      if attributes.key?(:'data')
-        self.data = attributes[:'data']
+      if attributes.key?(:'next_page')
+        self.next_page = attributes[:'next_page']
       end
     end
 
@@ -81,22 +73,12 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @success.nil?
-        invalid_properties.push('invalid value for "success", success cannot be nil.')
-      end
-
-      if @data.nil?
-        invalid_properties.push('invalid value for "data", data cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @success.nil?
-      return false if @data.nil?
       true
     end
 
@@ -105,9 +87,8 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          success == o.success &&
-          error == o.error &&
-          data == o.data
+          prev_page == o.prev_page &&
+          next_page == o.next_page
     end
 
     # @see the `==` method
@@ -119,7 +100,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [success, error, data].hash
+      [prev_page, next_page].hash
     end
 
     # Builds the object from hash

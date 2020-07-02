@@ -47,8 +47,8 @@ describe 'OrdersApi' do
   # unit tests for create_order
   # Creates an order
   # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first. 
+  # @param create_order_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [UNKNOWN_BASE_TYPE] :unknown_base_type 
   # @return [OrderResponse]
   describe 'create_order test' do
     it 'should work' do
@@ -61,7 +61,7 @@ describe 'OrdersApi' do
   # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
   # @param id 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [OrderResponse]
   describe 'place_order test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

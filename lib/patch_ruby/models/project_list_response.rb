@@ -20,12 +20,15 @@ module Patch
 
     attr_accessor :data
 
+    attr_accessor :meta
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'success' => :'success',
         :'error' => :'error',
-        :'data' => :'data'
+        :'data' => :'data',
+        :'meta' => :'meta'
       }
     end
 
@@ -34,7 +37,8 @@ module Patch
       {
         :'success' => :'Boolean',
         :'error' => :'Object',
-        :'data' => :'Array<Project>'
+        :'data' => :'Array<Project>',
+        :'meta' => :'MetaIndexObject'
       }
     end
 
@@ -77,18 +81,37 @@ module Patch
           self.data = value
         end
       end
+
+      if attributes.key?(:'meta')
+        self.meta = attributes[:'meta']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @success.nil?
+        invalid_properties.push('invalid value for "success", success cannot be nil.')
+      end
+
+      if @data.nil?
+        invalid_properties.push('invalid value for "data", data cannot be nil.')
+      end
+
+      if @meta.nil?
+        invalid_properties.push('invalid value for "meta", meta cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @success.nil?
+      return false if @data.nil?
+      return false if @meta.nil?
       true
     end
 
@@ -99,7 +122,8 @@ module Patch
       self.class == o.class &&
           success == o.success &&
           error == o.error &&
-          data == o.data
+          data == o.data &&
+          meta == o.meta
     end
 
     # @see the `==` method
@@ -111,7 +135,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [success, error, data].hash
+      [success, error, data, meta].hash
     end
 
     # Builds the object from hash

@@ -35,7 +35,7 @@ require 'patch_ruby'
 
 Patch.configure do |config|
   # Configure the Patch gem with your API key here
-  config.access_token = 'key_test_1234'
+  config.access_token = ENV['PATCH_RUBY_API_KEY']
 end
 ```
 

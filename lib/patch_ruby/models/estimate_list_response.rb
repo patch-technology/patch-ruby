@@ -13,19 +13,22 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class ProjectResponse
+  class EstimateListResponse
     attr_accessor :success
 
     attr_accessor :error
 
     attr_accessor :data
 
+    attr_accessor :meta
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'success' => :'success',
         :'error' => :'error',
-        :'data' => :'data'
+        :'data' => :'data',
+        :'meta' => :'meta'
       }
     end
 
@@ -34,7 +37,8 @@ module Patch
       {
         :'success' => :'Boolean',
         :'error' => :'Object',
-        :'data' => :'Project'
+        :'data' => :'Array<Estimate>',
+        :'meta' => :'MetaIndexObject'
       }
     end
 
@@ -42,8 +46,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::ProjectResponsesApi::OPERATIONS') && Patch::ProjectResponsesApi::OPERATIONS.include?(message)
-        Patch::ProjectResponsesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::EstimateListResponsesApi::OPERATIONS') && Patch::EstimateListResponsesApi::OPERATIONS.include?(message)
+        Patch::EstimateListResponsesApi.new.send(message, *args)
       else
         super
       end
@@ -53,13 +57,13 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::ProjectResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::EstimateListResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::ProjectResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::EstimateListResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -73,7 +77,13 @@ module Patch
       end
 
       if attributes.key?(:'data')
-        self.data = attributes[:'data']
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
+      end
+
+      if attributes.key?(:'meta')
+        self.meta = attributes[:'meta']
       end
     end
 
@@ -89,6 +99,10 @@ module Patch
         invalid_properties.push('invalid value for "data", data cannot be nil.')
       end
 
+      if @meta.nil?
+        invalid_properties.push('invalid value for "meta", meta cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -97,6 +111,7 @@ module Patch
     def valid?
       return false if @success.nil?
       return false if @data.nil?
+      return false if @meta.nil?
       true
     end
 
@@ -107,7 +122,8 @@ module Patch
       self.class == o.class &&
           success == o.success &&
           error == o.error &&
-          data == o.data
+          data == o.data &&
+          meta == o.meta
     end
 
     # @see the `==` method
@@ -119,7 +135,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [success, error, data].hash
+      [success, error, data, meta].hash
     end
 
     # Builds the object from hash

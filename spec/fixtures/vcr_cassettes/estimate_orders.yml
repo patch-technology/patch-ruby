@@ -1,0 +1,276 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.staging-patch.com/v1/estimates/mass
+    body:
+      encoding: UTF-8
+      string: '{"mass_g":100}'
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0.pre/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Thu, 02 Jul 2020 17:44:24 GMT
+      content-type:
+      - application/json; charset=utf-8
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"af0b00bb84b4c38293ed30105f13c5c6"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 28a69e9c0e7efc14c2224edd51cd3571
+      x-runtime:
+      - '0.048519'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      vary:
+      - Origin
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"est_test_7b0f776934705a0cbbc33082ae85026a","order":{"id":"ord_test_9ff07c288ac6484ea64b8a7dd6139f0a","allocation_state":"allocated","allocations":[{"id":"all_test_946d0d85732a7d36e96202b2ba267339","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"draft"},"production":true,"type":"mass"},"error":null,"meta":null,"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/estimates/mass
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
+- request:
+    method: patch
+    uri: https://api.staging-patch.com/v1/orders/ord_test_9ff07c288ac6484ea64b8a7dd6139f0a/place
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0.pre/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Thu, 02 Jul 2020 17:44:24 GMT
+      content-type:
+      - application/json; charset=utf-8
+      vary:
+      - Accept-Encoding
+      - Origin
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"83cacd7a207ff94ca182623addf38a4a"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - cf92e44ea1f6dac58c8dda2d9838d33c
+      x-runtime:
+      - '0.030993'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"ord_test_9ff07c288ac6484ea64b8a7dd6139f0a","allocation_state":"allocated","allocations":[{"id":"all_test_946d0d85732a7d36e96202b2ba267339","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"placed"},"error":null,"meta":null,"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/orders/ord_test_9ff07c288ac6484ea64b8a7dd6139f0a/place
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
+- request:
+    method: post
+    uri: https://api.staging-patch.com/v1/estimates/mass
+    body:
+      encoding: UTF-8
+      string: '{"mass_g":100}'
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0.pre/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Thu, 02 Jul 2020 17:44:24 GMT
+      content-type:
+      - application/json; charset=utf-8
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"bbe846386f1301daf592dc1778dbf7aa"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 291f4b70d2f90defaecae12dd5d6f73b
+      x-runtime:
+      - '0.049709'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      vary:
+      - Origin
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"est_test_6156c2c85627268bde56dc5dc13d6668","order":{"id":"ord_test_9a8e1b4894cce6420d21685cabcdfabe","allocation_state":"allocated","allocations":[{"id":"all_test_7883718e4e87879a6ad3e9c2a6afb719","mass_g":100,"offset":{"id":"off_test_000ef5de5218cc4eeea1f87e081da9cc","developer":"Patch
+        Test Developer","production":false,"serial_number":"462630d75df3085670adfb97cc7be235","vintage_year":2020},"production":false}],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"draft"},"production":true,"type":"mass"},"error":null,"meta":null,"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/estimates/mass
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
+- request:
+    method: patch
+    uri: https://api.staging-patch.com/v1/orders/ord_test_9a8e1b4894cce6420d21685cabcdfabe/cancel
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OpenAPI-Generator/1.0.0.pre/ruby
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTH>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      server:
+      - nginx/1.17.8
+      date:
+      - Thu, 02 Jul 2020 17:44:24 GMT
+      content-type:
+      - application/json; charset=utf-8
+      vary:
+      - Accept-Encoding
+      - Origin
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      etag:
+      - W/"c9c14db6eaa851d90cefcb3766bee9d8"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 892abb438ef0bf9cae7ecee9156659a2
+      x-runtime:
+      - '0.027150'
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      access-control-allow-headers:
+      - DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"ord_test_9a8e1b4894cce6420d21685cabcdfabe","allocation_state":"allocated","allocations":[],"mass_g":100,"price_cents_usd":"1.0","production":false,"state":"cancelled"},"error":null,"meta":null,"success":true}'
+    http_version: '2'
+    adapter_metadata:
+      effective_url: https://api.staging-patch.com/v1/orders/ord_test_9a8e1b4894cce6420d21685cabcdfabe/cancel
+  recorded_at: Thu, 02 Jul 2020 17:44:24 GMT
+recorded_with: VCR 6.0.0

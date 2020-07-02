@@ -18,7 +18,14 @@ require 'patch_ruby/configuration'
 
 # Models
 require 'patch_ruby/models/allocation'
+require 'patch_ruby/models/create_mass_estimate_request'
+require 'patch_ruby/models/create_order_request'
+require 'patch_ruby/models/create_preference_request'
 require 'patch_ruby/models/error_response'
+require 'patch_ruby/models/estimate'
+require 'patch_ruby/models/estimate_list_response'
+require 'patch_ruby/models/estimate_response'
+require 'patch_ruby/models/meta_index_object'
 require 'patch_ruby/models/order'
 require 'patch_ruby/models/order_list_response'
 require 'patch_ruby/models/order_response'
@@ -30,6 +37,7 @@ require 'patch_ruby/models/project_list_response'
 require 'patch_ruby/models/project_response'
 
 # APIs
+require 'patch_ruby/api/estimates_api'
 require 'patch_ruby/api/orders_api'
 require 'patch_ruby/api/preferences_api'
 require 'patch_ruby/api/projects_api'
