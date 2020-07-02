@@ -13,7 +13,7 @@ RSpec.describe 'Preferences Integration' do
       expect(retrieve_projects_response.data.length).not_to be_zero
       project_id = retrieve_projects_response.data.first.id
 
-      create_preference_response = Patch::Preference.create_preference(body: { project_id: project_id })
+      create_preference_response = Patch::Preference.create_preference(project_id: project_id)
       preference_id = create_preference_response.data.id
 
       retrieve_preference_response = Patch::Preference.retrieve_preference(preference_id)

@@ -9,7 +9,7 @@ RSpec.describe 'Orders Integration' do
         config.host = 'https://api.staging-patch.com/'
       end
 
-      create_order_response = Patch::Order.create_order(body: { mass_g: 100 })
+      create_order_response = Patch::Order.create_order(mass_g: 100)
       order_id = create_order_response.data.id
 
       retrieve_order_response = Patch::Order.retrieve_order(order_id)
