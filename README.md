@@ -1,5 +1,6 @@
 # Patch ruby
 ![Test](https://github.com/patch-technology/patch-ruby/workflows/Test/badge.svg)
+[![Gem Version](https://badge.fury.io/rb/patch_ruby.svg)](https://badge.fury.io/rb/patch_ruby)
 
 The official Ruby gem for the [Patch API](https://www.usepatch.com)
 
