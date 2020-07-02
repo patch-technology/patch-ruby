@@ -19,7 +19,6 @@ RSpec.describe 'Preferences Integration' do
       retrieve_preference_response = Patch::Preference.retrieve_preference(preference_id)
       expect(retrieve_preference_response.data.id).to eq preference_id
 
-      # START receive_preferences
       page_limit = 1
       next_page = 1
       preferences = []
@@ -31,7 +30,6 @@ RSpec.describe 'Preferences Integration' do
       end
 
       expect(preferences.length).not_to be_zero
-      # END receive_preferences
 
       delete_preference_response = Patch::Preference.delete_preference(preference_id)
       expect(delete_preference_response.data.id).to eq preference_id

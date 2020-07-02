@@ -15,12 +15,6 @@ RSpec.describe 'Orders Integration' do
       retrieve_order_response = Patch::Order.retrieve_order(order_id)
       expect(retrieve_order_response.data.id).to eq order_id
 
-      # place_order_response = Patch::Order.place_order(order_id)
-      # expect(place_order_response.data.state).to eq 'placed'
-
-      # place_order_response = Patch::Order.cancel_order(order_id)
-      # expect(place_order_response.data.state).to eq 'cancelled'
-
       page_limit = 1
       next_page = 1
       orders = []
