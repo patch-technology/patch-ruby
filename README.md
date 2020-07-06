@@ -106,7 +106,7 @@ Patch::Project.retrieve_projects(page: page)
 ```
 
 ### Preferences
-Preferences are how you route your orders in Patch. If you don't have a preference, Patch will allocate your order to the least expensive option. If you do have a preference, all of your orders will be sent to that project. You can set your preferences via API, or through the [Patch Dashboard](dashboard.usepatch.com/projects).
+Preferences are how you route your orders in Patch. If you don't have a preference, Patch will allocate your order to the least expensive option. If you do have a preference, all of your orders will be sent to that project. You can set your preferences via API, or through the [Patch Dashboard](https://dashboard.usepatch.com/projects).
 
 [API Reference](https://docs.usepatch.com/docs/patch/openapi/v1/swagger.yaml/paths/~1v1~1preferences/post)
 
