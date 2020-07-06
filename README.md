@@ -1,4 +1,4 @@
-# Patch ruby
+# Patch Ruby SDK
 ![Test](https://github.com/patch-technology/patch-ruby/workflows/Test/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/patch_ruby.svg)](https://badge.fury.io/rb/patch_ruby)
 
@@ -6,7 +6,7 @@ The official Ruby gem for the [Patch API](https://www.usepatch.com)
 
 ## Documentation
 
-For detailed documentation and examples, see the [Patch API docs](https://www.usepatch.com).
+For detailed documentation and examples, see the [Patch API docs](https://docs.usepatch.com).
 
 ## Installation
 
