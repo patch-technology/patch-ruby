@@ -1,6 +1,7 @@
 # Patch Ruby SDK
 ![Test](https://github.com/patch-technology/patch-ruby/workflows/Test/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/patch_ruby.svg)](https://badge.fury.io/rb/patch_ruby)
+[![Discord](https://img.shields.io/discord/733029448558837792)](https://discord.gg/AU8543D)
 
 The official Ruby gem for the [Patch API](https://www.usepatch.com)
 
