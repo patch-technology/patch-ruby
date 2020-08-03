@@ -34,8 +34,8 @@ describe 'PreferencesApi' do
 
   # unit tests for create_preference
   # creates a project preference
-  # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to. 
-  # @param create_preference_request 
+  # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to.
+  # @param create_preference_request
   # @param [Hash] opts the optional parameters
   # @return [PreferenceResponse]
   describe 'create_preference test' do
@@ -46,8 +46,8 @@ describe 'PreferencesApi' do
 
   # unit tests for delete_preference
   # Deletes an organization&#39;s preference for a project
-  # Deletes the given &#x60;preference&#x60;. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one. 
-  # @param id 
+  # Deletes the given &#x60;preference&#x60;. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [PreferenceResponse]
   describe 'delete_preference test' do
@@ -58,8 +58,8 @@ describe 'PreferencesApi' do
 
   # unit tests for retrieve_preference
   # Retrieve the preference
-  # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization. 
-  # @param id 
+  # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [PreferenceResponse]
   describe 'retrieve_preference test' do
@@ -70,14 +70,13 @@ describe 'PreferencesApi' do
 
   # unit tests for retrieve_preferences
   # Retrieves a list of preferences
-  # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization. 
+  # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization.
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :page 
+  # @option opts [Integer] :page
   # @return [PreferenceListResponse]
   describe 'retrieve_preferences test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
-
 end

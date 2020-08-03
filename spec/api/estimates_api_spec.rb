@@ -34,8 +34,8 @@ describe 'EstimatesApi' do
 
   # unit tests for create_mass_estimate
   # Create an estimate based on mass of CO2
-  # Creates an estimate for the mass of CO2 to be compensated. An order in the &#x60;draft&#x60; state will also be created, linked to the estimate. 
-  # @param create_mass_estimate_request 
+  # Creates an estimate for the mass of CO2 to be compensated. An order in the &#x60;draft&#x60; state will also be created, linked to the estimate.
+  # @param create_mass_estimate_request
   # @param [Hash] opts the optional parameters
   # @return [EstimateResponse]
   describe 'create_mass_estimate test' do
@@ -46,8 +46,8 @@ describe 'EstimatesApi' do
 
   # unit tests for retrieve_estimate
   # Retrieves an estimate
-  # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for. 
-  # @param id 
+  # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [EstimateResponse]
   describe 'retrieve_estimate test' do
@@ -58,14 +58,13 @@ describe 'EstimatesApi' do
 
   # unit tests for retrieve_estimates
   # Retrieves a list of estimates
-  # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for. 
+  # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for.
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :page 
+  # @option opts [Integer] :page
   # @return [EstimateListResponse]
   describe 'retrieve_estimates test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
-
 end
