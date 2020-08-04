@@ -34,8 +34,8 @@ describe 'OrdersApi' do
 
   # unit tests for cancel_order
   # Cancel an order
-  # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; state can be cancelled. 
-  # @param id 
+  # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; state can be cancelled.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [OrderResponse]
   describe 'cancel_order test' do
@@ -46,8 +46,8 @@ describe 'OrdersApi' do
 
   # unit tests for create_order
   # Creates an order
-  # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first. 
-  # @param create_order_request 
+  # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first.
+  # @param create_order_request
   # @param [Hash] opts the optional parameters
   # @return [OrderResponse]
   describe 'create_order test' do
@@ -58,8 +58,8 @@ describe 'OrdersApi' do
 
   # unit tests for place_order
   # Place an order
-  # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
-  # @param id 
+  # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [OrderResponse]
   describe 'place_order test' do
@@ -70,8 +70,8 @@ describe 'OrdersApi' do
 
   # unit tests for retrieve_order
   # Retrieves an order
-  # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
-  # @param id 
+  # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [OrderResponse]
   describe 'retrieve_order test' do
@@ -82,14 +82,13 @@ describe 'OrdersApi' do
 
   # unit tests for retrieve_orders
   # Retrieves a list of orders
-  # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
+  # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :page 
+  # @option opts [Integer] :page
   # @return [OrderListResponse]
   describe 'retrieve_orders test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
-
 end

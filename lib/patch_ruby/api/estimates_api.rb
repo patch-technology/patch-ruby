@@ -25,9 +25,10 @@ module Patch
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+
     # Create an estimate based on mass of CO2
-    # Creates an estimate for the mass of CO2 to be compensated. An order in the `draft` state will also be created, linked to the estimate. 
-    # @param create_mass_estimate_request [CreateMassEstimateRequest] 
+    # Creates an estimate for the mass of CO2 to be compensated. An order in the `draft` state will also be created, linked to the estimate.
+    # @param create_mass_estimate_request [CreateMassEstimateRequest]
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
     def create_mass_estimate(create_mass_estimate_request, opts = {})
@@ -36,8 +37,8 @@ module Patch
     end
 
     # Create an estimate based on mass of CO2
-    # Creates an estimate for the mass of CO2 to be compensated. An order in the &#x60;draft&#x60; state will also be created, linked to the estimate. 
-    # @param create_mass_estimate_request [CreateMassEstimateRequest] 
+    # Creates an estimate for the mass of CO2 to be compensated. An order in the &#x60;draft&#x60; state will also be created, linked to the estimate.
+    # @param create_mass_estimate_request [CreateMassEstimateRequest]
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
     def create_mass_estimate_with_http_info(create_mass_estimate_request, opts = {})
@@ -48,6 +49,7 @@ module Patch
       if @api_client.config.client_side_validation && create_mass_estimate_request.nil?
         fail ArgumentError, "Missing the required parameter 'create_mass_estimate_request' when calling EstimatesApi.create_mass_estimate"
       end
+
       # resource path
       local_var_path = '/v1/estimates/mass'
 
@@ -65,10 +67,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_mass_estimate_request) 
+      post_body = opts[:body] || @api_client.object_to_http_body(create_mass_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:return_type] || 'EstimateResponse'
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -90,8 +92,8 @@ module Patch
     end
 
     # Retrieves an estimate
-    # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for. 
-    # @param id [String] 
+    # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
     def retrieve_estimate(id, opts = {})
@@ -100,8 +102,8 @@ module Patch
     end
 
     # Retrieves an estimate
-    # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for. 
-    # @param id [String] 
+    # Retrieves a given estimate and its associated order. You can only retrieve estimates associated with the organization you are querying for.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
     def retrieve_estimate_with_http_info(id, opts = {})
@@ -112,6 +114,7 @@ module Patch
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling EstimatesApi.retrieve_estimate"
       end
+
       # resource path
       local_var_path = '/v1/estimates/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
@@ -127,10 +130,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:body]
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:return_type] || 'EstimateResponse'
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -152,9 +155,9 @@ module Patch
     end
 
     # Retrieves a list of estimates
-    # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for. 
+    # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
+    # @option opts [Integer] :page
     # @return [EstimateListResponse]
     def retrieve_estimates(opts = {})
       data, _status_code, _headers = retrieve_estimates_with_http_info(opts)
@@ -162,9 +165,9 @@ module Patch
     end
 
     # Retrieves a list of estimates
-    # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for. 
+    # Retrieves a list of estimates and their associated orders. You can only retrieve estimates associated with the organization you are querying for.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
+    # @option opts [Integer] :page
     # @return [Array<(EstimateListResponse, Integer, Hash)>] EstimateListResponse data, response status code and response headers
     def retrieve_estimates_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -186,10 +189,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:body]
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateListResponse' 
+      return_type = opts[:return_type] || 'EstimateListResponse'
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']

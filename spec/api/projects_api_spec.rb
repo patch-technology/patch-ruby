@@ -34,8 +34,8 @@ describe 'ProjectsApi' do
 
   # unit tests for retrieve_project
   # Retrieves a project
-  # Retrieves a project available on Patch&#39;s platform. 
-  # @param id 
+  # Retrieves a project available on Patch&#39;s platform.
+  # @param id
   # @param [Hash] opts the optional parameters
   # @return [ProjectResponse]
   describe 'retrieve_project test' do
@@ -46,14 +46,13 @@ describe 'ProjectsApi' do
 
   # unit tests for retrieve_projects
   # Retrieves a list of projects
-  # Retrieves a list of projects available for purchase on Patch&#39;s platform. 
+  # Retrieves a list of projects available for purchase on Patch&#39;s platform.
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :page 
+  # @option opts [Integer] :page
   # @return [ProjectListResponse]
   describe 'retrieve_projects test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
-
 end
