@@ -141,3 +141,30 @@ Patch::Preference.delete_preference(preference_id)
 page = 1 # Pass in which page of preferences you'd like
 Patch::Preference.retrieve_preferences(page: page)
 ```
+
+## Development
+
+To build the gem locally, run:
+```
+$ gem build patch_ruby.gemspec
+```
+
+This will create a .gem file. To install the local gem:
+```
+$ gem install patch_ruby-1.x.x.gem
+```
+
+Install dependencies:
+```
+$ bundle install
+```
+
+Set up required environment variables:
+```
+$ export PATCH_RUBY_API_KEY=<SANDBOX API KEY>
+```
+
+Run tests:
+```
+$ bundle exec rspec
+```
