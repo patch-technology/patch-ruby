@@ -53,6 +53,14 @@ In Patch, orders represent a purchase of carbon offsets or negative emissions by
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
 Patch::Order.create_order(mass_g: mass)
 
+## You can also specify a project-id field (optional) to be used instead of the preferred one
+project_id = 'pro_test_1234' # Pass in the project's ID
+Patch::Order.create_order(mass_g: mass, project_id: project_id)
+
+## Orders also accept a metadata field (optional)
+metadata = {user: "john doe"}
+Patch::Order.create_order(mass_g: mass, metadata: metadata)
+
 # Retrieve an order
 order_id = 'ord_test_1234' # Pass in the order's id
 Patch::Order.retrieve_order(order_id)
@@ -80,6 +88,10 @@ Estimates allow API users to get a quote for the cost of compensating a certain 
 # Create an estimate
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
 Patch::Estimate.create_mass_estimate(mass_g: mass)
+
+## You can also specify a project-id field (optional) to be used instead of the preferred one
+project_id = 'pro_test_1234' # Pass in the project's ID
+Patch::Estimate.create_mass_estimate(mass_g: mass, project_id: project_id)
 
 # Retrieve an estimate
 estimate_id = 'est_test_1234'
