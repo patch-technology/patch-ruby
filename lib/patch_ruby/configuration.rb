@@ -211,10 +211,10 @@ module Patch
           description: "No description provided",
           variables: {
             defaultHost: {
-              description: "No description provided",
-              default_value: "api.usepatch.com",
+                description: "No description provided",
+                default_value: "api.usepatch.com",
+              }
             }
-          }
         }
       ]
     end

@@ -53,7 +53,6 @@ module Patch
         if (!self.class.attribute_map.key?(k.to_sym))
           fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreatePreferenceRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
-
         h[k.to_sym] = v
       }
 
@@ -77,7 +76,6 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if @project_id.nil?
-
       true
     end
 
@@ -85,9 +83,8 @@ module Patch
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-
       self.class == o.class &&
-        project_id == o.project_id
+          project_id == o.project_id
     end
 
     # @see the `==` method
@@ -114,7 +111,6 @@ module Patch
     # @return [Object] Returns the model itself
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-
       self.class.openapi_types.each_pair do |key, type|
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the attribute
@@ -193,7 +189,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash
