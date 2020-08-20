@@ -25,6 +25,28 @@ RSpec.describe 'Orders Integration' do
     expect(orders.length).not_to be_zero
   end
 
+  it 'supports create with a project-id' do
+    retrieve_projects_response = Patch::Project.retrieve_projects(page: 1)
+    project_id = retrieve_projects_response.data.first.id
+
+    create_order_response = Patch::Order.create_order(mass_g: 100, project_id: project_id)
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.mass_g).to eq(100)
+  end
+
+  it 'supports create with metadata' do
+    metadata = { user: 'john doe' }
+
+    create_order_response = Patch::Order.create_order(mass_g: 100, metadata: metadata)
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.mass_g).to eq(100)
+    expect(create_order_response.data.metadata).to eq(metadata)
+  end
+
   it 'supports place and cancel for orders created via an estimate' do
     create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100)
     order_to_place_id = create_estimate_to_place_response.data.order.id
