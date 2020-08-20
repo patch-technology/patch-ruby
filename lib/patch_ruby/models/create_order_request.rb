@@ -16,17 +16,25 @@ module Patch
   class CreateOrderRequest
     attr_accessor :mass_g
 
+    attr_accessor :project_id
+
+    attr_accessor :metadata
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'mass_g' => :'mass_g'
+        :'mass_g' => :'mass_g',
+        :'project_id' => :'project_id',
+        :'metadata' => :'metadata'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'mass_g' => :'Integer'
+        :'mass_g' => :'Integer',
+        :'project_id' => :'String',
+        :'metadata' => :'Object'
       }
     end
 
@@ -53,12 +61,19 @@ module Patch
         if (!self.class.attribute_map.key?(k.to_sym))
           fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateOrderRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
-
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'mass_g')
         self.mass_g = attributes[:'mass_g']
+      end
+
+      if attributes.key?(:'project_id')
+        self.project_id = attributes[:'project_id']
+      end
+
+      if attributes.key?(:'metadata')
+        self.metadata = attributes[:'metadata']
       end
     end
 
@@ -77,7 +92,6 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if @mass_g.nil?
-
       true
     end
 
@@ -85,9 +99,10 @@ module Patch
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-
       self.class == o.class &&
-        mass_g == o.mass_g
+          mass_g == o.mass_g &&
+          project_id == o.project_id &&
+          metadata == o.metadata
     end
 
     # @see the `==` method
@@ -99,7 +114,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g].hash
+      [mass_g, project_id, metadata].hash
     end
 
     # Builds the object from hash
@@ -114,7 +129,6 @@ module Patch
     # @return [Object] Returns the model itself
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-
       self.class.openapi_types.each_pair do |key, type|
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the attribute
@@ -193,7 +207,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash

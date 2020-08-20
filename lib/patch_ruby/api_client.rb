@@ -136,7 +136,7 @@ module Patch
     def build_request_body(header_params, form_params, body)
       # http form
       if header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
-         header_params['Content-Type'] == 'multipart/form-data'
+          header_params['Content-Type'] == 'multipart/form-data'
         data = {}
         form_params.each do |key, value|
           case value
@@ -207,7 +207,6 @@ module Patch
     # @return [Mixed] Data in a particular type
     def convert_to_type(data, return_type)
       return nil if data.nil?
-
       case return_type
       when 'String'
         data.to_s
@@ -304,7 +303,6 @@ module Patch
       Array(auth_names).each do |auth_name|
         auth_setting = @config.auth_settings[auth_name]
         next unless auth_setting
-
         case auth_setting[:in]
         when 'header' then header_params[auth_setting[:key]] = auth_setting[:value]
         when 'query'  then query_params[auth_setting[:key]] = auth_setting[:value]
@@ -326,7 +324,6 @@ module Patch
     # @return [String] the Accept header (e.g. application/json)
     def select_header_accept(accepts)
       return nil if accepts.nil? || accepts.empty?
-
       # use JSON when present, otherwise use all of the provided
       json_accept = accepts.find { |s| json_mime?(s) }
       json_accept || accepts.join(',')
@@ -338,7 +335,6 @@ module Patch
     def select_header_content_type(content_types)
       # use application/json by default
       return 'application/json' if content_types.nil? || content_types.empty?
-
       # use JSON when present, otherwise use the first one
       json_content_type = content_types.find { |s| json_mime?(s) }
       json_content_type || content_types.first
@@ -349,7 +345,6 @@ module Patch
     # @return [String] JSON string representation of the object
     def object_to_http_body(model)
       return model if model.nil? || model.is_a?(String)
-
       local_body = nil
       if model.is_a?(Array)
         local_body = model.map { |m| object_to_hash(m) }

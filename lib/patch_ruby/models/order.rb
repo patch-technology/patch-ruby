@@ -28,6 +28,8 @@ module Patch
 
     attr_accessor :allocations
 
+    attr_accessor :metadata
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -59,7 +61,8 @@ module Patch
         :'state' => :'state',
         :'allocation_state' => :'allocation_state',
         :'price_cents_usd' => :'price_cents_usd',
-        :'allocations' => :'allocations'
+        :'allocations' => :'allocations',
+        :'metadata' => :'metadata'
       }
     end
 
@@ -72,7 +75,8 @@ module Patch
         :'state' => :'String',
         :'allocation_state' => :'String',
         :'price_cents_usd' => :'String',
-        :'allocations' => :'Array<Allocation>'
+        :'allocations' => :'Array<Allocation>',
+        :'metadata' => :'Object'
       }
     end
 
@@ -99,7 +103,6 @@ module Patch
         if (!self.class.attribute_map.key?(k.to_sym))
           fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Order`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
-
         h[k.to_sym] = v
       }
 
@@ -132,24 +135,61 @@ module Patch
           self.allocations = value
         end
       end
+
+      if attributes.key?(:'metadata')
+        self.metadata = attributes[:'metadata']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @mass_g.nil?
+        invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
+      end
+
+      if @production.nil?
+        invalid_properties.push('invalid value for "production", production cannot be nil.')
+      end
+
+      if @state.nil?
+        invalid_properties.push('invalid value for "state", state cannot be nil.')
+      end
+
+      if @allocation_state.nil?
+        invalid_properties.push('invalid value for "allocation_state", allocation_state cannot be nil.')
+      end
+
+      if @allocations.nil?
+        invalid_properties.push('invalid value for "allocations", allocations cannot be nil.')
+      end
+
+      if @metadata.nil?
+        invalid_properties.push('invalid value for "metadata", metadata cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @mass_g.nil?
+      return false if @production.nil?
+      return false if @state.nil?
       state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "complete", "cancelled"])
       return false unless state_validator.valid?(@state)
-
+      return false if @allocation_state.nil?
       allocation_state_validator = EnumAttributeValidator.new('String', ["pending", "partially_allocated", "allocated"])
       return false unless allocation_state_validator.valid?(@allocation_state)
-
+      return false if @allocations.nil?
+      return false if @metadata.nil?
       true
     end
 
@@ -160,7 +200,6 @@ module Patch
       unless validator.valid?(state)
         fail ArgumentError, "invalid value for \"state\", must be one of #{validator.allowable_values}."
       end
-
       @state = state
     end
 
@@ -171,7 +210,6 @@ module Patch
       unless validator.valid?(allocation_state)
         fail ArgumentError, "invalid value for \"allocation_state\", must be one of #{validator.allowable_values}."
       end
-
       @allocation_state = allocation_state
     end
 
@@ -179,15 +217,15 @@ module Patch
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-
       self.class == o.class &&
-        id == o.id &&
-        mass_g == o.mass_g &&
-        production == o.production &&
-        state == o.state &&
-        allocation_state == o.allocation_state &&
-        price_cents_usd == o.price_cents_usd &&
-        allocations == o.allocations
+          id == o.id &&
+          mass_g == o.mass_g &&
+          production == o.production &&
+          state == o.state &&
+          allocation_state == o.allocation_state &&
+          price_cents_usd == o.price_cents_usd &&
+          allocations == o.allocations &&
+          metadata == o.metadata
     end
 
     # @see the `==` method
@@ -199,7 +237,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, mass_g, production, state, allocation_state, price_cents_usd, allocations].hash
+      [id, mass_g, production, state, allocation_state, price_cents_usd, allocations, metadata].hash
     end
 
     # Builds the object from hash
@@ -214,7 +252,6 @@ module Patch
     # @return [Object] Returns the model itself
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-
       self.class.openapi_types.each_pair do |key, type|
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the attribute
@@ -293,7 +330,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash

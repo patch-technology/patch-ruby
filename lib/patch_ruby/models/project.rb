@@ -22,15 +22,33 @@ module Patch
 
     attr_accessor :description
 
+    attr_accessor :type
+
     attr_accessor :country
 
-    attr_accessor :longitude
-
-    attr_accessor :latitude
-
-    attr_accessor :verifier
-
     attr_accessor :developer
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -39,10 +57,8 @@ module Patch
         :'production' => :'production',
         :'name' => :'name',
         :'description' => :'description',
+        :'type' => :'type',
         :'country' => :'country',
-        :'longitude' => :'longitude',
-        :'latitude' => :'latitude',
-        :'verifier' => :'verifier',
         :'developer' => :'developer'
       }
     end
@@ -54,10 +70,8 @@ module Patch
         :'production' => :'Boolean',
         :'name' => :'String',
         :'description' => :'String',
+        :'type' => :'String',
         :'country' => :'String',
-        :'longitude' => :'Float',
-        :'latitude' => :'Float',
-        :'verifier' => :'String',
         :'developer' => :'String'
       }
     end
@@ -85,7 +99,6 @@ module Patch
         if (!self.class.attribute_map.key?(k.to_sym))
           fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Project`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
-
         h[k.to_sym] = v
       }
 
@@ -105,20 +118,12 @@ module Patch
         self.description = attributes[:'description']
       end
 
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
+      end
+
       if attributes.key?(:'country')
         self.country = attributes[:'country']
-      end
-
-      if attributes.key?(:'longitude')
-        self.longitude = attributes[:'longitude']
-      end
-
-      if attributes.key?(:'latitude')
-        self.latitude = attributes[:'latitude']
-      end
-
-      if attributes.key?(:'verifier')
-        self.verifier = attributes[:'verifier']
       end
 
       if attributes.key?(:'developer')
@@ -130,30 +135,69 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @production.nil?
+        invalid_properties.push('invalid value for "production", production cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
+      end
+
+      if @country.nil?
+        invalid_properties.push('invalid value for "country", country cannot be nil.')
+      end
+
+      if @developer.nil?
+        invalid_properties.push('invalid value for "developer", developer cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @production.nil?
+      return false if @name.nil?
+      return false if @description.nil?
+      type_validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "soil"])
+      return false unless type_validator.valid?(@type)
+      return false if @country.nil?
+      return false if @developer.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "soil"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-
       self.class == o.class &&
-        id == o.id &&
-        production == o.production &&
-        name == o.name &&
-        description == o.description &&
-        country == o.country &&
-        longitude == o.longitude &&
-        latitude == o.latitude &&
-        verifier == o.verifier &&
-        developer == o.developer
+          id == o.id &&
+          production == o.production &&
+          name == o.name &&
+          description == o.description &&
+          type == o.type &&
+          country == o.country &&
+          developer == o.developer
     end
 
     # @see the `==` method
@@ -165,7 +209,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, country, longitude, latitude, verifier, developer].hash
+      [id, production, name, description, type, country, developer].hash
     end
 
     # Builds the object from hash
@@ -180,7 +224,6 @@ module Patch
     # @return [Object] Returns the model itself
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-
       self.class.openapi_types.each_pair do |key, type|
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the attribute
@@ -259,7 +302,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash

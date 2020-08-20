@@ -65,7 +65,6 @@ module Patch
         if (!self.class.attribute_map.key?(k.to_sym))
           fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Estimate`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
-
         h[k.to_sym] = v
       }
 
@@ -90,12 +89,27 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @production.nil?
+        invalid_properties.push('invalid value for "production", production cannot be nil.')
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @production.nil?
+      return false if @type.nil?
       true
     end
 
@@ -103,12 +117,11 @@ module Patch
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-
       self.class == o.class &&
-        id == o.id &&
-        production == o.production &&
-        type == o.type &&
-        order == o.order
+          id == o.id &&
+          production == o.production &&
+          type == o.type &&
+          order == o.order
     end
 
     # @see the `==` method
@@ -135,7 +148,6 @@ module Patch
     # @return [Object] Returns the model itself
     def build_from_hash(attributes)
       return nil unless attributes.is_a?(Hash)
-
       self.class.openapi_types.each_pair do |key, type|
         if type =~ /\AArray<(.*)>/i
           # check to ensure the input is an array given that the attribute
@@ -214,7 +226,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash
