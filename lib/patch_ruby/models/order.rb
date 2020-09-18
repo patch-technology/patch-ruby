@@ -153,6 +153,14 @@ module Patch
         invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
       end
 
+      if @mass_g > 2000000000
+        invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 2000000000.')
+      end
+
+      if @mass_g < 1
+        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 1.')
+      end
+
       if @production.nil?
         invalid_properties.push('invalid value for "production", production cannot be nil.')
       end
@@ -181,6 +189,8 @@ module Patch
     def valid?
       return false if @id.nil?
       return false if @mass_g.nil?
+      return false if @mass_g > 2000000000
+      return false if @mass_g < 1
       return false if @production.nil?
       return false if @state.nil?
       state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "complete", "cancelled"])
@@ -191,6 +201,24 @@ module Patch
       return false if @allocations.nil?
       return false if @metadata.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] mass_g Value to be assigned
+    def mass_g=(mass_g)
+      if mass_g.nil?
+        fail ArgumentError, 'mass_g cannot be nil'
+      end
+
+      if mass_g > 2000000000
+        fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 2000000000.'
+      end
+
+      if mass_g < 1
+        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 1.'
+      end
+
+      @mass_g = mass_g
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -28,6 +28,14 @@ module Patch
 
     attr_accessor :developer
 
+    attr_accessor :photos
+
+    attr_accessor :average_price_per_tonne_cents_usd
+
+    attr_accessor :remaining_mass_g
+
+    attr_accessor :standard
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -59,7 +67,11 @@ module Patch
         :'description' => :'description',
         :'type' => :'type',
         :'country' => :'country',
-        :'developer' => :'developer'
+        :'developer' => :'developer',
+        :'photos' => :'photos',
+        :'average_price_per_tonne_cents_usd' => :'average_price_per_tonne_cents_usd',
+        :'remaining_mass_g' => :'remaining_mass_g',
+        :'standard' => :'standard'
       }
     end
 
@@ -72,7 +84,11 @@ module Patch
         :'description' => :'String',
         :'type' => :'String',
         :'country' => :'String',
-        :'developer' => :'String'
+        :'developer' => :'String',
+        :'photos' => :'Array<Photo>',
+        :'average_price_per_tonne_cents_usd' => :'Integer',
+        :'remaining_mass_g' => :'Integer',
+        :'standard' => :'OneOfstandard'
       }
     end
 
@@ -129,6 +145,24 @@ module Patch
       if attributes.key?(:'developer')
         self.developer = attributes[:'developer']
       end
+
+      if attributes.key?(:'photos')
+        if (value = attributes[:'photos']).is_a?(Array)
+          self.photos = value
+        end
+      end
+
+      if attributes.key?(:'average_price_per_tonne_cents_usd')
+        self.average_price_per_tonne_cents_usd = attributes[:'average_price_per_tonne_cents_usd']
+      end
+
+      if attributes.key?(:'remaining_mass_g')
+        self.remaining_mass_g = attributes[:'remaining_mass_g']
+      end
+
+      if attributes.key?(:'standard')
+        self.standard = attributes[:'standard']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -159,6 +193,14 @@ module Patch
         invalid_properties.push('invalid value for "developer", developer cannot be nil.')
       end
 
+      if @average_price_per_tonne_cents_usd.nil?
+        invalid_properties.push('invalid value for "average_price_per_tonne_cents_usd", average_price_per_tonne_cents_usd cannot be nil.')
+      end
+
+      if @remaining_mass_g.nil?
+        invalid_properties.push('invalid value for "remaining_mass_g", remaining_mass_g cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -173,6 +215,8 @@ module Patch
       return false unless type_validator.valid?(@type)
       return false if @country.nil?
       return false if @developer.nil?
+      return false if @average_price_per_tonne_cents_usd.nil?
+      return false if @remaining_mass_g.nil?
       true
     end
 
@@ -197,7 +241,11 @@ module Patch
           description == o.description &&
           type == o.type &&
           country == o.country &&
-          developer == o.developer
+          developer == o.developer &&
+          photos == o.photos &&
+          average_price_per_tonne_cents_usd == o.average_price_per_tonne_cents_usd &&
+          remaining_mass_g == o.remaining_mass_g &&
+          standard == o.standard
     end
 
     # @see the `==` method
@@ -209,7 +257,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, country, developer].hash
+      [id, production, name, description, type, country, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard].hash
     end
 
     # Builds the object from hash
