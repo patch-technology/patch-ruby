@@ -21,4 +21,22 @@ RSpec.describe 'Projects Integration' do
     retrieve_project_response = Patch::Project.retrieve_project(project_id)
     expect(retrieve_project_response.data.id).to eq project_id
   end
+
+  describe 'returned fields' do
+    before do
+      @project = Patch::Project.retrieve_projects(page: 1).data.first
+    end
+
+    it 'returns photos' do
+      expect(@project.photos).to be_an_instance_of(Array)
+    end
+
+    it 'returns average_price_per_tonne_cents_usd' do
+      expect(@project.average_price_per_tonne_cents_usd).to be_an_instance_of(Integer)
+    end
+
+    it 'returns remaining_mass_g' do
+      expect(@project.remaining_mass_g).to be_an_instance_of(Integer)
+    end
+  end
 end

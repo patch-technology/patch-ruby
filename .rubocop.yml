@@ -113,7 +113,7 @@ Layout/SpaceInsideParens:
 #  EnforcedStyle: single_quotes
 
 # Detect hard tabs, no hard tabs.
-Layout/IndentationStyle:
+Layout/Tab:
   Enabled: true
 
 # Blank lines should not have any spaces.

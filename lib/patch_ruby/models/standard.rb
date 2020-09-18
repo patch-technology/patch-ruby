@@ -13,28 +13,28 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class CreateOrderRequest
-    attr_accessor :mass_g
+  class Standard
+    attr_accessor :type
 
-    attr_accessor :project_id
+    attr_accessor :acronym
 
-    attr_accessor :metadata
+    attr_accessor :description
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'mass_g' => :'mass_g',
-        :'project_id' => :'project_id',
-        :'metadata' => :'metadata'
+        :'type' => :'type',
+        :'acronym' => :'acronym',
+        :'description' => :'description'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'mass_g' => :'Integer',
-        :'project_id' => :'String',
-        :'metadata' => :'Object'
+        :'type' => :'String',
+        :'acronym' => :'String',
+        :'description' => :'String'
       }
     end
 
@@ -42,8 +42,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateOrderRequestsApi::OPERATIONS') && Patch::CreateOrderRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateOrderRequestsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::StandardsApi::OPERATIONS') && Patch::StandardsApi::OPERATIONS.include?(message)
+        Patch::StandardsApi.new.send(message, *args)
       else
         super
       end
@@ -53,27 +53,27 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateOrderRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Standard` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateOrderRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Standard`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'mass_g')
-        self.mass_g = attributes[:'mass_g']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'project_id')
-        self.project_id = attributes[:'project_id']
+      if attributes.key?(:'acronym')
+        self.acronym = attributes[:'acronym']
       end
 
-      if attributes.key?(:'metadata')
-        self.metadata = attributes[:'metadata']
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
       end
     end
 
@@ -81,16 +81,16 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @mass_g.nil?
-        invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @mass_g > 2000000000
-        invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 2000000000.')
+      if @acronym.nil?
+        invalid_properties.push('invalid value for "acronym", acronym cannot be nil.')
       end
 
-      if @mass_g < 1
-        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 1.')
+      if @description.nil?
+        invalid_properties.push('invalid value for "description", description cannot be nil.')
       end
 
       invalid_properties
@@ -99,28 +99,10 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @mass_g.nil?
-      return false if @mass_g > 2000000000
-      return false if @mass_g < 1
+      return false if @type.nil?
+      return false if @acronym.nil?
+      return false if @description.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] mass_g Value to be assigned
-    def mass_g=(mass_g)
-      if mass_g.nil?
-        fail ArgumentError, 'mass_g cannot be nil'
-      end
-
-      if mass_g > 2000000000
-        fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 2000000000.'
-      end
-
-      if mass_g < 1
-        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 1.'
-      end
-
-      @mass_g = mass_g
     end
 
     # Checks equality by comparing each attribute.
@@ -128,9 +110,9 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          mass_g == o.mass_g &&
-          project_id == o.project_id &&
-          metadata == o.metadata
+          type == o.type &&
+          acronym == o.acronym &&
+          description == o.description
     end
 
     # @see the `==` method
@@ -142,7 +124,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, project_id, metadata].hash
+      [type, acronym, description].hash
     end
 
     # Builds the object from hash
