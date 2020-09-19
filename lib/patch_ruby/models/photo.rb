@@ -14,19 +14,19 @@ require 'date'
 
 module Patch
   class Photo
-    attr_accessor :file
+    attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'file' => :'file'
+        :'url' => :'url'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'file' => :'String'
+        :'url' => :'String'
       }
     end
 
@@ -56,8 +56,8 @@ module Patch
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'file')
-        self.file = attributes[:'file']
+      if attributes.key?(:'url')
+        self.url = attributes[:'url']
       end
     end
 
@@ -79,7 +79,7 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          file == o.file
+          url == o.url
     end
 
     # @see the `==` method
@@ -91,7 +91,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [file].hash
+      [url].hash
     end
 
     # Builds the object from hash

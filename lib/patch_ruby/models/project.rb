@@ -88,7 +88,7 @@ module Patch
         :'photos' => :'Array<Photo>',
         :'average_price_per_tonne_cents_usd' => :'Integer',
         :'remaining_mass_g' => :'Integer',
-        :'standard' => :'OneOfstandard'
+        :'standard' => :'Standard'
       }
     end
 
