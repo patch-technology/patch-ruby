@@ -21,6 +21,9 @@ jobs:
       - name: Install Ruby Dependencies
         run: bundle install
 
+      - name: Build Gem
+        run: gem build -o patch_ruby.gem patch_ruby.gemspec
+
       - name: Run RSpec
         env:
           PATCH_RUBY_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
