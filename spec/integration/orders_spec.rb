@@ -29,11 +29,13 @@ RSpec.describe 'Orders Integration' do
     retrieve_projects_response = Patch::Project.retrieve_projects(page: 1)
     project_id = retrieve_projects_response.data.first.id
 
-    create_order_response = Patch::Order.create_order(mass_g: 100, project_id: project_id)
+    create_order_response = Patch::Order.create_order(mass_g: 100_000, project_id: project_id)
 
     expect(create_order_response.success).to eq true
     expect(create_order_response.data.id).not_to be_nil
-    expect(create_order_response.data.mass_g).to eq(100)
+    expect(create_order_response.data.mass_g).to eq(100_000)
+    expect(create_order_response.data.price_cents_usd).to eq(1553)
+    expect(create_order_response.data.patch_fee_cents_usd).to eq(50)
   end
 
   it 'supports create with metadata' do
