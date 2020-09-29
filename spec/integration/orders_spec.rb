@@ -34,8 +34,8 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.success).to eq true
     expect(create_order_response.data.id).not_to be_nil
     expect(create_order_response.data.mass_g).to eq(100_000)
-    expect(create_order_response.data.price_cents_usd).to eq(1553)
-    expect(create_order_response.data.patch_fee_cents_usd).to eq(50)
+    expect(create_order_response.data.price_cents_usd).to eq("10.0")
+    expect(create_order_response.data.patch_fee_cents_usd).to eq("1.0")
   end
 
   it 'supports create with metadata' do
