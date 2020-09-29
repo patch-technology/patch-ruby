@@ -77,8 +77,8 @@ module Patch
         :'production' => :'Boolean',
         :'state' => :'String',
         :'allocation_state' => :'String',
-        :'price_cents_usd' => :'Integer',
-        :'patch_fee_cents_usd' => :'Integer',
+        :'price_cents_usd' => :'String',
+        :'patch_fee_cents_usd' => :'String',
         :'allocations' => :'Array<Allocation>',
         :'metadata' => :'Object'
       }
