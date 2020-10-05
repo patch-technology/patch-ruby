@@ -26,16 +26,24 @@ RSpec.describe 'Orders Integration' do
   end
 
   it 'supports create with a project-id' do
-    retrieve_projects_response = Patch::Project.retrieve_projects(page: 1)
-    project_id = retrieve_projects_response.data.first.id
+    # biomass project
+    retrieve_project_response = Patch::Project.retrieve_project("pro_test_c3a9feba769fc7a8806377266ca9ff6a")
 
-    create_order_response = Patch::Order.create_order(mass_g: 100_000, project_id: project_id)
+    project_id = retrieve_project_response.data.id
+    average_price_per_tonne_cents_usd = retrieve_project_response.data.average_price_per_tonne_cents_usd
+
+    order_mass_g = 100_000
+    tonne_per_gram = 1_000_000
+
+    expected_price = (average_price_per_tonne_cents_usd.to_f / tonne_per_gram) * order_mass_g
+
+    create_order_response = Patch::Order.create_order(mass_g: order_mass_g, project_id: project_id)
 
     expect(create_order_response.success).to eq true
     expect(create_order_response.data.id).not_to be_nil
-    expect(create_order_response.data.mass_g).to eq(100_000)
-    expect(create_order_response.data.price_cents_usd).to eq("10.0")
-    expect(create_order_response.data.patch_fee_cents_usd).to eq("1.0")
+    expect(create_order_response.data.mass_g).to eq(order_mass_g)
+    expect(create_order_response.data.price_cents_usd.to_i).to eq(expected_price)
+    expect(create_order_response.data.patch_fee_cents_usd).not_to be_empty
   end
 
   it 'supports create with metadata' do
