@@ -1,4 +1,7 @@
 RSpec.describe 'Orders Integration' do
+  # biomass test project
+  BIOMASS_TEST_PROJECT_ID = "pro_test_c3a9feba769fc7a8806377266ca9ff6a"
+
   before do
     Patch.configure do |config|
       config.access_token = ENV['SANDBOX_API_KEY']
@@ -26,8 +29,7 @@ RSpec.describe 'Orders Integration' do
   end
 
   it 'supports create with a project-id' do
-    # biomass project
-    retrieve_project_response = Patch::Project.retrieve_project("pro_test_c3a9feba769fc7a8806377266ca9ff6a")
+    retrieve_project_response = Patch::Project.retrieve_project(BIOMASS_TEST_PROJECT_ID)
 
     project_id = retrieve_project_response.data.id
     average_price_per_tonne_cents_usd = retrieve_project_response.data.average_price_per_tonne_cents_usd
