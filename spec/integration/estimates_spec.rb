@@ -1,7 +1,7 @@
 RSpec.describe 'Estimates Integration' do
   before do
     Patch.configure do |config|
-      config.access_token = ENV['PATCH_RUBY_API_KEY']
+      config.access_token = ENV['SANDBOX_API_KEY']
     end
   end
 

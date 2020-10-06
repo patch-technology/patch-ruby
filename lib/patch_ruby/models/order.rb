@@ -26,6 +26,8 @@ module Patch
 
     attr_accessor :price_cents_usd
 
+    attr_accessor :patch_fee_cents_usd
+
     attr_accessor :allocations
 
     attr_accessor :metadata
@@ -61,6 +63,7 @@ module Patch
         :'state' => :'state',
         :'allocation_state' => :'allocation_state',
         :'price_cents_usd' => :'price_cents_usd',
+        :'patch_fee_cents_usd' => :'patch_fee_cents_usd',
         :'allocations' => :'allocations',
         :'metadata' => :'metadata'
       }
@@ -75,6 +78,7 @@ module Patch
         :'state' => :'String',
         :'allocation_state' => :'String',
         :'price_cents_usd' => :'String',
+        :'patch_fee_cents_usd' => :'String',
         :'allocations' => :'Array<Allocation>',
         :'metadata' => :'Object'
       }
@@ -128,6 +132,10 @@ module Patch
 
       if attributes.key?(:'price_cents_usd')
         self.price_cents_usd = attributes[:'price_cents_usd']
+      end
+
+      if attributes.key?(:'patch_fee_cents_usd')
+        self.patch_fee_cents_usd = attributes[:'patch_fee_cents_usd']
       end
 
       if attributes.key?(:'allocations')
@@ -252,6 +260,7 @@ module Patch
           state == o.state &&
           allocation_state == o.allocation_state &&
           price_cents_usd == o.price_cents_usd &&
+          patch_fee_cents_usd == o.patch_fee_cents_usd &&
           allocations == o.allocations &&
           metadata == o.metadata
     end
@@ -265,7 +274,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, mass_g, production, state, allocation_state, price_cents_usd, allocations, metadata].hash
+      [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, metadata].hash
     end
 
     # Builds the object from hash

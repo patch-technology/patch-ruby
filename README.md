@@ -38,7 +38,7 @@ require 'patch_ruby'
 
 Patch.configure do |config|
   # Configure the Patch gem with your API key here
-  config.access_token = ENV['PATCH_RUBY_API_KEY']
+  config.access_token = ENV['SANDBOX_API_KEY']
 end
 ```
 
@@ -161,7 +161,7 @@ $ bundle install
 
 Set up required environment variables:
 ```
-$ export PATCH_RUBY_API_KEY=<SANDBOX API KEY>
+$ export SANDBOX_API_KEY=<SANDBOX API KEY>
 ```
 
 Run tests:
