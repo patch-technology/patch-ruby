@@ -16,12 +16,15 @@ jobs:
         with:
           ruby-version: 2.7.1
 
+      - name: Install Ruby Dependencies
+        run: bundle install
+
       - name: Build Gem
         run: gem build -o patch_ruby.gem patch_ruby.gemspec
 
       - name: Run RSpec
         env:
-          PATCH_RUBY_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
+          SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: bundle exec rspec
 
       - name: Push to RubyGems
