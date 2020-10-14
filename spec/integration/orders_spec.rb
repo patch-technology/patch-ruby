@@ -47,6 +47,32 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.patch_fee_cents_usd).not_to be_empty
   end
 
+  it 'supports create with a total price' do
+    retrieve_project_response = Patch::Project.retrieve_project(
+      Constants::BIOMASS_TEST_PROJECT_ID
+    )
+
+    project_id = retrieve_project_response.data.id
+    total_price_cents_usd = 5_00
+
+    create_order_response = Patch::Order.create_order(
+      total_price_cents_usd: total_price_cents_usd,
+      project_id: project_id
+    )
+
+    expect(create_order_response.success).to eq true
+
+    order = create_order_response.data
+
+    expect(order.id).not_to be_nil
+    expect(order.mass_g).to eq(1_250_000)
+    expect(order.price_cents_usd.to_i).to eq(125)
+    expect(order.patch_fee_cents_usd.to_i).to eq(375)
+    expect(
+      order.price_cents_usd.to_i + order.patch_fee_cents_usd.to_i
+    ).to eq(total_price_cents_usd)
+  end
+
   it 'supports create with metadata' do
     metadata = { user: 'john doe' }
 
