@@ -45,13 +45,26 @@ end
 ### Orders
 In Patch, orders represent a purchase of carbon offsets or negative emissions by mass. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
 
+In Patch, orders represent a purchase of carbon offsets or negative emissions by mass.
+Place orders directly if you know the amount of carbon dioxide you would like to sequester.
+If you do not know how much to purchase, use an estimate.
+You can also create an order with a maximum desired price, and we'll allocate enough mass to
+fulfill the order for you.
+
 [API Reference](https://docs.usepatch.com/#/?id=orders)
 
 #### Examples
 ```ruby
-# Create an order
+# Create an order - you can create an order
+# providing either mass_g or total_price_cents_usd, but not both
+
+# Create order with mass
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
 Patch::Order.create_order(mass_g: mass)
+
+# Create an order with maximum total price
+total_price_cents_usd = 5_00 # Pass in the total price in cents (i.e. 5 dollars)
+Patch::Order.create_order(total_price_cents_usd: total_price_cents_usd)
 
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID

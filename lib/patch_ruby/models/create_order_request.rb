@@ -16,6 +16,8 @@ module Patch
   class CreateOrderRequest
     attr_accessor :mass_g
 
+    attr_accessor :total_price_cents_usd
+
     attr_accessor :project_id
 
     attr_accessor :metadata
@@ -24,6 +26,7 @@ module Patch
     def self.attribute_map
       {
         :'mass_g' => :'mass_g',
+        :'total_price_cents_usd' => :'total_price_cents_usd',
         :'project_id' => :'project_id',
         :'metadata' => :'metadata'
       }
@@ -33,6 +36,7 @@ module Patch
     def self.openapi_types
       {
         :'mass_g' => :'Integer',
+        :'total_price_cents_usd' => :'Integer',
         :'project_id' => :'String',
         :'metadata' => :'Object'
       }
@@ -68,6 +72,10 @@ module Patch
         self.mass_g = attributes[:'mass_g']
       end
 
+      if attributes.key?(:'total_price_cents_usd')
+        self.total_price_cents_usd = attributes[:'total_price_cents_usd']
+      end
+
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
@@ -81,16 +89,16 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @mass_g.nil?
-        invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
-      end
-
-      if @mass_g > 2000000000
+      if !@mass_g.nil? && @mass_g > 2000000000
         invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 2000000000.')
       end
 
-      if @mass_g < 1
+      if !@mass_g.nil? && @mass_g < 1
         invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 1.')
+      end
+
+      if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
+        invalid_properties.push('invalid value for "total_price_cents_usd", must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -99,28 +107,34 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @mass_g.nil?
-      return false if @mass_g > 2000000000
-      return false if @mass_g < 1
+      return false if !@mass_g.nil? && @mass_g > 2000000000
+      return false if !@mass_g.nil? && @mass_g < 1
+      return false if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] mass_g Value to be assigned
     def mass_g=(mass_g)
-      if mass_g.nil?
-        fail ArgumentError, 'mass_g cannot be nil'
-      end
-
-      if mass_g > 2000000000
+      if !mass_g.nil? && mass_g > 2000000000
         fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 2000000000.'
       end
 
-      if mass_g < 1
+      if !mass_g.nil? && mass_g < 1
         fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 1.'
       end
 
       @mass_g = mass_g
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_price_cents_usd Value to be assigned
+    def total_price_cents_usd=(total_price_cents_usd)
+      if !total_price_cents_usd.nil? && total_price_cents_usd < 1
+        fail ArgumentError, 'invalid value for "total_price_cents_usd", must be greater than or equal to 1.'
+      end
+
+      @total_price_cents_usd = total_price_cents_usd
     end
 
     # Checks equality by comparing each attribute.
@@ -129,6 +143,7 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           mass_g == o.mass_g &&
+          total_price_cents_usd == o.total_price_cents_usd &&
           project_id == o.project_id &&
           metadata == o.metadata
     end
@@ -142,7 +157,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, project_id, metadata].hash
+      [mass_g, total_price_cents_usd, project_id, metadata].hash
     end
 
     # Builds the object from hash
