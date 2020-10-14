@@ -65,9 +65,9 @@ RSpec.describe 'Orders Integration' do
     order = create_order_response.data
 
     expect(order.id).not_to be_nil
-    expect(order.mass_g).to eq(1_250_000)
-    expect(order.price_cents_usd.to_i).to eq(125)
-    expect(order.patch_fee_cents_usd.to_i).to eq(375)
+    expect(order.mass_g).to eq(5_000_000)
+    expect(order.price_cents_usd.to_i).to eq(500)
+    expect(order.patch_fee_cents_usd).not_to be_empty
     expect(
       order.price_cents_usd.to_i + order.patch_fee_cents_usd.to_i
     ).to eq(total_price_cents_usd)
