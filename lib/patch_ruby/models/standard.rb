@@ -14,10 +14,13 @@ require 'date'
 
 module Patch
   class Standard
+    # The standard type.
     attr_accessor :type
 
+    # The acronym for the standard.
     attr_accessor :acronym
 
+    # The description of the standard.
     attr_accessor :description
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -36,6 +39,13 @@ module Patch
         :'acronym' => :'String',
         :'description' => :'String'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes

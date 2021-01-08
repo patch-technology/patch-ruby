@@ -14,10 +14,13 @@ require 'date'
 
 module Patch
   class Allocation
+    # A unique uid for the record. UIDs will be prepended by all_prod or all_test depending on the mode it was created in.
     attr_accessor :id
 
+    # A boolean indicating if this project is a production or test mode project.
     attr_accessor :production
 
+    # The amount (in grams) of allocated carbon offsets.
     attr_accessor :mass_g
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -36,6 +39,13 @@ module Patch
         :'production' => :'Boolean',
         :'mass_g' => :'Integer'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes

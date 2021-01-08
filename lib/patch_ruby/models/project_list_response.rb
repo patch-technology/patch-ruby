@@ -42,6 +42,15 @@ module Patch
       }
     end
 
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties.add("error")
+
+      nullable_properties
+    end
+
     # Allows models with corresponding API classes to delegate API operations to those API classes
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order

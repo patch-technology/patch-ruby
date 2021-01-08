@@ -14,10 +14,13 @@ require 'date'
 
 module Patch
   class Preference
+    # A unique uid for the record. UIDs will be prepended by pre_prod or pre_test depending on the mode it was created in.
     attr_accessor :id
 
+    # Percentage of total purchased offsets that should go to a project. Default is 100%.
     attr_accessor :allocation_percentage
 
+    # An object returning the Project record this Preference is associated with. See the [Project section](/?id=projects) for the full schema.
     attr_accessor :project
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -36,6 +39,13 @@ module Patch
         :'allocation_percentage' => :'Integer',
         :'project' => :'Project'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes
