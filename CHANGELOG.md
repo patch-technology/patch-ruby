@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.5] - 2020-01-08
+
+### Fixed
+
+- Fixes [issues/5](https://github.com/patch-technology/patch-ruby/issues/5). Adds method `.openapi_nullable` which returns a set with all nullable properties. This method is referenced in `#to_hash` which returns a hash representation of the resource.
+
 ## [1.2.4] - 2020-10-14
 
 ### Added
