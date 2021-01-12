@@ -37,4 +37,10 @@ describe 'CreateOrderRequest' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
+
+  describe '.openapi_nullable' do
+    it 'returns a set with nullable properties' do
+      expect(Patch::CreateOrderRequest.openapi_nullable).to be_empty
+    end
+  end
 end

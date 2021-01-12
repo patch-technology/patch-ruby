@@ -81,4 +81,10 @@ describe 'Order' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
+
+  describe '.openapi_nullable' do
+    it 'returns a set with nullable properties' do
+      expect(Patch::Order.openapi_nullable).to contain_exactly("price_cents_usd", "patch_fee_cents_usd")
+    end
+  end
 end

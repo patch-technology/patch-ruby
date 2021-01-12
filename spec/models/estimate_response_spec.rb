@@ -49,4 +49,10 @@ describe 'EstimateResponse' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
+
+  describe '.openapi_nullable' do
+    it 'returns a set with nullable properties' do
+      expect(Patch::EstimateResponse.openapi_nullable).to contain_exactly("error")
+    end
+  end
 end

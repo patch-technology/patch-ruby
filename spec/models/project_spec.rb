@@ -85,4 +85,10 @@ describe 'Project' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
+
+  describe '.openapi_nullable' do
+    it 'returns a set with nullable properties' do
+      expect(Patch::Project.openapi_nullable).to contain_exactly("photos", "standard")
+    end
+  end
 end

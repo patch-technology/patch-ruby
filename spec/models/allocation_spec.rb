@@ -32,6 +32,7 @@ describe 'Allocation' do
       expect(@instance).to be_instance_of(Patch::Allocation)
     end
   end
+
   describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -47,6 +48,12 @@ describe 'Allocation' do
   describe 'test attribute "mass_g"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe '.openapi_nullable' do
+    it 'returns a set with nullable properties' do
+      expect(Patch::Allocation.openapi_nullable).to be_empty
     end
   end
 end
