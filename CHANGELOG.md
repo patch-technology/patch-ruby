@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixes [issues/5](https://github.com/patch-technology/patch-ruby/issues/5). Adds method `.openapi_nullable` which returns a set with all nullable properties. This method is referenced in `#to_hash` which returns a hash representation of the resource.
 - Removes non-deterministic integration spec that is creating an Estimate with a specific project-id. Since we do not control the test data (yet) and make queries against our Test projects, we cannot be sure that we will have offsets available for a project ID. Instead we can rely on Patch core specs to cover this.
 - Fixes a spec that was failing due to a Patch core change.
+- Add spec factories and refactor generated method specs to shared examples.
 
 ## [1.2.4] - 2020-10-14
 

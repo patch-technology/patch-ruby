@@ -20,11 +20,17 @@ require 'date'
 describe 'ProjectListResponse' do
   before do
     # run before each test
-    @instance = Patch::ProjectListResponse.new
+    @instance = build(:project_list_response)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { success: @instance.success, error: @instance.error, data: @instance.data, meta: @instance.meta } }
+    let(:nullable_properties) { Set.new(["error"]) }
   end
 
   describe 'test an instance of ProjectListResponse' do
@@ -53,12 +59,6 @@ describe 'ProjectListResponse' do
   describe 'test attribute "meta"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe '.openapi_nullable' do
-    it 'returns a set with nullable properties' do
-      expect(Patch::ProjectListResponse.openapi_nullable).to contain_exactly("error")
     end
   end
 end

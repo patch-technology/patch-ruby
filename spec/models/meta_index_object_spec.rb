@@ -20,11 +20,17 @@ require 'date'
 describe 'MetaIndexObject' do
   before do
     # run before each test
-    @instance = Patch::MetaIndexObject.new
+    @instance = build(:meta_index_object)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { next_page: @instance.next_page, prev_page: @instance.prev_page } }
+    let(:nullable_properties) { Set.new(["next_page", "prev_page"]) }
   end
 
   describe 'test an instance of MetaIndexObject' do
@@ -41,12 +47,6 @@ describe 'MetaIndexObject' do
   describe 'test attribute "next_page"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe '.openapi_nullable' do
-    it 'returns a set with nullable properties' do
-      expect(Patch::MetaIndexObject.openapi_nullable).to contain_exactly("prev_page", "next_page")
     end
   end
 end

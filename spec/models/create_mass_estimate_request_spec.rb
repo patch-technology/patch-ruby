@@ -20,11 +20,17 @@ require 'date'
 describe 'CreateMassEstimateRequest' do
   before do
     # run before each test
-    @instance = Patch::CreateMassEstimateRequest.new
+    @instance = build(:create_mass_estimate_request)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of CreateMassEstimateRequest' do
@@ -35,12 +41,6 @@ describe 'CreateMassEstimateRequest' do
   describe 'test attribute "mass_g"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe '.openapi_nullable' do
-    it 'returns a set with nullable properties' do
-      expect(Patch::CreateMassEstimateRequest.openapi_nullable).to be_empty
     end
   end
 end

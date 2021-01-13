@@ -20,11 +20,17 @@ require 'date'
 describe 'Preference' do
   before do
     # run before each test
-    @instance = Patch::Preference.new
+    @instance = build(:preference)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { id: @instance.id, project: @instance.project.to_hash, allocation_percentage: @instance.allocation_percentage } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of Preference' do
@@ -47,12 +53,6 @@ describe 'Preference' do
   describe 'test attribute "project"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe '.openapi_nullable' do
-    it 'returns a set with nullable properties' do
-      expect(Patch::Preference.openapi_nullable).to be_empty
     end
   end
 end
