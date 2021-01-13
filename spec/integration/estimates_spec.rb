@@ -24,15 +24,4 @@ RSpec.describe 'Estimates Integration' do
 
     expect(estimates.length).not_to be_zero
   end
-
-  it 'supports create with a project-id' do
-    retrieve_projects_response = Patch::Project.retrieve_projects(page: 1)
-    project_id = retrieve_projects_response.data.first.id
-    create_estimate_response = Patch::Estimate.create_mass_estimate(mass_g: 100, project_id: project_id)
-    estimate_id = create_estimate_response.data.id
-
-    expect(create_estimate_response.success).to eq true
-    expect(create_estimate_response.data.order.id).not_to be_nil
-    expect(create_estimate_response.data.order.mass_g).to eq(100)
-  end
 end

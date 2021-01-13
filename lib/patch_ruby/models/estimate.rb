@@ -14,12 +14,16 @@ require 'date'
 
 module Patch
   class Estimate
+    # A unique uid for the record. UIDs will be prepended by est_prod or est_test depending on the mode it was created in.
     attr_accessor :id
 
+    # A boolean indicating if this estimate is a production or test mode estimate.
     attr_accessor :production
 
+    # The type of estimate. Currently mass is the only supported value.
     attr_accessor :type
 
+    # An object returning the order associated with this estimate. See the [Order section](/?id=orders) for the full schema.
     attr_accessor :order
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -40,6 +44,15 @@ module Patch
         :'type' => :'String',
         :'order' => :'Order'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties.add("order")
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes
@@ -226,7 +239,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-        
+
         hash[param] = _to_hash(value)
       end
       hash

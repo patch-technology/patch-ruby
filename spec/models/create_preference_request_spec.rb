@@ -20,11 +20,17 @@ require 'date'
 describe 'CreatePreferenceRequest' do
   before do
     # run before each test
-    @instance = Patch::CreatePreferenceRequest.new
+    @instance = build(:create_preference_request)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { project_id: @instance.project_id } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of CreatePreferenceRequest' do
@@ -32,6 +38,7 @@ describe 'CreatePreferenceRequest' do
       expect(@instance).to be_instance_of(Patch::CreatePreferenceRequest)
     end
   end
+
   describe 'test attribute "project_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

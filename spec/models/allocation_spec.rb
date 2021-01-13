@@ -20,11 +20,17 @@ require 'date'
 describe 'Allocation' do
   before do
     # run before each test
-    @instance = Patch::Allocation.new
+    @instance = build(:allocation)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { id: @instance.id, mass_g: @instance.mass_g, production: @instance.production } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of Allocation' do
@@ -32,6 +38,7 @@ describe 'Allocation' do
       expect(@instance).to be_instance_of(Patch::Allocation)
     end
   end
+
   describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -20,11 +20,31 @@ require 'date'
 describe 'Project' do
   before do
     # run before each test
-    @instance = Patch::Project.new
+    @instance = build(:project)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) {
+      {
+        id: @instance.id,
+        name: @instance.name,
+        description: @instance.description,
+        production: @instance.production,
+        type: @instance.type,
+        country: @instance.country,
+        developer: @instance.developer,
+        photos: @instance.photos,
+        average_price_per_tonne_cents_usd: @instance.average_price_per_tonne_cents_usd,
+        remaining_mass_g: @instance.remaining_mass_g,
+        standard: @instance.standard
+      }
+    }
+    let(:nullable_properties) { Set.new(["photos", "standard"]) }
   end
 
   describe 'test an instance of Project' do

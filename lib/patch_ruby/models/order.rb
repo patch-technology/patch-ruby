@@ -14,22 +14,31 @@ require 'date'
 
 module Patch
   class Order
+    # A unique uid for the record. UIDs will be prepended by ord_prod or ord_test depending on the mode it was created in.
     attr_accessor :id
 
+    # The amount of carbon offsets in grams purchased through this order.
     attr_accessor :mass_g
 
+    # A boolean indicating if this order is a production or test mode order.
     attr_accessor :production
 
+    # The current state of the order.
     attr_accessor :state
 
+    # The current state of the allocated carbon offsets of the order.
     attr_accessor :allocation_state
 
+    # The total price in cents USD of the carbon offsets purchased through this order.
     attr_accessor :price_cents_usd
 
+    # The Patch Fee in cents USD for this order.
     attr_accessor :patch_fee_cents_usd
 
+    # An array containing the inventory allocations for this order.
     attr_accessor :allocations
 
+    # An optional JSON object containing metadata for this order.
     attr_accessor :metadata
 
     class EnumAttributeValidator
@@ -82,6 +91,17 @@ module Patch
         :'allocations' => :'Array<Allocation>',
         :'metadata' => :'Object'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties.add("price_cents_usd")
+
+      nullable_properties.add("patch_fee_cents_usd")
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes

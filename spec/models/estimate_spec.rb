@@ -20,11 +20,17 @@ require 'date'
 describe 'Estimate' do
   before do
     # run before each test
-    @instance = Patch::Estimate.new
+    @instance = build(:estimate)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { id: @instance.id, order: @instance.order.to_hash, production: @instance.production, type: @instance.type } }
+    let(:nullable_properties) { Set.new(["order"]) }
   end
 
   describe 'test an instance of Estimate' do
@@ -32,6 +38,7 @@ describe 'Estimate' do
       expect(@instance).to be_instance_of(Patch::Estimate)
     end
   end
+
   describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

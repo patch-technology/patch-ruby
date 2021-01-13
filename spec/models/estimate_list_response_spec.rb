@@ -20,11 +20,17 @@ require 'date'
 describe 'EstimateListResponse' do
   before do
     # run before each test
-    @instance = Patch::EstimateListResponse.new
+    @instance = build(:estimate_list_response)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { success: @instance.success, error: @instance.error, data: @instance.data, meta: @instance.meta } }
+    let(:nullable_properties) { Set.new(["error"]) }
   end
 
   describe 'test an instance of EstimateListResponse' do

@@ -16,18 +16,29 @@ module Patch
   class Photo
     attr_accessor :url
 
+    attr_accessor :id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'url' => :'url'
+        :'url' => :'url',
+        :'id' => :'id'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'url' => :'String'
+        :'url' => :'String',
+        :'id' => :'String'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes
@@ -69,6 +80,10 @@ module Patch
         invalid_properties.push('invalid value for "url", url cannot be nil.')
       end
 
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -76,6 +91,7 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if @url.nil?
+      return false if @id.nil?
       true
     end
 
@@ -84,7 +100,8 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          url == o.url
+          url == o.url &&
+          id == o.id
     end
 
     # @see the `==` method
@@ -96,7 +113,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [url].hash
+      [url, id].hash
     end
 
     # Builds the object from hash

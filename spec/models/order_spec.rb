@@ -20,11 +20,28 @@ require 'date'
 describe 'Order' do
   before do
     # run before each test
-    @instance = Patch::Order.new
+    @instance = build(:order)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) {
+      {
+        id: @instance.id,
+        mass_g: @instance.mass_g,
+        production: @instance.production,
+        state: @instance.state,
+        allocation_state: @instance.allocation_state,
+        price_cents_usd: @instance.price_cents_usd,
+        patch_fee_cents_usd: @instance.patch_fee_cents_usd,
+        metadata: @instance.metadata
+      }
+    }
+    let(:nullable_properties) { Set.new(["patch_fee_cents_usd", "price_cents_usd"]) }
   end
 
   describe 'test an instance of Order' do

@@ -14,26 +14,37 @@ require 'date'
 
 module Patch
   class Project
+    # A unique uid for the record. UIDs will be prepended by pro_prod or pro_test depending on the mode it was created in.
     attr_accessor :id
 
+    # A boolean indicating if this project is a production or test mode project.
     attr_accessor :production
 
+    # The name of the project.
     attr_accessor :name
 
+    # The description of the project.
     attr_accessor :description
 
+    # The type of carbon removal project, currently available project types are Biomass, Dac, Forestry, Mineralization, Ocean, Soil.
     attr_accessor :type
 
+    # The country of origin of the project.
     attr_accessor :country
 
+    # The name of the project developer.
     attr_accessor :developer
 
+    # An array of URLs for photos of the project.
     attr_accessor :photos
 
+    # The average price per tonne in USD cents for carbon offsets supplied by this project.
     attr_accessor :average_price_per_tonne_cents_usd
 
+    # The remaining mass in grams available for purchase for this project.
     attr_accessor :remaining_mass_g
 
+    # An object returning the Standard associated with this project.
     attr_accessor :standard
 
     class EnumAttributeValidator
@@ -90,6 +101,17 @@ module Patch
         :'remaining_mass_g' => :'Integer',
         :'standard' => :'Standard'
       }
+    end
+
+    # Set with nullable attributes.
+    def self.openapi_nullable
+      nullable_properties = Set.new
+
+      nullable_properties.add("photos")
+
+      nullable_properties.add("standard")
+
+      nullable_properties
     end
 
     # Allows models with corresponding API classes to delegate API operations to those API classes

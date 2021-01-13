@@ -20,11 +20,17 @@ require 'date'
 describe 'OrderListResponse' do
   before do
     # run before each test
-    @instance = Patch::OrderListResponse.new
+    @instance = build(:order_list_response)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { success: @instance.success, error: @instance.error, data: @instance.data, meta: @instance.meta } }
+    let(:nullable_properties) { Set.new(["error"]) }
   end
 
   describe 'test an instance of OrderListResponse' do

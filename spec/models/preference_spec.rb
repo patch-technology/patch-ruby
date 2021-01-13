@@ -20,11 +20,17 @@ require 'date'
 describe 'Preference' do
   before do
     # run before each test
-    @instance = Patch::Preference.new
+    @instance = build(:preference)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { id: @instance.id, project: @instance.project.to_hash, allocation_percentage: @instance.allocation_percentage } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of Preference' do

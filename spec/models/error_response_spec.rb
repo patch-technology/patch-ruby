@@ -20,11 +20,17 @@ require 'date'
 describe 'ErrorResponse' do
   before do
     # run before each test
-    @instance = Patch::ErrorResponse.new
+    @instance = build(:error_response)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { success: @instance.success, error: @instance.error, data: @instance.data } }
+    let(:nullable_properties) { Set.new(["data"]) }
   end
 
   describe 'test an instance of ErrorResponse' do

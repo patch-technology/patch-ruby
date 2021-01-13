@@ -20,11 +20,17 @@ require 'date'
 describe 'CreateOrderRequest' do
   before do
     # run before each test
-    @instance = Patch::CreateOrderRequest.new
+    @instance = build(:create_order_request)
   end
 
   after do
     # run after each test
+  end
+
+  it_behaves_like "a generated class" do
+    let(:instance) { @instance }
+    let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g, total_price_cents_usd: @instance.total_price_cents_usd, metadata: @instance.metadata } }
+    let(:nullable_properties) { Set.new }
   end
 
   describe 'test an instance of CreateOrderRequest' do
