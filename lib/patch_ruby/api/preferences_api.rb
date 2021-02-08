@@ -27,8 +27,8 @@ module Patch
       @api_client = api_client
     end
     # creates a project preference
-    # Creates a project preference for the given organization. If you have a `preference` in place, all of your orders will be directed to the project the preference points to.
-    # @param create_preference_request [CreatePreferenceRequest]
+    # Creates a project preference for the given organization. If you have a `preference` in place, all of your orders will be directed to the project the preference points to. 
+    # @param create_preference_request [CreatePreferenceRequest] 
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def create_preference(create_preference_request, opts = {})
@@ -37,8 +37,8 @@ module Patch
     end
 
     # creates a project preference
-    # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to.
-    # @param create_preference_request [CreatePreferenceRequest]
+    # Creates a project preference for the given organization. If you have a &#x60;preference&#x60; in place, all of your orders will be directed to the project the preference points to. 
+    # @param create_preference_request [CreatePreferenceRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PreferenceResponse, Integer, Hash)>] PreferenceResponse data, response status code and response headers
     def create_preference_with_http_info(create_preference_request, opts = {})
@@ -66,10 +66,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_preference_request)
+      post_body = opts[:body] || @api_client.object_to_http_body(create_preference_request) 
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse'
+      return_type = opts[:return_type] || 'PreferenceResponse' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -91,8 +91,8 @@ module Patch
     end
 
     # Deletes an organization's preference for a project
-    # Deletes the given `preference`. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one.
-    # @param id [String]
+    # Deletes the given `preference`. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def delete_preference(id, opts = {})
@@ -101,8 +101,8 @@ module Patch
     end
 
     # Deletes an organization&#39;s preference for a project
-    # Deletes the given &#x60;preference&#x60;. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one.
-    # @param id [String]
+    # Deletes the given &#x60;preference&#x60;. Once a preference is deleted, it cannot be undone. If you want to restore your previous preference, create a new one. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PreferenceResponse, Integer, Hash)>] PreferenceResponse data, response status code and response headers
     def delete_preference_with_http_info(id, opts = {})
@@ -128,10 +128,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body]
+      post_body = opts[:body] 
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse'
+      return_type = opts[:return_type] || 'PreferenceResponse' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -153,8 +153,8 @@ module Patch
     end
 
     # Retrieve the preference
-    # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization.
-    # @param id [String]
+    # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def retrieve_preference(id, opts = {})
@@ -163,8 +163,8 @@ module Patch
     end
 
     # Retrieve the preference
-    # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization.
-    # @param id [String]
+    # Retrieve the preference and project of an organization. You can only retrieve preferences associated with your organization. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PreferenceResponse, Integer, Hash)>] PreferenceResponse data, response status code and response headers
     def retrieve_preference_with_http_info(id, opts = {})
@@ -190,10 +190,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body]
+      post_body = opts[:body] 
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse'
+      return_type = opts[:return_type] || 'PreferenceResponse' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -215,9 +215,9 @@ module Patch
     end
 
     # Retrieves a list of preferences
-    # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization.
+    # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization. 
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page
+    # @option opts [Integer] :page 
     # @return [PreferenceListResponse]
     def retrieve_preferences(opts = {})
       data, _status_code, _headers = retrieve_preferences_with_http_info(opts)
@@ -225,9 +225,9 @@ module Patch
     end
 
     # Retrieves a list of preferences
-    # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization.
+    # Retrieves a list of preferences and associated projects of an organization. You can only retrieve preferences associated with your organization. 
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page
+    # @option opts [Integer] :page 
     # @return [Array<(PreferenceListResponse, Integer, Hash)>] PreferenceListResponse data, response status code and response headers
     def retrieve_preferences_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -249,10 +249,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body]
+      post_body = opts[:body] 
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceListResponse'
+      return_type = opts[:return_type] || 'PreferenceListResponse' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
