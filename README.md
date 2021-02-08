@@ -98,9 +98,35 @@ Estimates allow API users to get a quote for the cost of compensating a certain 
 
 #### Examples
 ```ruby
-# Create an estimate
+# Create a mass estimate
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
 Patch::Estimate.create_mass_estimate(mass_g: mass)
+
+# Create a flight estimate
+distance_m = 1_000_000 # Pass in the distance traveled in meters
+Patch::Estimate.create_flight_estimate(distance_m: distance_m)
+
+# Create a shipping estimate
+distance_m = 1_000_000 # Pass in the shipping distance in meters
+package_mass_g = 10_000 # Pass in the weight of the package shipped in grams
+transportation_method = "air" # Pass in the transportation method (air, rail, road, sea)
+Patch::Estimate.create_shipping_estimate(
+  distance_m: distance_m,
+  package_mass_g: package_mass_g,
+  transportation_method: transportation_method
+)
+
+# Create a vehicle estimate
+distance_m = 1_000_000 # Pass in the shipping distance in meters
+make = "Toyota" # Pass in the car make
+model = "Corolla" # Pass in the car model
+year = 2000 # Pass in the car year
+Patch::Estimate.create_vehicle_estimate(
+  distance_m: distance_m,
+  make: make,
+  model: model,
+  year: year
+)
 
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID

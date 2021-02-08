@@ -20,8 +20,11 @@ module Patch
     # A boolean indicating if this estimate is a production or test mode estimate.
     attr_accessor :production
 
-    # The type of estimate. Currently mass is the only supported value.
+    # The type of estimate. Available types are mass, flight, shipping, and vehicle.
     attr_accessor :type
+
+    # The estimated mass in grams for this estimate.
+    attr_accessor :mass_g
 
     # An object returning the order associated with this estimate. See the [Order section](/?id=orders) for the full schema.
     attr_accessor :order
@@ -32,6 +35,7 @@ module Patch
         :'id' => :'id',
         :'production' => :'production',
         :'type' => :'type',
+        :'mass_g' => :'mass_g',
         :'order' => :'order'
       }
     end
@@ -42,6 +46,7 @@ module Patch
         :'id' => :'String',
         :'production' => :'Boolean',
         :'type' => :'String',
+        :'mass_g' => :'Integer',
         :'order' => :'Order'
       }
     end
@@ -93,6 +98,10 @@ module Patch
         self.type = attributes[:'type']
       end
 
+      if attributes.key?(:'mass_g')
+        self.mass_g = attributes[:'mass_g']
+      end
+
       if attributes.key?(:'order')
         self.order = attributes[:'order']
       end
@@ -134,6 +143,7 @@ module Patch
           id == o.id &&
           production == o.production &&
           type == o.type &&
+          mass_g == o.mass_g &&
           order == o.order
     end
 
@@ -146,7 +156,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, type, order].hash
+      [id, production, type, mass_g, order].hash
     end
 
     # Builds the object from hash
@@ -239,7 +249,7 @@ module Patch
           is_nullable = self.class.openapi_nullable.include?(attr)
           next if !is_nullable || (is_nullable && !instance_variable_defined?(:"@#{attr}"))
         end
-
+        
         hash[param] = _to_hash(value)
       end
       hash
