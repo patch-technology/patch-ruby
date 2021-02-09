@@ -70,6 +70,10 @@ module Patch
       if attributes.key?(:'url')
         self.url = attributes[:'url']
       end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?

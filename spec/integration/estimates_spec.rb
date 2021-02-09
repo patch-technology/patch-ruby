@@ -24,4 +24,47 @@ RSpec.describe 'Estimates Integration' do
 
     expect(estimates.length).not_to be_zero
   end
+
+  it 'supports creating flight estimates' do
+    distance_m = 10_000_000
+    flight_estimate = Patch::Estimate.create_flight_estimate(
+      distance_m: distance_m,
+      create_order: false
+    )
+
+    expect(flight_estimate.data.type).to eq 'flight'
+    expect(flight_estimate.data.mass_g).to eq 1_032_000
+  end
+
+  it 'supports creating vehicle estimates' do
+    distance_m = 10_000
+    make = "Toyota"
+    model = "Prius"
+    year = 2000
+
+    vehicle_estimate = Patch::Estimate.create_vehicle_estimate(
+      distance_m: distance_m,
+      make: make,
+      model: model,
+      year: year,
+      create_order: false
+    )
+
+    expect(vehicle_estimate.data.type).to eq 'vehicle'
+    expect(vehicle_estimate.data.mass_g).to eq 2_132
+  end
+
+  it 'supports creating shipping estimates' do
+    distance_m = 100_000_000
+    package_mass_g = 10_000
+    create_estimate_response = Patch::Estimate.create_shipping_estimate(
+      distance_m: distance_m,
+      package_mass_g: package_mass_g,
+      transportation_method: 'rail',
+      create_order: false
+    )
+
+    expect(create_estimate_response.data.type).to eq 'shipping'
+    expect(create_estimate_response.data.mass_g).to eq 12_431
+  end
 end

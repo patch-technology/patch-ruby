@@ -15,7 +15,10 @@ require 'cgi'
 module Patch
   class EstimatesApi
     OPERATIONS = [
+      :create_flight_estimate,
       :create_mass_estimate,
+      :create_shipping_estimate,
+      :create_vehicle_estimate,
       :retrieve_estimate,
       :retrieve_estimates,
     ]
@@ -25,6 +28,70 @@ module Patch
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Create a flight estimate given the distance traveled in meters
+    # Creates a flight estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
+    # @param create_flight_estimate_request [CreateFlightEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [EstimateResponse]
+    def create_flight_estimate(create_flight_estimate_request, opts = {})
+      data, _status_code, _headers = create_flight_estimate_with_http_info(create_flight_estimate_request, opts)
+      data
+    end
+
+    # Create a flight estimate given the distance traveled in meters
+    # Creates a flight estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # @param create_flight_estimate_request [CreateFlightEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
+    def create_flight_estimate_with_http_info(create_flight_estimate_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_flight_estimate ...'
+      end
+      # verify the required parameter 'create_flight_estimate_request' is set
+      if @api_client.config.client_side_validation && create_flight_estimate_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_flight_estimate_request' when calling EstimatesApi.create_flight_estimate"
+      end
+      # resource path
+      local_var_path = '/v1/estimates/flight'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(create_flight_estimate_request) 
+
+      # return_type
+      return_type = opts[:return_type] || 'EstimateResponse' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['bearer_auth']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EstimatesApi#create_flight_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Create an estimate based on mass of CO2
     # Creates an estimate for the mass of CO2 to be compensated. An order in the `draft` state will also be created, linked to the estimate. 
     # @param create_mass_estimate_request [CreateMassEstimateRequest] 
@@ -85,6 +152,134 @@ module Patch
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: EstimatesApi#create_mass_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create a shipping estimate given the distance traveled in meters, package weight, and transportation method.
+    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
+    # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [EstimateResponse]
+    def create_shipping_estimate(create_shipping_estimate_request, opts = {})
+      data, _status_code, _headers = create_shipping_estimate_with_http_info(create_shipping_estimate_request, opts)
+      data
+    end
+
+    # Create a shipping estimate given the distance traveled in meters, package weight, and transportation method.
+    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters. 
+    # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
+    def create_shipping_estimate_with_http_info(create_shipping_estimate_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_shipping_estimate ...'
+      end
+      # verify the required parameter 'create_shipping_estimate_request' is set
+      if @api_client.config.client_side_validation && create_shipping_estimate_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_shipping_estimate_request' when calling EstimatesApi.create_shipping_estimate"
+      end
+      # resource path
+      local_var_path = '/v1/estimates/shipping'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(create_shipping_estimate_request) 
+
+      # return_type
+      return_type = opts[:return_type] || 'EstimateResponse' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['bearer_auth']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EstimatesApi#create_shipping_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create a vehicle estimate given the distance traveled in meters and the type of vehicle
+    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
+    # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [EstimateResponse]
+    def create_vehicle_estimate(create_vehicle_estimate_request, opts = {})
+      data, _status_code, _headers = create_vehicle_estimate_with_http_info(create_vehicle_estimate_request, opts)
+      data
+    end
+
+    # Create a vehicle estimate given the distance traveled in meters and the type of vehicle
+    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
+    def create_vehicle_estimate_with_http_info(create_vehicle_estimate_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_vehicle_estimate ...'
+      end
+      # verify the required parameter 'create_vehicle_estimate_request' is set
+      if @api_client.config.client_side_validation && create_vehicle_estimate_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_vehicle_estimate_request' when calling EstimatesApi.create_vehicle_estimate"
+      end
+      # resource path
+      local_var_path = '/v1/estimates/vehicle'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(create_vehicle_estimate_request) 
+
+      # return_type
+      return_type = opts[:return_type] || 'EstimateResponse' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['bearer_auth']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EstimatesApi#create_vehicle_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

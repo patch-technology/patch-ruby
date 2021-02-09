@@ -16,12 +16,15 @@ module Patch
   class CreateMassEstimateRequest
     attr_accessor :mass_g
 
+    attr_accessor :create_order
+
     attr_accessor :project_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'mass_g' => :'mass_g',
+        :'create_order' => :'create_order',
         :'project_id' => :'project_id'
       }
     end
@@ -30,6 +33,7 @@ module Patch
     def self.openapi_types
       {
         :'mass_g' => :'Integer',
+        :'create_order' => :'Boolean',
         :'project_id' => :'String'
       }
     end
@@ -37,6 +41,8 @@ module Patch
     # Set with nullable attributes.
     def self.openapi_nullable
       nullable_properties = Set.new
+
+      nullable_properties.add("create_order")
 
       nullable_properties
     end
@@ -69,6 +75,10 @@ module Patch
 
       if attributes.key?(:'mass_g')
         self.mass_g = attributes[:'mass_g']
+      end
+
+      if attributes.key?(:'create_order')
+        self.create_order = attributes[:'create_order']
       end
 
       if attributes.key?(:'project_id')
@@ -128,6 +138,7 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           mass_g == o.mass_g &&
+          create_order == o.create_order &&
           project_id == o.project_id
     end
 
@@ -140,7 +151,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, project_id].hash
+      [mass_g, create_order, project_id].hash
     end
 
     # Builds the object from hash
