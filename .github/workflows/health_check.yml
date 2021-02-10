@@ -24,7 +24,7 @@ jobs:
 
       - name: Run RSpec
         env:
-          PATCH_RUBY_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
+          SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: bundle exec rspec
 
   failure-notification:
