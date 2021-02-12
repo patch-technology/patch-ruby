@@ -44,7 +44,7 @@ describe 'Project' do
         standard: @instance.standard
       }
     }
-    let(:nullable_properties) { Set.new(["photos", "standard"]) }
+    let(:nullable_properties) { Set.new(["photos", "standard", "sdgs"]) }
   end
 
   describe 'test an instance of Project' do
