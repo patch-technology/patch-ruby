@@ -47,6 +47,9 @@ module Patch
     # An object returning the Standard associated with this project.
     attr_accessor :standard
 
+    # An array returning the UN Sustainable Development Goals associated with this project.
+    attr_accessor :sdgs
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -82,7 +85,8 @@ module Patch
         :'photos' => :'photos',
         :'average_price_per_tonne_cents_usd' => :'average_price_per_tonne_cents_usd',
         :'remaining_mass_g' => :'remaining_mass_g',
-        :'standard' => :'standard'
+        :'standard' => :'standard',
+        :'sdgs' => :'sdgs'
       }
     end
 
@@ -99,7 +103,8 @@ module Patch
         :'photos' => :'Array<Photo>',
         :'average_price_per_tonne_cents_usd' => :'Integer',
         :'remaining_mass_g' => :'Integer',
-        :'standard' => :'Standard'
+        :'standard' => :'Standard',
+        :'sdgs' => :'Array<Sdg>'
       }
     end
 
@@ -110,6 +115,8 @@ module Patch
       nullable_properties.add("photos")
 
       nullable_properties.add("standard")
+
+      nullable_properties.add("sdgs")
 
       nullable_properties
     end
@@ -184,6 +191,12 @@ module Patch
 
       if attributes.key?(:'standard')
         self.standard = attributes[:'standard']
+      end
+
+      if attributes.key?(:'sdgs')
+        if (value = attributes[:'sdgs']).is_a?(Array)
+          self.sdgs = value
+        end
       end
     end
 
@@ -267,7 +280,8 @@ module Patch
           photos == o.photos &&
           average_price_per_tonne_cents_usd == o.average_price_per_tonne_cents_usd &&
           remaining_mass_g == o.remaining_mass_g &&
-          standard == o.standard
+          standard == o.standard &&
+          sdgs == o.sdgs
     end
 
     # @see the `==` method
@@ -279,7 +293,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, country, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard].hash
+      [id, production, name, description, type, country, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs].hash
     end
 
     # Builds the object from hash
