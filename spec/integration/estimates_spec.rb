@@ -39,7 +39,7 @@ RSpec.describe 'Estimates Integration' do
   it 'supports creating vehicle estimates' do
     distance_m = 10_000
     make = "Toyota"
-    model = "Prius"
+    model = "Corolla"
     year = 2000
 
     vehicle_estimate = Patch::Estimate.create_vehicle_estimate(
@@ -47,6 +47,18 @@ RSpec.describe 'Estimates Integration' do
       make: make,
       model: model,
       year: year,
+      create_order: false
+    )
+
+    expect(vehicle_estimate.data.type).to eq 'vehicle'
+    expect(vehicle_estimate.data.mass_g).to eq 5_500
+  end
+
+  it 'supports creating vehicle estimates with partial information' do
+    distance_m = 10_000
+
+    vehicle_estimate = Patch::Estimate.create_vehicle_estimate(
+      distance_m: distance_m,
       create_order: false
     )
 
