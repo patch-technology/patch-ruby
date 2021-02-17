@@ -91,7 +91,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
     # @option opts [String] :country 
-    # @option opts [Integer] :type 
+    # @option opts [String] :type 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
@@ -103,7 +103,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
     # @option opts [String] :country 
-    # @option opts [Integer] :type 
+    # @option opts [String] :type 
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
