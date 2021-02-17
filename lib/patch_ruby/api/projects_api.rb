@@ -90,6 +90,8 @@ module Patch
     # Retrieves a list of projects available for purchase on Patch's platform. 
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
+    # @option opts [String] :country 
+    # @option opts [Integer] :type 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
@@ -100,6 +102,8 @@ module Patch
     # Retrieves a list of projects available for purchase on Patch&#39;s platform. 
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
+    # @option opts [String] :country 
+    # @option opts [Integer] :type 
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -111,6 +115,8 @@ module Patch
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'country'] = opts[:'country'] if !opts[:'country'].nil?
+      query_params[:'type'] = opts[:'type'] if !opts[:'type'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

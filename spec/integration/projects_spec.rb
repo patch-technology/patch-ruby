@@ -22,6 +22,20 @@ RSpec.describe 'Projects Integration' do
     expect(retrieve_project_response.data.id).to eq project_id
   end
 
+  it 'supports filtering projects' do
+    country = 'US'
+    projects = Patch::Project.retrieve_projects(country: country)
+    projects.data.map do |project|
+      expect(project.country).to eq country
+    end
+
+    type = 'biomass'
+    projects = Patch::Project.retrieve_projects(type: type)
+    projects.data.map do |project|
+      expect(project.type).to eq type
+    end
+  end
+
   describe 'returned fields' do
     before do
       @project = Patch::Project.retrieve_projects(page: 1).data.first
