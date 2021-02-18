@@ -29,10 +29,16 @@ RSpec.describe 'Projects Integration' do
       expect(project.country).to eq country
     end
 
-    type = 'biomass'
+    type = 'dac'
     projects = Patch::Project.retrieve_projects(type: type)
     projects.data.map do |project|
       expect(project.type).to eq type
+    end
+
+    remaining_mass_g = 100
+    projects = Patch::Project.retrieve_projects(remaining_mass_g: remaining_mass_g)
+    projects.data.map do |project|
+      expect(project.remaining_mass_g >= remaining_mass_g).to be true
     end
   end
 

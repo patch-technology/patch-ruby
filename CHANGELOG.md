@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Adds Sustainable Development Goals (SDGs) field to projects
-
+- Adds filtering to Projects by country, type, remaining inventory
+,
 ### Changed
 
 - vehicle estimates now support optional `make`, `model` and `year` fields.

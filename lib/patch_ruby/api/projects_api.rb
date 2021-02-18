@@ -91,7 +91,8 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
     # @option opts [String] :country 
-    # @option opts [Integer] :type 
+    # @option opts [String] :type 
+    # @option opts [Integer] :remainaing_mass_g 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
@@ -103,7 +104,8 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
     # @option opts [String] :country 
-    # @option opts [Integer] :type 
+    # @option opts [String] :type 
+    # @option opts [Integer] :remainaing_mass_g 
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -117,6 +119,7 @@ module Patch
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
       query_params[:'country'] = opts[:'country'] if !opts[:'country'].nil?
       query_params[:'type'] = opts[:'type'] if !opts[:'type'].nil?
+      query_params[:'remainaing_mass_g'] = opts[:'remainaing_mass_g'] if !opts[:'remainaing_mass_g'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

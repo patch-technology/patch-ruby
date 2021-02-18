@@ -144,6 +144,12 @@ Patch::Estimate.retrieve_estimates(page: page)
 ### Projects
 Projects are the ways Patch takes CO2 out of the air. They can represent reforestation, enhanced weathering, direct air carbon capture, etc. When you place an order via Patch, it is allocated to a project.
 
+When fetching Projects, you can add filters to the query to narrow the result. Currently supported filters are:
+
+- `country`
+- `type`
+- `remaining_mass_g`
+
 [API Reference](https://docs.usepatch.com/#/?id=projects)
 
 #### Examples
@@ -155,6 +161,18 @@ Patch::Project.retrieve_project(project_id)
 # Retrieve a list of projects
 page = 1 # Pass in which page of projects you'd like
 Patch::Project.retrieve_projects(page: page)
+
+# Retrieve all projects from the United States
+country = 'US' # Pass in the country code of the country you'd like to get Projects from
+Patch::Project.retrieve_projects(country: country)
+
+# Retrieve all biomass projects
+type = 'biomass' # Pass in the type of Projects you'd like to get
+Patch::Project.retrieve_projects(type: type)
+
+# Retrieve a list of projects with at least 100 grams of available offsets
+type = 'biomass' # Pass in the type of Projects you'd like to get
+Patch::Project.retrieve_projects(type: type)
 ```
 
 ### Preferences
