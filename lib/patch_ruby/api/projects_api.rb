@@ -25,8 +25,8 @@ module Patch
       @api_client = api_client
     end
     # Retrieves a project
-    # Retrieves a project available on Patch's platform. 
-    # @param id [String] 
+    # Retrieves a project available on Patch's platform.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [ProjectResponse]
     def retrieve_project(id, opts = {})
@@ -35,8 +35,8 @@ module Patch
     end
 
     # Retrieves a project
-    # Retrieves a project available on Patch&#39;s platform. 
-    # @param id [String] 
+    # Retrieves a project available on Patch&#39;s platform.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(ProjectResponse, Integer, Hash)>] ProjectResponse data, response status code and response headers
     def retrieve_project_with_http_info(id, opts = {})
@@ -62,10 +62,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:body]
 
       # return_type
-      return_type = opts[:return_type] || 'ProjectResponse' 
+      return_type = opts[:return_type] || 'ProjectResponse'
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']
@@ -87,12 +87,12 @@ module Patch
     end
 
     # Retrieves a list of projects
-    # Retrieves a list of projects available for purchase on Patch's platform. 
+    # Retrieves a list of projects available for purchase on Patch's platform.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
-    # @option opts [String] :country 
-    # @option opts [String] :type 
-    # @option opts [Integer] :remainaing_mass_g 
+    # @option opts [Integer] :page
+    # @option opts [String] :country
+    # @option opts [String] :type
+    # @option opts [Integer] :remainaing_mass_g
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
@@ -100,12 +100,12 @@ module Patch
     end
 
     # Retrieves a list of projects
-    # Retrieves a list of projects available for purchase on Patch&#39;s platform. 
+    # Retrieves a list of projects available for purchase on Patch&#39;s platform.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
-    # @option opts [String] :country 
-    # @option opts [String] :type 
-    # @option opts [Integer] :remainaing_mass_g 
+    # @option opts [Integer] :page
+    # @option opts [String] :country
+    # @option opts [String] :type
+    # @option opts [Integer] :remainaing_mass_g
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -130,10 +130,10 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:body]
 
       # return_type
-      return_type = opts[:return_type] || 'ProjectListResponse' 
+      return_type = opts[:return_type] || 'ProjectListResponse'
 
       # auth_names
       auth_names = opts[:auth_names] || ['bearer_auth']

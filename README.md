@@ -171,8 +171,8 @@ type = 'biomass' # Pass in the type of Projects you'd like to get
 Patch::Project.retrieve_projects(type: type)
 
 # Retrieve a list of projects with at least 100 grams of available offsets
-type = 'biomass' # Pass in the type of Projects you'd like to get
-Patch::Project.retrieve_projects(type: type)
+remaining_mass_g = 100 # Pass in the type of Projects you'd like to get
+Patch::Project.retrieve_projects(remaining_mass_g: remaining_mass_g)
 ```
 
 ### Preferences
