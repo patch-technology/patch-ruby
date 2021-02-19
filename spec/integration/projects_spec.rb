@@ -35,10 +35,10 @@ RSpec.describe 'Projects Integration' do
       expect(project.type).to eq type
     end
 
-    remaining_mass_g = 100
-    projects = Patch::Project.retrieve_projects(remaining_mass_g: remaining_mass_g)
+    minimum_available_mass = 100
+    projects = Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
     projects.data.map do |project|
-      expect(project.remaining_mass_g >= remaining_mass_g).to be true
+      expect(project.remaining_mass_g >= minimum_available_mass).to be true
     end
   end
 
