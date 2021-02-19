@@ -34,6 +34,12 @@ RSpec.describe 'Projects Integration' do
     projects.data.map do |project|
       expect(project.type).to eq type
     end
+
+    minimum_available_mass = 100
+    projects = Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
+    projects.data.map do |project|
+      expect(project.remaining_mass_g >= minimum_available_mass).to be true
+    end
   end
 
   describe 'returned fields' do

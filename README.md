@@ -148,6 +148,7 @@ When fetching Projects, you can add filters to the query to narrow the result. C
 
 - `country`
 - `type`
+- `minimum_available_mass`
 
 [API Reference](https://docs.usepatch.com/#/?id=projects)
 
@@ -161,13 +162,17 @@ Patch::Project.retrieve_project(project_id)
 page = 1 # Pass in which page of projects you'd like
 Patch::Project.retrieve_projects(page: page)
 
-# Retrieve a all projects from the United States
-country = 'US' # Pass in the country code of the country you'd like to get Projects from
+# Retrieve all projects from the United States
+country = 'US'
 Patch::Project.retrieve_projects(country: country)
 
-# Retrieve a all biomass projects
-type = 'biomass' # Pass in the type of Projects you'd like to get
+# Retrieve all biomass projects
+type = 'biomass'
 Patch::Project.retrieve_projects(type: type)
+
+# Retrieve a list of projects with at least 100 grams of available offsets
+minimum_available_mass = 100
+Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
 ```
 
 ### Preferences
