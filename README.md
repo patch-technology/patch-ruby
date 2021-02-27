@@ -1,31 +1,37 @@
 # Patch Ruby SDK
+
 ![Test](https://github.com/patch-technology/patch-ruby/workflows/Test/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/patch_ruby.svg)](https://badge.fury.io/rb/patch_ruby)
 [![Discord](https://img.shields.io/discord/733029448558837792)](https://discord.gg/AU8543D)
 
-The official Ruby gem for the [Patch API](https://www.usepatch.com)
+The official Ruby gem for the [Patch API](https://www.patch.io)
 
 ## Documentation
-For a complete API reference, check out [Patch's API Reference.](https://docs.usepatch.com/)
+
+For a complete API reference, check out [Patch's API Reference.](https://docs.patch.io/)
 
 ## Installation
 
 Add the gem to your Gemfile:
+
 ```ruby
 gem 'patch_ruby'
 ```
 
 Then run:
+
 ```shell
 bundle
 ```
 
 Or install it directly with
+
 ```shell
 gem install patch_ruby
 ```
 
 ### Requirements
+
 - Ruby 1.9+
 
 ## Usage
@@ -33,6 +39,7 @@ gem install patch_ruby
 ### Configuration
 
 After installing the gem, you'll have to configure it with your API key which is available from the API key page in the Patch dashboard:
+
 ```ruby
 require 'patch_ruby'
 
@@ -43,6 +50,7 @@ end
 ```
 
 ### Orders
+
 In Patch, orders represent a purchase of carbon offsets or negative emissions by mass. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
 
 In Patch, orders represent a purchase of carbon offsets or negative emissions by mass.
@@ -51,9 +59,10 @@ If you do not know how much to purchase, use an estimate.
 You can also create an order with a maximum desired price, and we'll allocate enough mass to
 fulfill the order for you.
 
-[API Reference](https://docs.usepatch.com/#/?id=orders)
+[API Reference](https://docs.patch.io/#/?id=orders)
 
 #### Examples
+
 ```ruby
 # Create an order - you can create an order
 # providing either mass_g or total_price_cents_usd, but not both
@@ -92,11 +101,13 @@ Patch::Order.retrieve_orders(page: page)
 ```
 
 ### Estimates
+
 Estimates allow API users to get a quote for the cost of compensating a certain amount of CO2. When creating an estimate, an order in the `draft` state will also be created, reserving the allocation of a project for 5 minutes. If you don't place your draft order within those 5 minutes, the order will automatically be cancelled.
 
-[API Reference](https://docs.usepatch.com/#/?id=estimates)
+[API Reference](https://docs.patch.io/#/?id=estimates)
 
 #### Examples
+
 ```ruby
 # Create a mass estimate
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
@@ -142,6 +153,7 @@ Patch::Estimate.retrieve_estimates(page: page)
 ```
 
 ### Projects
+
 Projects are the ways Patch takes CO2 out of the air. They can represent reforestation, enhanced weathering, direct air carbon capture, etc. When you place an order via Patch, it is allocated to a project.
 
 When fetching Projects, you can add filters to the query to narrow the result. Currently supported filters are:
@@ -150,9 +162,10 @@ When fetching Projects, you can add filters to the query to narrow the result. C
 - `type`
 - `minimum_available_mass`
 
-[API Reference](https://docs.usepatch.com/#/?id=projects)
+[API Reference](https://docs.patch.io/#/?id=projects)
 
 #### Examples
+
 ```ruby
 # Retrieve a project
 project_id = 'pro_test_1234' # Pass in the project's ID
@@ -176,11 +189,13 @@ Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
 ```
 
 ### Preferences
-Preferences are how you route your orders in Patch. If you don't have a preference, Patch will allocate your order to the least expensive option. If you do have a preference, all of your orders will be sent to that project. You can set your preferences via API, or through the [Patch Dashboard](https://dashboard.usepatch.com/projects).
 
-[API Reference](https://docs.usepatch.com/#/?id=preferences)
+Preferences are how you route your orders in Patch. If you don't have a preference, Patch will allocate your order to the least expensive option. If you do have a preference, all of your orders will be sent to that project. You can set your preferences via API, or through the [Patch Dashboard](https://dashboard.patch.io/projects).
+
+[API Reference](https://docs.patch.io/#/?id=preferences)
 
 #### Examples
+
 ```ruby
 # Create a preference
 project_id = 'pro_test_1234' # Pass in the project_id for your preference
@@ -202,26 +217,31 @@ Patch::Preference.retrieve_preferences(page: page)
 ## Development
 
 To build the gem locally, run:
+
 ```
 $ gem build patch_ruby.gemspec
 ```
 
 This will create a .gem file. To install the local gem:
+
 ```
 $ gem install patch_ruby-1.x.x.gem
 ```
 
 Install dependencies:
+
 ```
 $ bundle install
 ```
 
 Set up required environment variables:
+
 ```
 $ export SANDBOX_API_KEY=<SANDBOX API KEY>
 ```
 
 Run tests:
+
 ```
 $ bundle exec rspec
 ```
