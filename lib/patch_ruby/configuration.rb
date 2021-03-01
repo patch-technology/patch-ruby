@@ -127,7 +127,7 @@ module Patch
 
     def initialize
       @scheme = 'https'
-      @host = 'api.usepatch.com'
+      @host = 'api.patch.io'
       @base_path = ''
       @api_key = {}
       @api_key_prefix = {}
@@ -212,7 +212,7 @@ module Patch
           variables: {
             defaultHost: {
                 description: "No description provided",
-                default_value: "api.usepatch.com",
+                default_value: "api.patch.io",
               }
             }
         }
