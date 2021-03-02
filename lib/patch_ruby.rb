@@ -36,6 +36,7 @@ require 'patch_ruby/models/preference_response'
 require 'patch_ruby/models/project'
 require 'patch_ruby/models/project_list_response'
 require 'patch_ruby/models/project_response'
+require 'patch_ruby/models/sdg'
 require 'patch_ruby/models/standard'
 
 # APIs
