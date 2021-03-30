@@ -185,8 +185,8 @@ module Patch
         invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 2000000000.')
       end
 
-      if @mass_g < 1
-        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 1.')
+      if @mass_g < 0
+        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 0.')
       end
 
       if @production.nil?
@@ -218,7 +218,7 @@ module Patch
       return false if @id.nil?
       return false if @mass_g.nil?
       return false if @mass_g > 2000000000
-      return false if @mass_g < 1
+      return false if @mass_g < 0
       return false if @production.nil?
       return false if @state.nil?
       state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "complete", "cancelled"])
@@ -242,8 +242,8 @@ module Patch
         fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 2000000000.'
       end
 
-      if mass_g < 1
-        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 1.'
+      if mass_g < 0
+        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 0.'
       end
 
       @mass_g = mass_g
