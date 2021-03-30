@@ -43,3 +43,4 @@ build/
 /.openapi-generator/
 
 .byebug_history
+.DS_Store

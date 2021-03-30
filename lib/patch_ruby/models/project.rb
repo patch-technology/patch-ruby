@@ -26,7 +26,7 @@ module Patch
     # The description of the project.
     attr_accessor :description
 
-    # The type of carbon removal project, currently available project types are Biomass, Dac, Forestry, Mineralization, Ocean, Soil.
+    # The type of carbon removal project, currently available project types are Biomass, Dac, Forestry, Mineralization, Ocean, Renewables, Soil.
     attr_accessor :type
 
     # The country of origin of the project.
@@ -246,7 +246,7 @@ module Patch
       return false if @production.nil?
       return false if @name.nil?
       return false if @description.nil?
-      type_validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "soil"])
+      type_validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "renewables", "soil"])
       return false unless type_validator.valid?(@type)
       return false if @country.nil?
       return false if @developer.nil?
@@ -258,7 +258,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "soil"])
+      validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "renewables", "soil"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end

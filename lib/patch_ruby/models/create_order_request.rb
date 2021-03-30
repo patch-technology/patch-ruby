@@ -100,8 +100,8 @@ module Patch
         invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 2000000000.')
       end
 
-      if !@mass_g.nil? && @mass_g < 1
-        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 1.')
+      if !@mass_g.nil? && @mass_g < 0
+        invalid_properties.push('invalid value for "mass_g", must be greater than or equal to 0.')
       end
 
       if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
@@ -115,7 +115,7 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if !@mass_g.nil? && @mass_g > 2000000000
-      return false if !@mass_g.nil? && @mass_g < 1
+      return false if !@mass_g.nil? && @mass_g < 0
       return false if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
       true
     end
@@ -127,8 +127,8 @@ module Patch
         fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 2000000000.'
       end
 
-      if !mass_g.nil? && mass_g < 1
-        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 1.'
+      if !mass_g.nil? && mass_g < 0
+        fail ArgumentError, 'invalid value for "mass_g", must be greater than or equal to 0.'
       end
 
       @mass_g = mass_g
