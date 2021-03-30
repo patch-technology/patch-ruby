@@ -40,11 +40,12 @@ RSpec.describe 'Orders Integration' do
 
     create_order_response = Patch::Order.create_order(mass_g: order_mass_g, project_id: project_id)
 
+    order = create_order_response.data
     expect(create_order_response.success).to eq true
-    expect(create_order_response.data.id).not_to be_nil
-    expect(create_order_response.data.mass_g).to eq(order_mass_g)
-    expect(create_order_response.data.price_cents_usd.to_i).to eq(expected_price)
-    expect(create_order_response.data.patch_fee_cents_usd).not_to be_empty
+    expect(order.id).not_to be_nil
+    expect(order.mass_g).to eq(order_mass_g)
+    expect(order.price_cents_usd.to_i).to be_between(expected_price - 1, expected_price + 1)
+    expect(order.patch_fee_cents_usd).not_to be_empty
   end
 
   it 'supports create with a total price' do
