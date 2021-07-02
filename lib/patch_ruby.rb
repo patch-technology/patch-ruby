@@ -18,6 +18,7 @@ require 'patch_ruby/configuration'
 
 # Models
 require 'patch_ruby/models/allocation'
+require 'patch_ruby/models/create_bitcoin_estimate_request'
 require 'patch_ruby/models/create_mass_estimate_request'
 require 'patch_ruby/models/create_order_request'
 require 'patch_ruby/models/create_preference_request'
