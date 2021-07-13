@@ -28,7 +28,7 @@ module Patch
       @api_client = api_client
     end
     # Cancel an order
-    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the `draft` state can be cancelled. 
+    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the `draft` or `placed` state can be cancelled. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
@@ -38,7 +38,7 @@ module Patch
     end
 
     # Cancel an order
-    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; state can be cancelled. 
+    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; or &#x60;placed&#x60; state can be cancelled. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers

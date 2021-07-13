@@ -38,6 +38,9 @@ module Patch
     # An array containing the inventory allocations for this order.
     attr_accessor :allocations
 
+    # The url of this order in the public registry.
+    attr_accessor :registry_url
+
     # An optional JSON object containing metadata for this order.
     attr_accessor :metadata
 
@@ -74,6 +77,7 @@ module Patch
         :'price_cents_usd' => :'price_cents_usd',
         :'patch_fee_cents_usd' => :'patch_fee_cents_usd',
         :'allocations' => :'allocations',
+        :'registry_url' => :'registry_url',
         :'metadata' => :'metadata'
       }
     end
@@ -89,6 +93,7 @@ module Patch
         :'price_cents_usd' => :'String',
         :'patch_fee_cents_usd' => :'String',
         :'allocations' => :'Array<Allocation>',
+        :'registry_url' => :'String',
         :'metadata' => :'Object'
       }
     end
@@ -164,6 +169,10 @@ module Patch
         end
       end
 
+      if attributes.key?(:'registry_url')
+        self.registry_url = attributes[:'registry_url']
+      end
+
       if attributes.key?(:'metadata')
         self.metadata = attributes[:'metadata']
       end
@@ -221,7 +230,7 @@ module Patch
       return false if @mass_g < 0
       return false if @production.nil?
       return false if @state.nil?
-      state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "complete", "cancelled"])
+      state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "processing", "complete", "cancelled"])
       return false unless state_validator.valid?(@state)
       return false if @allocation_state.nil?
       allocation_state_validator = EnumAttributeValidator.new('String', ["pending", "partially_allocated", "allocated"])
@@ -252,7 +261,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ["draft", "placed", "complete", "cancelled"])
+      validator = EnumAttributeValidator.new('String', ["draft", "placed", "processing", "complete", "cancelled"])
       unless validator.valid?(state)
         fail ArgumentError, "invalid value for \"state\", must be one of #{validator.allowable_values}."
       end
@@ -282,6 +291,7 @@ module Patch
           price_cents_usd == o.price_cents_usd &&
           patch_fee_cents_usd == o.patch_fee_cents_usd &&
           allocations == o.allocations &&
+          registry_url == o.registry_url &&
           metadata == o.metadata
     end
 
@@ -294,7 +304,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, metadata].hash
+      [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
     end
 
     # Builds the object from hash

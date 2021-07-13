@@ -9,14 +9,19 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: [3.0.1, 2.7.4, 2.6.8]
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Setup Ruby
+      - name: Setup Ruby ${{ matrix.ruby-version }}
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.1
+          ruby-version: ${{ matrix.ruby-version }}
 
       - name: Install Ruby Dependencies
         run: bundle install
