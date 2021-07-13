@@ -139,6 +139,10 @@ Patch::Estimate.create_vehicle_estimate(
   year: year
 )
 
+# Create a flight estimate
+transaction_value_btc_sats = 1000; # [Optional] Pass in the transaction value in satoshis
+Patch::Estimate.create_bitcoin_estimate(transaction_value_btc_sats: transaction_value_btc_sats)
+
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID
 Patch::Estimate.create_mass_estimate(mass_g: mass, project_id: project_id)
@@ -218,30 +222,30 @@ Patch::Preference.retrieve_preferences(page: page)
 
 To build the gem locally, run:
 
-```
-$ gem build patch_ruby.gemspec
+```bash
+gem build patch_ruby.gemspec
 ```
 
 This will create a .gem file. To install the local gem:
 
-```
-$ gem install patch_ruby-1.x.x.gem
+```bash
+gem install patch_ruby-1.x.x.gem
 ```
 
 Install dependencies:
 
-```
-$ bundle install
+```bash
+bundle install
 ```
 
 Set up required environment variables:
 
-```
-$ export SANDBOX_API_KEY=<SANDBOX API KEY>
+```bash
+export SANDBOX_API_KEY=<SANDBOX API KEY>
 ```
 
 Run tests:
 
-```
-$ bundle exec rspec
+```bash
+bundle exec rspec
 ```

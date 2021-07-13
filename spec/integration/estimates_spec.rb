@@ -79,4 +79,24 @@ RSpec.describe 'Estimates Integration' do
     expect(create_estimate_response.data.type).to eq 'shipping'
     expect(create_estimate_response.data.mass_g).to eq 12_431
   end
+
+  it 'supports creating bitcoin estimates with partial information' do
+    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate({ create_order: false })
+
+    expect(bitcoin_estimate.data.type).to eq 'bitcoin'
+    expect(bitcoin_estimate.data.mass_g).to be >= 2_000
+  end
+
+  it 'supports creating bitcoin estimates with a transaction amount' do
+    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate(
+      transaction_value_btc_sats: 10_000
+    )
+
+    bitcoin_estimate_2 = Patch::Estimate.create_bitcoin_estimate(
+      transaction_value_btc_sats: 100_000
+    )
+
+    expect(bitcoin_estimate.data.type).to eq 'bitcoin'
+    expect(bitcoin_estimate.data.mass_g).to be < bitcoin_estimate_2.data.mass_g
+  end
 end

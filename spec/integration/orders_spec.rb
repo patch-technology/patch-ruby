@@ -44,8 +44,9 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.success).to eq true
     expect(order.id).not_to be_nil
     expect(order.mass_g).to eq(order_mass_g)
-    expect(order.price_cents_usd.to_i).to be_between(expected_price - 1, expected_price + 1)
+    expect(order.price_cents_usd.to_i).to be_between(expected_price - 2, expected_price + 2)
     expect(order.patch_fee_cents_usd).not_to be_empty
+    expect(order.registry_url).not_to be_empty
   end
 
   it 'supports create with a total price' do
@@ -66,12 +67,14 @@ RSpec.describe 'Orders Integration' do
     order = create_order_response.data
 
     expect(order.id).not_to be_nil
-    expect(order.mass_g).to eq(5_00_000)
+    expect(order.mass_g).to be > 450_000
+    expect(order.mass_g).to be < 460_000
     expect(order.price_cents_usd).not_to be_empty
     expect(order.patch_fee_cents_usd).not_to be_empty
     expect(
       order.price_cents_usd.to_i + order.patch_fee_cents_usd.to_i
     ).to eq(total_price_cents_usd)
+    expect(order.registry_url).not_to be_empty
   end
 
   it 'supports create with metadata' do
