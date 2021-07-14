@@ -90,8 +90,8 @@ module Patch
         :'production' => :'Boolean',
         :'state' => :'String',
         :'allocation_state' => :'String',
-        :'price_cents_usd' => :'String',
-        :'patch_fee_cents_usd' => :'String',
+        :'price_cents_usd' => :'Integer',
+        :'patch_fee_cents_usd' => :'Integer',
         :'allocations' => :'Array<Allocation>',
         :'registry_url' => :'String',
         :'metadata' => :'Object'
