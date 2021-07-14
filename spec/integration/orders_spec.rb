@@ -44,8 +44,8 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.success).to eq true
     expect(order.id).not_to be_nil
     expect(order.mass_g).to eq(order_mass_g)
-    expect(order.price_cents_usd.to_i).to be_between(expected_price - 2, expected_price + 2)
-    expect(order.patch_fee_cents_usd).not_to be_empty
+    expect(order.price_cents_usd).to be_between(expected_price - 2, expected_price + 2)
+    expect(order.patch_fee_cents_usd).to be_kind_of(Integer)
     expect(order.registry_url).not_to be_empty
   end
 
@@ -55,7 +55,7 @@ RSpec.describe 'Orders Integration' do
     )
 
     project_id = retrieve_project_response.data.id
-    total_price_cents_usd = 5_00
+    total_price_cents_usd = 50_00
 
     create_order_response = Patch::Order.create_order(
       total_price_cents_usd: total_price_cents_usd,
@@ -67,13 +67,7 @@ RSpec.describe 'Orders Integration' do
     order = create_order_response.data
 
     expect(order.id).not_to be_nil
-    expect(order.mass_g).to be > 450_000
-    expect(order.mass_g).to be < 460_000
-    expect(order.price_cents_usd).not_to be_empty
-    expect(order.patch_fee_cents_usd).not_to be_empty
-    expect(
-      order.price_cents_usd.to_i + order.patch_fee_cents_usd.to_i
-    ).to eq(total_price_cents_usd)
+    expect(order.price_cents_usd + order.patch_fee_cents_usd).to eq total_price_cents_usd
     expect(order.registry_url).not_to be_empty
   end
 
