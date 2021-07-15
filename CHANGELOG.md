@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add support for Ethereum estimates
+
 ## [1.7.0] - 2021-07-14
 
 ### Changed
