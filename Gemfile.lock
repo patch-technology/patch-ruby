@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    patch_ruby (1.7.0)
+    patch_ruby (1.7.1)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
 
