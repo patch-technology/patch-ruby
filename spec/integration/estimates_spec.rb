@@ -99,4 +99,37 @@ RSpec.describe 'Estimates Integration' do
     expect(bitcoin_estimate.data.type).to eq 'bitcoin'
     expect(bitcoin_estimate.data.mass_g).to be < bitcoin_estimate_2.data.mass_g
   end
+
+  it 'supports creating bitcoin estimates with a timestamp' do
+    bitcoin_estimate_1 = Patch::Estimate.create_bitcoin_estimate(
+      timestamp: '2021-06-01T20:31:18.403Z'
+    )
+
+    bitcoin_estimate_2 = Patch::Estimate.create_bitcoin_estimate(
+      timestamp: '2021-07-01T20:31:18.403Z'
+    )
+
+    expect(bitcoin_estimate_1.data.type).to eq 'bitcoin'
+    expect(bitcoin_estimate_1.data.mass_g).to be > bitcoin_estimate_2.data.mass_g # Bitcoin was emitting less in July 2021 than in June
+  end
+
+  it 'supports creating ethereum estimates with a gas amount' do
+    ethereum_estimate = Patch::Estimate.create_ethereum_estimate(
+      gas_used: 100
+    )
+
+    ethereum_estimate_2 = Patch::Estimate.create_ethereum_estimate(
+      gas_used: 1000
+    )
+
+    expect(ethereum_estimate.data.type).to eq 'ethereum'
+    expect(ethereum_estimate.data.mass_g).to be < ethereum_estimate_2.data.mass_g
+  end
+
+  it 'supports creating ethereum estimates with partial information' do
+    ethereum_estimate = Patch::Estimate.create_ethereum_estimate({ create_order: false })
+
+    expect(ethereum_estimate.data.type).to eq 'ethereum'
+    expect(ethereum_estimate.data.mass_g).to be >= 2_000
+  end
 end
