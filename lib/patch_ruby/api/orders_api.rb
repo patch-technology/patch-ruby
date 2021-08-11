@@ -281,6 +281,8 @@ module Patch
     # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
+    # @option opts [String] :metadata_ext_id 
+    # @option opts [String] :metadata_disregarded 
     # @return [OrderListResponse]
     def retrieve_orders(opts = {})
       data, _status_code, _headers = retrieve_orders_with_http_info(opts)
@@ -291,6 +293,8 @@ module Patch
     # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
+    # @option opts [String] :metadata_ext_id 
+    # @option opts [String] :metadata_disregarded 
     # @return [Array<(OrderListResponse, Integer, Hash)>] OrderListResponse data, response status code and response headers
     def retrieve_orders_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -302,6 +306,8 @@ module Patch
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'metadata[ext_id]'] = opts[:'metadata_ext_id'] if !opts[:'metadata_ext_id'].nil?
+      query_params[:'metadata[disregarded]'] = opts[:'metadata_disregarded'] if !opts[:'metadata_disregarded'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

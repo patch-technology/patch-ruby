@@ -13,49 +13,30 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class Estimate
-    # A unique uid for the record. UIDs will be prepended by est_prod or est_test depending on the mode it was created in.
-    attr_accessor :id
+  class Error
+    attr_accessor :code
 
-    # A boolean indicating if this estimate is a production or test mode estimate.
-    attr_accessor :production
-
-    # The type of estimate. Available types are mass, flight, shipping, vehicle, and crypto.
-    attr_accessor :type
-
-    # The estimated mass in grams for this estimate.
-    attr_accessor :mass_g
-
-    # An object returning the order associated with this estimate. See the [Order section](/?id=orders) for the full schema.
-    attr_accessor :order
+    attr_accessor :message
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'production' => :'production',
-        :'type' => :'type',
-        :'mass_g' => :'mass_g',
-        :'order' => :'order'
+        :'code' => :'code',
+        :'message' => :'message'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'production' => :'Boolean',
-        :'type' => :'String',
-        :'mass_g' => :'Integer',
-        :'order' => :'Order'
+        :'code' => :'Integer',
+        :'message' => :'String'
       }
     end
 
     # Set with nullable attributes.
     def self.openapi_nullable
       nullable_properties = Set.new
-
-      nullable_properties.add("order")
 
       nullable_properties
     end
@@ -64,8 +45,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::EstimatesApi::OPERATIONS') && Patch::EstimatesApi::OPERATIONS.include?(message)
-        Patch::EstimatesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::ErrorsApi::OPERATIONS') && Patch::ErrorsApi::OPERATIONS.include?(message)
+        Patch::ErrorsApi.new.send(message, *args)
       else
         super
       end
@@ -75,35 +56,23 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Estimate` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Error` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Estimate`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Error`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
 
-      if attributes.key?(:'production')
-        self.production = attributes[:'production']
-      end
-
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'mass_g')
-        self.mass_g = attributes[:'mass_g']
-      end
-
-      if attributes.key?(:'order')
-        self.order = attributes[:'order']
+      if attributes.key?(:'message')
+        self.message = attributes[:'message']
       end
     end
 
@@ -111,16 +80,12 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @code.nil?
+        invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
-      if @production.nil?
-        invalid_properties.push('invalid value for "production", production cannot be nil.')
-      end
-
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if @message.nil?
+        invalid_properties.push('invalid value for "message", message cannot be nil.')
       end
 
       invalid_properties
@@ -129,9 +94,8 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @production.nil?
-      return false if @type.nil?
+      return false if @code.nil?
+      return false if @message.nil?
       true
     end
 
@@ -140,11 +104,8 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          production == o.production &&
-          type == o.type &&
-          mass_g == o.mass_g &&
-          order == o.order
+          code == o.code &&
+          message == o.message
     end
 
     # @see the `==` method
@@ -156,7 +117,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, type, mass_g, order].hash
+      [code, message].hash
     end
 
     # Builds the object from hash

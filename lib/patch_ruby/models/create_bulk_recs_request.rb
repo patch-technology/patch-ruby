@@ -13,41 +13,36 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module Patch
-  class Estimate
-    # A unique uid for the record. UIDs will be prepended by est_prod or est_test depending on the mode it was created in.
-    attr_accessor :id
+  class CreateBulkRecsRequest
+    attr_accessor :price_cents_usd
 
-    # A boolean indicating if this estimate is a production or test mode estimate.
-    attr_accessor :production
+    attr_accessor :project_id
 
-    # The type of estimate. Available types are mass, flight, shipping, vehicle, and crypto.
-    attr_accessor :type
+    attr_accessor :vintage_year
 
-    # The estimated mass in grams for this estimate.
-    attr_accessor :mass_g
+    attr_accessor :serial_number
 
-    # An object returning the order associated with this estimate. See the [Order section](/?id=orders) for the full schema.
-    attr_accessor :order
+    attr_accessor :count
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'production' => :'production',
-        :'type' => :'type',
-        :'mass_g' => :'mass_g',
-        :'order' => :'order'
+        :'price_cents_usd' => :'price_cents_usd',
+        :'project_id' => :'project_id',
+        :'vintage_year' => :'vintage_year',
+        :'serial_number' => :'serial_number',
+        :'count' => :'count'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'production' => :'Boolean',
-        :'type' => :'String',
-        :'mass_g' => :'Integer',
-        :'order' => :'Order'
+        :'price_cents_usd' => :'Integer',
+        :'project_id' => :'String',
+        :'vintage_year' => :'Integer',
+        :'serial_number' => :'String',
+        :'count' => :'Integer'
       }
     end
 
@@ -55,7 +50,7 @@ module Patch
     def self.openapi_nullable
       nullable_properties = Set.new
 
-      nullable_properties.add("order")
+      nullable_properties.add("serial_number")
 
       nullable_properties
     end
@@ -64,8 +59,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::EstimatesApi::OPERATIONS') && Patch::EstimatesApi::OPERATIONS.include?(message)
-        Patch::EstimatesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::CreateBulkRecsRequestsApi::OPERATIONS') && Patch::CreateBulkRecsRequestsApi::OPERATIONS.include?(message)
+        Patch::CreateBulkRecsRequestsApi.new.send(message, *args)
       else
         super
       end
@@ -75,35 +70,35 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Estimate` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateBulkRecsRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Estimate`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateBulkRecsRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'price_cents_usd')
+        self.price_cents_usd = attributes[:'price_cents_usd']
       end
 
-      if attributes.key?(:'production')
-        self.production = attributes[:'production']
+      if attributes.key?(:'project_id')
+        self.project_id = attributes[:'project_id']
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'vintage_year')
+        self.vintage_year = attributes[:'vintage_year']
       end
 
-      if attributes.key?(:'mass_g')
-        self.mass_g = attributes[:'mass_g']
+      if attributes.key?(:'serial_number')
+        self.serial_number = attributes[:'serial_number']
       end
 
-      if attributes.key?(:'order')
-        self.order = attributes[:'order']
+      if attributes.key?(:'count')
+        self.count = attributes[:'count']
       end
     end
 
@@ -111,16 +106,8 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
-      if @production.nil?
-        invalid_properties.push('invalid value for "production", production cannot be nil.')
-      end
-
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if !@price_cents_usd.nil? && @price_cents_usd < 1
+        invalid_properties.push('invalid value for "price_cents_usd", must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -129,10 +116,18 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @production.nil?
-      return false if @type.nil?
+      return false if !@price_cents_usd.nil? && @price_cents_usd < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] price_cents_usd Value to be assigned
+    def price_cents_usd=(price_cents_usd)
+      if !price_cents_usd.nil? && price_cents_usd < 1
+        fail ArgumentError, 'invalid value for "price_cents_usd", must be greater than or equal to 1.'
+      end
+
+      @price_cents_usd = price_cents_usd
     end
 
     # Checks equality by comparing each attribute.
@@ -140,11 +135,11 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          production == o.production &&
-          type == o.type &&
-          mass_g == o.mass_g &&
-          order == o.order
+          price_cents_usd == o.price_cents_usd &&
+          project_id == o.project_id &&
+          vintage_year == o.vintage_year &&
+          serial_number == o.serial_number &&
+          count == o.count
     end
 
     # @see the `==` method
@@ -156,7 +151,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, type, mass_g, order].hash
+      [price_cents_usd, project_id, vintage_year, serial_number, count].hash
     end
 
     # Builds the object from hash

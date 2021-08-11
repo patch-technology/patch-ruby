@@ -18,6 +18,8 @@ module Patch
 
     attr_accessor :gas_used
 
+    attr_accessor :transaction_value_eth_gwei
+
     attr_accessor :project_id
 
     attr_accessor :create_order
@@ -27,6 +29,7 @@ module Patch
       {
         :'timestamp' => :'timestamp',
         :'gas_used' => :'gas_used',
+        :'transaction_value_eth_gwei' => :'transaction_value_eth_gwei',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
@@ -37,6 +40,7 @@ module Patch
       {
         :'timestamp' => :'String',
         :'gas_used' => :'Integer',
+        :'transaction_value_eth_gwei' => :'Integer',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
@@ -49,6 +53,8 @@ module Patch
       nullable_properties.add("timestamp")
 
       nullable_properties.add("gas_used")
+
+      nullable_properties.add("transaction_value_eth_gwei")
 
       nullable_properties.add("project_id")
 
@@ -91,6 +97,10 @@ module Patch
         self.gas_used = attributes[:'gas_used']
       end
 
+      if attributes.key?(:'transaction_value_eth_gwei')
+        self.transaction_value_eth_gwei = attributes[:'transaction_value_eth_gwei']
+      end
+
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
@@ -120,6 +130,7 @@ module Patch
       self.class == o.class &&
           timestamp == o.timestamp &&
           gas_used == o.gas_used &&
+          transaction_value_eth_gwei == o.transaction_value_eth_gwei &&
           project_id == o.project_id &&
           create_order == o.create_order
     end
@@ -133,7 +144,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [timestamp, gas_used, project_id, create_order].hash
+      [timestamp, gas_used, transaction_value_eth_gwei, project_id, create_order].hash
     end
 
     # Builds the object from hash

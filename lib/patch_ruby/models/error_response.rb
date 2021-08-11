@@ -33,7 +33,7 @@ module Patch
     def self.openapi_types
       {
         :'success' => :'Boolean',
-        :'error' => :'Object',
+        :'error' => :'Error',
         :'data' => :'Object'
       }
     end
