@@ -1,10 +1,4 @@
 RSpec.describe 'Orders Integration' do
-  before do
-    Patch.configure do |config|
-      config.access_token = ENV['SANDBOX_API_KEY']
-    end
-  end
-
   it 'supports create, place, cancel, retrieve and list' do
     create_order_response = Patch::Order.create_order(mass_g: 100)
     order_id = create_order_response.data.id
@@ -71,15 +65,22 @@ RSpec.describe 'Orders Integration' do
     expect(order.registry_url).not_to be_empty
   end
 
-  it 'supports create with metadata' do
+  it 'supports creation with and querying by metadata' do
     metadata = { user: 'john doe' }
 
-    create_order_response = Patch::Order.create_order(mass_g: 100, metadata: metadata)
+    create_order_response =
+      Patch::Order.create_order(mass_g: 100, metadata: metadata)
 
     expect(create_order_response.success).to eq true
     expect(create_order_response.data.id).not_to be_nil
     expect(create_order_response.data.mass_g).to eq(100)
     expect(create_order_response.data.metadata).to eq(metadata)
+
+    retrieve_orders_response = Patch::Order.retrieve_orders(
+      page: 1, query_params: { metadata: { user: 'john'  } }
+    )
+    expect(retrieve_orders_response.success).to eq true
+    expect(retrieve_orders_response.data.count).to be >= 1
   end
 
   it 'supports place and cancel for orders created via an estimate' do

@@ -126,8 +126,8 @@ module Patch
     attr_accessor :force_ending_format
 
     def initialize
-      @scheme = 'https'
-      @host = 'api.patch.io'
+      @scheme = ENV.fetch('LOCAL_SDK_TEST', false) ? 'http' : 'https'
+      @host = ENV.fetch('LOCAL_SDK_TEST', false) ? 'api.patch.test:3000' : 'api.patch.io'
       @base_path = ''
       @api_key = {}
       @api_key_prefix = {}

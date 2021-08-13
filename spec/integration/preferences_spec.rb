@@ -1,10 +1,4 @@
 RSpec.describe 'Preferences Integration' do
-  before do
-    Patch.configure do |config|
-      config.access_token = ENV['SANDBOX_API_KEY']
-    end
-  end
-
   it 'supports create, delete, retrieve and list' do
     retrieve_projects_response = Patch::Project.retrieve_projects
     expect(retrieve_projects_response.data.length).not_to be_zero
