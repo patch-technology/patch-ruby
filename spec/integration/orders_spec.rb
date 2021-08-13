@@ -77,10 +77,12 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.metadata).to eq(metadata)
 
     retrieve_orders_response = Patch::Order.retrieve_orders(
-      page: 1, query_params: { metadata: { user: 'john'  } }
+      page: 1, metadata: { user: 'john' }
     )
     expect(retrieve_orders_response.success).to eq true
     expect(retrieve_orders_response.data.count).to be >= 1
+    expect(retrieve_orders_response.data.map(&:metadata))
+      .to all(have_key(:user))
   end
 
   it 'supports place and cancel for orders created via an estimate' do

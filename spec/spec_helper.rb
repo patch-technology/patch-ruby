@@ -42,12 +42,13 @@ RSpec.configure do |config|
   config.before(:suite) do
     FactoryBot.find_definitions
     Patch.configure do |config|
-      config.access_token =
-        if ENV.fetch('LOCAL_SDK_TEST', false)
-          ENV.fetch('LOCAL_PATCH_API_KEY')
-        else
-          ENV.fetch('SANDBOX_API_KEY')
-        end
+      if ENV.fetch('LOCAL_SDK_TEST', false)
+        config.access_token = ENV.fetch('LOCAL_PATCH_API_KEY')
+        config.scheme = 'http'
+        config.host = 'api.patch.test:3000'
+      else
+        config.access_token = ENV.fetch('SANDBOX_API_KEY')
+      end
     end
   end
 
