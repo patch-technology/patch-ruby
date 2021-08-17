@@ -27,7 +27,7 @@ RSpec.describe 'Estimates Integration' do
     )
 
     expect(flight_estimate.data.type).to eq 'flight'
-    expect(flight_estimate.data.mass_g).to eq 1_031_697
+    expect(flight_estimate.data.mass_g).to eq 1_000_622
   end
 
   it 'supports creating vehicle estimates' do
