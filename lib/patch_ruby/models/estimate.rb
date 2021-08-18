@@ -20,7 +20,7 @@ module Patch
     # A boolean indicating if this estimate is a production or test mode estimate.
     attr_accessor :production
 
-    # The type of estimate. Available types are mass, flight, shipping, and vehicle.
+    # The type of estimate. Available types are mass, flight, shipping, vehicle, and crypto.
     attr_accessor :type
 
     # The estimated mass in grams for this estimate.
