@@ -147,7 +147,6 @@ module Patch
     def hash
       [timestamp, gas_used, transaction_value_eth_gwei, project_id, create_order].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

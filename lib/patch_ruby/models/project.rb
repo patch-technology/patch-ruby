@@ -298,7 +298,6 @@ module Patch
     def hash
       [id, production, name, description, type, country, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

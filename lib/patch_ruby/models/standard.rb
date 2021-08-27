@@ -142,7 +142,6 @@ module Patch
     def hash
       [type, acronym, description].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

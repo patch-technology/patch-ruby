@@ -172,7 +172,6 @@ module Patch
     def hash
       [mass_g, total_price_cents_usd, project_id, metadata].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

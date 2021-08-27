@@ -14,13 +14,6 @@ require 'cgi'
 
 module Patch
   class PreferencesApi
-    OPERATIONS = [
-      :create_preference,
-      :delete_preference,
-      :retrieve_preference,
-      :retrieve_preferences,
-    ]
-
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -66,15 +59,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_preference_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_preference_request)
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse' 
+      return_type = opts[:debug_return_type] || 'PreferenceResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"PreferencesApi.create_preference",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -128,15 +122,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse' 
+      return_type = opts[:debug_return_type] || 'PreferenceResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"PreferencesApi.delete_preference",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -190,15 +185,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceResponse' 
+      return_type = opts[:debug_return_type] || 'PreferenceResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"PreferencesApi.retrieve_preference",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -249,15 +245,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'PreferenceListResponse' 
+      return_type = opts[:debug_return_type] || 'PreferenceListResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"PreferencesApi.retrieve_preferences",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,

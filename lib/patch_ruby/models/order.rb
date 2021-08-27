@@ -310,7 +310,6 @@ module Patch
     def hash
       [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

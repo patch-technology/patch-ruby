@@ -14,11 +14,6 @@ require 'cgi'
 
 module Patch
   class ProjectsApi
-    OPERATIONS = [
-      :retrieve_project,
-      :retrieve_projects,
-    ]
-
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -62,15 +57,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'ProjectResponse' 
+      return_type = opts[:debug_return_type] || 'ProjectResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"ProjectsApi.retrieve_project",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -130,15 +126,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'ProjectListResponse' 
+      return_type = opts[:debug_return_type] || 'ProjectListResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"ProjectsApi.retrieve_projects",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,

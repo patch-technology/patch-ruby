@@ -135,7 +135,6 @@ module Patch
     def hash
       [success, error, data].hash
     end
-
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

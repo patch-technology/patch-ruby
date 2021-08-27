@@ -14,14 +14,6 @@ require 'cgi'
 
 module Patch
   class OrdersApi
-    OPERATIONS = [
-      :cancel_order,
-      :create_order,
-      :place_order,
-      :retrieve_order,
-      :retrieve_orders,
-    ]
-
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -65,15 +57,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'OrderResponse' 
+      return_type = opts[:debug_return_type] || 'OrderResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"OrdersApi.cancel_order",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -129,15 +122,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_order_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_order_request)
 
       # return_type
-      return_type = opts[:return_type] || 'OrderResponse' 
+      return_type = opts[:debug_return_type] || 'OrderResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"OrdersApi.create_order",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -191,15 +185,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'OrderResponse' 
+      return_type = opts[:debug_return_type] || 'OrderResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"OrdersApi.place_order",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -253,15 +248,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'OrderResponse' 
+      return_type = opts[:debug_return_type] || 'OrderResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"OrdersApi.retrieve_order",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -321,15 +317,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'OrderListResponse' 
+      return_type = opts[:debug_return_type] || 'OrderListResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"OrdersApi.retrieve_orders",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,

@@ -14,17 +14,6 @@ require 'cgi'
 
 module Patch
   class EstimatesApi
-    OPERATIONS = [
-      :create_bitcoin_estimate,
-      :create_ethereum_estimate,
-      :create_flight_estimate,
-      :create_mass_estimate,
-      :create_shipping_estimate,
-      :create_vehicle_estimate,
-      :retrieve_estimate,
-      :retrieve_estimates,
-    ]
-
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -70,15 +59,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_bitcoin_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_bitcoin_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_bitcoin_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -134,15 +124,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_ethereum_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_ethereum_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_ethereum_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -198,15 +189,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_flight_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_flight_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_flight_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -262,15 +254,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_mass_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_mass_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_mass_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -326,15 +319,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_shipping_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_shipping_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_shipping_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -390,15 +384,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(create_vehicle_estimate_request) 
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_vehicle_estimate_request)
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.create_vehicle_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -452,15 +447,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.retrieve_estimate",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -511,15 +507,16 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] 
+      post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:return_type] || 'EstimateListResponse' 
+      return_type = opts[:debug_return_type] || 'EstimateListResponse'
 
       # auth_names
-      auth_names = opts[:auth_names] || ['bearer_auth']
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
 
       new_options = opts.merge(
+        :operation => :"EstimatesApi.retrieve_estimates",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
