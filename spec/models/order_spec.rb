@@ -41,7 +41,7 @@ describe 'Order' do
         metadata: @instance.metadata
       }
     }
-    let(:nullable_properties) { Set.new(["patch_fee_cents_usd", "price_cents_usd"]) }
+    let(:nullable_properties) { Set.new([:patch_fee_cents_usd, :price_cents_usd]) }
   end
 
   describe 'test an instance of Order' do

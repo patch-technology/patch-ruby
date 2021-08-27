@@ -14,6 +14,14 @@ require 'cgi'
 
 module Patch
   class OrdersApi
+    OPERATIONS = [
+      :cancel_order,
+      :create_order,
+      :place_order,
+      :retrieve_order,
+      :retrieve_orders,
+    ]
+
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)

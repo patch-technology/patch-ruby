@@ -14,6 +14,17 @@ require 'cgi'
 
 module Patch
   class EstimatesApi
+    OPERATIONS = [
+      :create_bitcoin_estimate,
+      :create_ethereum_estimate,
+      :create_flight_estimate,
+      :create_mass_estimate,
+      :create_shipping_estimate,
+      :create_vehicle_estimate,
+      :retrieve_estimate,
+      :retrieve_estimates,
+    ]
+
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)

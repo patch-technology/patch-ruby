@@ -14,6 +14,11 @@ require 'cgi'
 
 module Patch
   class ProjectsApi
+    OPERATIONS = [
+      :retrieve_project,
+      :retrieve_projects,
+    ]
+
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)

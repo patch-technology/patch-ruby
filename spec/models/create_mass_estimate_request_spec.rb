@@ -30,7 +30,7 @@ describe 'CreateMassEstimateRequest' do
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
     let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g } }
-    let(:nullable_properties) { Set.new(["create_order"]) }
+    let(:nullable_properties) { Set.new([:create_order]) }
   end
 
   describe 'test an instance of CreateMassEstimateRequest' do
