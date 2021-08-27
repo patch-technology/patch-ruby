@@ -158,6 +158,7 @@ module Patch
     def hash
       [mass_g, create_order, project_id].hash
     end
+
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself

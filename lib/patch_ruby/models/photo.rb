@@ -125,6 +125,7 @@ module Patch
     def hash
       [url, id].hash
     end
+
     # Builds the object from hash
     # @param [Hash] attributes Model attributes in the form of hash
     # @return [Object] Returns the model itself
