@@ -7,7 +7,7 @@ RSpec.describe 'Preferences Integration' do
     begin
       create_preference_response = Patch::Preference.create_preference(project_id: project_id)
       preference_id = create_preference_response.data.id
-    rescue => Patch::ApiError
+    rescue Patch::ApiError => e
       preference_id = Patch::Preference.retrieve_preferences().data.first.id
     end
 
