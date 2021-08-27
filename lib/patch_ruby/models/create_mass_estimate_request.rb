@@ -24,39 +24,31 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'mass_g' => :'mass_g'
-        :'create_order' => :'create_order'
+        :'mass_g' => :'mass_g',
+        :'create_order' => :'create_order',
         :'project_id' => :'project_id'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'mass_g' => :'Integer'
-        :'create_order' => :'Boolean'
+        :'mass_g' => :'Integer',
+        :'create_order' => :'Boolean',
         :'project_id' => :'String'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("create_order")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateMassEstimateRequestsApi::OPERATIONS') && Patch::CreateMassEstimateRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateMassEstimateRequestsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'create_order',
+      ])
     end
 
     # Initializes the object
@@ -152,7 +144,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_gcreate_orderproject_id].hash
+      [mass_g, create_order, project_id].hash
     end
 
     # Builds the object from hash
@@ -272,6 +264,5 @@ module Patch
         value
       end
     end
-
   end
 end

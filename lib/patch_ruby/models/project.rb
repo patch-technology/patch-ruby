@@ -76,61 +76,51 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
-        :'production' => :'production'
-        :'name' => :'name'
-        :'description' => :'description'
-        :'type' => :'type'
-        :'country' => :'country'
-        :'developer' => :'developer'
-        :'photos' => :'photos'
-        :'average_price_per_tonne_cents_usd' => :'average_price_per_tonne_cents_usd'
-        :'remaining_mass_g' => :'remaining_mass_g'
-        :'standard' => :'standard'
+        :'id' => :'id',
+        :'production' => :'production',
+        :'name' => :'name',
+        :'description' => :'description',
+        :'type' => :'type',
+        :'country' => :'country',
+        :'developer' => :'developer',
+        :'photos' => :'photos',
+        :'average_price_per_tonne_cents_usd' => :'average_price_per_tonne_cents_usd',
+        :'remaining_mass_g' => :'remaining_mass_g',
+        :'standard' => :'standard',
         :'sdgs' => :'sdgs'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String'
-        :'production' => :'Boolean'
-        :'name' => :'String'
-        :'description' => :'String'
-        :'type' => :'String'
-        :'country' => :'String'
-        :'developer' => :'String'
-        :'photos' => :'Array<Photo>'
-        :'average_price_per_tonne_cents_usd' => :'Integer'
-        :'remaining_mass_g' => :'Integer'
-        :'standard' => :'Standard'
+        :'id' => :'String',
+        :'production' => :'Boolean',
+        :'name' => :'String',
+        :'description' => :'String',
+        :'type' => :'String',
+        :'country' => :'String',
+        :'developer' => :'String',
+        :'photos' => :'Array<Photo>',
+        :'average_price_per_tonne_cents_usd' => :'Integer',
+        :'remaining_mass_g' => :'Integer',
+        :'standard' => :'Standard',
         :'sdgs' => :'Array<Sdg>'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("photos")
-
-      nullable_properties.add("standard")
-
-      nullable_properties.add("sdgs")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::ProjectsApi::OPERATIONS') && Patch::ProjectsApi::OPERATIONS.include?(message)
-        Patch::ProjectsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'photos',
+        :'standard',
+        :'sdgs'
+      ])
     end
 
     # Initializes the object
@@ -177,6 +167,9 @@ module Patch
       end
 
       if attributes.key?(:'photos')
+        if (value = attributes[:'photos']).is_a?(Array)
+          self.photos = value
+        end
       end
 
       if attributes.key?(:'average_price_per_tonne_cents_usd')
@@ -192,6 +185,9 @@ module Patch
       end
 
       if attributes.key?(:'sdgs')
+        if (value = attributes[:'sdgs']).is_a?(Array)
+          self.sdgs = value
+        end
       end
     end
 
@@ -288,7 +284,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idproductionnamedescriptiontypecountrydeveloperphotosaverage_price_per_tonne_cents_usdremaining_mass_gstandardsdgs].hash
+      [id, production, name, description, type, country, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs].hash
     end
 
     # Builds the object from hash
@@ -408,6 +404,5 @@ module Patch
         value
       end
     end
-
   end
 end

@@ -70,55 +70,46 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
-        :'mass_g' => :'mass_g'
-        :'production' => :'production'
-        :'state' => :'state'
-        :'allocation_state' => :'allocation_state'
-        :'price_cents_usd' => :'price_cents_usd'
-        :'patch_fee_cents_usd' => :'patch_fee_cents_usd'
-        :'allocations' => :'allocations'
-        :'registry_url' => :'registry_url'
+        :'id' => :'id',
+        :'mass_g' => :'mass_g',
+        :'production' => :'production',
+        :'state' => :'state',
+        :'allocation_state' => :'allocation_state',
+        :'price_cents_usd' => :'price_cents_usd',
+        :'patch_fee_cents_usd' => :'patch_fee_cents_usd',
+        :'allocations' => :'allocations',
+        :'registry_url' => :'registry_url',
         :'metadata' => :'metadata'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String'
-        :'mass_g' => :'Integer'
-        :'production' => :'Boolean'
-        :'state' => :'String'
-        :'allocation_state' => :'String'
-        :'price_cents_usd' => :'Integer'
-        :'patch_fee_cents_usd' => :'Integer'
-        :'allocations' => :'Array<Allocation>'
-        :'registry_url' => :'String'
+        :'id' => :'String',
+        :'mass_g' => :'Integer',
+        :'production' => :'Boolean',
+        :'state' => :'String',
+        :'allocation_state' => :'String',
+        :'price_cents_usd' => :'Integer',
+        :'patch_fee_cents_usd' => :'Integer',
+        :'allocations' => :'Array<Allocation>',
+        :'registry_url' => :'String',
         :'metadata' => :'Object'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("price_cents_usd")
-
-      nullable_properties.add("patch_fee_cents_usd")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::OrdersApi::OPERATIONS') && Patch::OrdersApi::OPERATIONS.include?(message)
-        Patch::OrdersApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'price_cents_usd',
+        :'patch_fee_cents_usd',
+      ])
     end
 
     # Initializes the object
@@ -165,6 +156,9 @@ module Patch
       end
 
       if attributes.key?(:'allocations')
+        if (value = attributes[:'allocations']).is_a?(Array)
+          self.allocations = value
+        end
       end
 
       if attributes.key?(:'registry_url')
@@ -302,7 +296,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idmass_gproductionstateallocation_stateprice_cents_usdpatch_fee_cents_usdallocationsregistry_urlmetadata].hash
+      [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
     end
 
     # Builds the object from hash
@@ -422,6 +416,5 @@ module Patch
         value
       end
     end
-
   end
 end

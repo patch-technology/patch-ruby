@@ -28,51 +28,39 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'timestamp' => :'timestamp'
-        :'gas_used' => :'gas_used'
-        :'transaction_value_eth_gwei' => :'transaction_value_eth_gwei'
-        :'project_id' => :'project_id'
+        :'timestamp' => :'timestamp',
+        :'gas_used' => :'gas_used',
+        :'transaction_value_eth_gwei' => :'transaction_value_eth_gwei',
+        :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'timestamp' => :'String'
-        :'gas_used' => :'Integer'
-        :'transaction_value_eth_gwei' => :'Integer'
-        :'project_id' => :'String'
+        :'timestamp' => :'String',
+        :'gas_used' => :'Integer',
+        :'transaction_value_eth_gwei' => :'Integer',
+        :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("timestamp")
-
-      nullable_properties.add("gas_used")
-
-      nullable_properties.add("transaction_value_eth_gwei")
-
-      nullable_properties.add("project_id")
-
-      nullable_properties.add("create_order")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateEthereumEstimateRequestsApi::OPERATIONS') && Patch::CreateEthereumEstimateRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateEthereumEstimateRequestsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'timestamp',
+        :'gas_used',
+        :'transaction_value_eth_gwei',
+        :'project_id',
+        :'create_order'
+      ])
     end
 
     # Initializes the object
@@ -145,7 +133,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [timestampgas_usedtransaction_value_eth_gweiproject_idcreate_order].hash
+      [timestamp, gas_used, transaction_value_eth_gwei, project_id, create_order].hash
     end
 
     # Builds the object from hash
@@ -265,6 +253,5 @@ module Patch
         value
       end
     end
-
   end
 end

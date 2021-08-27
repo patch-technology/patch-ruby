@@ -26,41 +26,33 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'success' => :'success'
-        :'error' => :'error'
-        :'data' => :'data'
+        :'success' => :'success',
+        :'error' => :'error',
+        :'data' => :'data',
         :'meta' => :'meta'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'success' => :'Boolean'
-        :'error' => :'Object'
-        :'data' => :'Array<Order>'
+        :'success' => :'Boolean',
+        :'error' => :'Object',
+        :'data' => :'Array<Order>',
         :'meta' => :'MetaIndexObject'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("error")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::OrderListResponsesApi::OPERATIONS') && Patch::OrderListResponsesApi::OPERATIONS.include?(message)
-        Patch::OrderListResponsesApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'error',
+      ])
     end
 
     # Initializes the object
@@ -87,6 +79,9 @@ module Patch
       end
 
       if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
 
       if attributes.key?(:'meta')
@@ -142,7 +137,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [successerrordatameta].hash
+      [success, error, data, meta].hash
     end
 
     # Builds the object from hash
@@ -262,6 +257,5 @@ module Patch
         value
       end
     end
-
   end
 end

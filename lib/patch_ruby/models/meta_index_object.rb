@@ -22,39 +22,30 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'prev_page' => :'prev_page'
+        :'prev_page' => :'prev_page',
         :'next_page' => :'next_page'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'prev_page' => :'Integer'
+        :'prev_page' => :'Integer',
         :'next_page' => :'Integer'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("prev_page")
-
-      nullable_properties.add("next_page")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::MetaIndexObjectsApi::OPERATIONS') && Patch::MetaIndexObjectsApi::OPERATIONS.include?(message)
-        Patch::MetaIndexObjectsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'prev_page',
+        :'next_page'
+      ])
     end
 
     # Initializes the object
@@ -112,7 +103,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [prev_pagenext_page].hash
+      [prev_page, next_page].hash
     end
 
     # Builds the object from hash
@@ -232,6 +223,5 @@ module Patch
         value
       end
     end
-
   end
 end

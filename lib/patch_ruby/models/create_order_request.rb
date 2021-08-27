@@ -26,39 +26,32 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'mass_g' => :'mass_g'
-        :'total_price_cents_usd' => :'total_price_cents_usd'
-        :'project_id' => :'project_id'
+        :'mass_g' => :'mass_g',
+        :'total_price_cents_usd' => :'total_price_cents_usd',
+        :'project_id' => :'project_id',
         :'metadata' => :'metadata'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'mass_g' => :'Integer'
-        :'total_price_cents_usd' => :'Integer'
-        :'project_id' => :'String'
+        :'mass_g' => :'Integer',
+        :'total_price_cents_usd' => :'Integer',
+        :'project_id' => :'String',
         :'metadata' => :'Object'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateOrderRequestsApi::OPERATIONS') && Patch::CreateOrderRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateOrderRequestsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+      ])
     end
 
     # Initializes the object
@@ -165,7 +158,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_gtotal_price_cents_usdproject_idmetadata].hash
+      [mass_g, total_price_cents_usd, project_id, metadata].hash
     end
 
     # Builds the object from hash
@@ -285,6 +278,5 @@ module Patch
         value
       end
     end
-
   end
 end

@@ -27,37 +27,30 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
-        :'allocation_percentage' => :'allocation_percentage'
+        :'id' => :'id',
+        :'allocation_percentage' => :'allocation_percentage',
         :'project' => :'project'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String'
-        :'allocation_percentage' => :'Integer'
+        :'id' => :'String',
+        :'allocation_percentage' => :'Integer',
         :'project' => :'Project'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::PreferencesApi::OPERATIONS') && Patch::PreferencesApi::OPERATIONS.include?(message)
-        Patch::PreferencesApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+      ])
     end
 
     # Initializes the object
@@ -135,7 +128,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idallocation_percentageproject].hash
+      [id, allocation_percentage, project].hash
     end
 
     # Builds the object from hash
@@ -255,6 +248,5 @@ module Patch
         value
       end
     end
-
   end
 end

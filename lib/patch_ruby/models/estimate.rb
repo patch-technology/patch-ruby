@@ -33,43 +33,35 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
-        :'production' => :'production'
-        :'type' => :'type'
-        :'mass_g' => :'mass_g'
+        :'id' => :'id',
+        :'production' => :'production',
+        :'type' => :'type',
+        :'mass_g' => :'mass_g',
         :'order' => :'order'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String'
-        :'production' => :'Boolean'
-        :'type' => :'String'
-        :'mass_g' => :'Integer'
+        :'id' => :'String',
+        :'production' => :'Boolean',
+        :'type' => :'String',
+        :'mass_g' => :'Integer',
         :'order' => :'Order'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties.add("order")
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::EstimatesApi::OPERATIONS') && Patch::EstimatesApi::OPERATIONS.include?(message)
-        Patch::EstimatesApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+        :'order'
+      ])
     end
 
     # Initializes the object
@@ -157,7 +149,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idproductiontypemass_gorder].hash
+      [id, production, type, mass_g, order].hash
     end
 
     # Builds the object from hash
@@ -277,6 +269,5 @@ module Patch
         value
       end
     end
-
   end
 end

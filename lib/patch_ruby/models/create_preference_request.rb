@@ -24,6 +24,11 @@ module Patch
       }
     end
 
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
+    end
+
     # Attribute type mapping.
     def self.openapi_types
       {
@@ -31,22 +36,10 @@ module Patch
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreatePreferenceRequestsApi::OPERATIONS') && Patch::CreatePreferenceRequestsApi::OPERATIONS.include?(message)
-        Patch::CreatePreferenceRequestsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+      ])
     end
 
     # Initializes the object

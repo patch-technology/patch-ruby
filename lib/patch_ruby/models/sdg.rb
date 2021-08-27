@@ -30,39 +30,32 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'title' => :'title'
-        :'number' => :'number'
-        :'description' => :'description'
+        :'title' => :'title',
+        :'number' => :'number',
+        :'description' => :'description',
         :'url' => :'url'
       }
+    end
+
+    # Returns all the JSON keys this model knows about
+    def self.acceptable_attributes
+      attribute_map.values
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'title' => :'String'
-        :'number' => :'Integer'
-        :'description' => :'String'
+        :'title' => :'String',
+        :'number' => :'Integer',
+        :'description' => :'String',
         :'url' => :'String'
       }
     end
 
-    # Set with nullable attributes.
+    # List of attributes with nullable: true
     def self.openapi_nullable
-      nullable_properties = Set.new
-
-      nullable_properties
-    end
-
-    # Allows models with corresponding API classes to delegate API operations to those API classes
-    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
-    # Eg. Order.create_order delegates to OrdersApi.new.create_order
-    def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::SdgsApi::OPERATIONS') && Patch::SdgsApi::OPERATIONS.include?(message)
-        Patch::SdgsApi.new.send(message, *args)
-      else
-        super
-      end
+      Set.new([
+      ])
     end
 
     # Initializes the object
@@ -150,7 +143,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [titlenumberdescriptionurl].hash
+      [title, number, description, url].hash
     end
 
     # Builds the object from hash
@@ -270,6 +263,5 @@ module Patch
         value
       end
     end
-
   end
 end
