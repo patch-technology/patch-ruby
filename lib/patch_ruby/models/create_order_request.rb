@@ -54,6 +54,18 @@ module Patch
       ])
     end
 
+
+    # Allows models with corresponding API classes to delegate API operations to those API classes
+    # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
+    # Eg. Order.create_order delegates to OrdersApi.new.create_order
+    def self.method_missing(message, *args, &block)
+      if Object.const_defined?('Patch::CreateOrderRequestsApi::OPERATIONS') && Patch::CreateOrderRequestsApi::OPERATIONS.include?(message)
+        Patch::CreateOrderRequestsApi.new.send(message, *args)
+      else
+        super
+      end
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
