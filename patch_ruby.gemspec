@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Start custom
-  s.add_runtime_dependency 'json', '~> 2.1', '>= 2.1.0'
   s.add_development_dependency 'factory_bot', '~> 6.2'
   # End custom
 
