@@ -30,7 +30,7 @@ describe 'Estimate' do
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
     let(:instance_hash) { { id: @instance.id, order: @instance.order.to_hash, production: @instance.production, type: @instance.type } }
-    let(:nullable_properties) { Set.new(["order"]) }
+    let(:nullable_properties) { Set.new([:order]) }
   end
 
   describe 'test an instance of Estimate' do

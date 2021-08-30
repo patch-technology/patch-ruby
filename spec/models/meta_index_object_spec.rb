@@ -30,7 +30,7 @@ describe 'MetaIndexObject' do
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
     let(:instance_hash) { { next_page: @instance.next_page, prev_page: @instance.prev_page } }
-    let(:nullable_properties) { Set.new(["next_page", "prev_page"]) }
+    let(:nullable_properties) { Set.new([:next_page, :prev_page]) }
   end
 
   describe 'test an instance of MetaIndexObject' do

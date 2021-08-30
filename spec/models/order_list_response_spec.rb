@@ -30,7 +30,7 @@ describe 'OrderListResponse' do
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
     let(:instance_hash) { { success: @instance.success, error: @instance.error, data: @instance.data, meta: @instance.meta } }
-    let(:nullable_properties) { Set.new(["error"]) }
+    let(:nullable_properties) { Set.new([:error]) }
   end
 
   describe 'test an instance of OrderListResponse' do
