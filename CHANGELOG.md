@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Adds custom User-Agent header
+
 ## [1.9.0] - 2021-08-17
 
 ### Added
