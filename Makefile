@@ -1,8 +1,8 @@
 SHELL = /bin/bash
 
 build:
-	rubocop -a && \
-	bundle install
+	bundle install && \
+	rubocop -a
 
 test:
 	bundle exec rspec

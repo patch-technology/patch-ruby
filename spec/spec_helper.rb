@@ -15,6 +15,7 @@ require 'patch_ruby'
 # Start custom
 require 'constants'
 require 'factory_bot'
+require 'pry'
 # End custom
 
 # Require shared spec examples
