@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    patch_ruby (1.10.2)
+    patch_ruby (1.10.1)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM

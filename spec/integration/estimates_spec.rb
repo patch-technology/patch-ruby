@@ -76,7 +76,7 @@ RSpec.describe 'Estimates Integration' do
 
 
   it 'supports creating bitcoin estimates with partial information' do
-    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate()
+    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate({})
 
     expect(bitcoin_estimate.data.type).to eq 'bitcoin'
     expect(bitcoin_estimate.data.mass_g).to be >= 2_000
