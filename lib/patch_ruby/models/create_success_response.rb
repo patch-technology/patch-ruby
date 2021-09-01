@@ -52,6 +52,7 @@ module Patch
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
       if Object.const_defined?('Patch::CreateSuccessResponsesApi::OPERATIONS') && Patch::CreateSuccessResponsesApi::OPERATIONS.include?(message)
+        args = [{}] if args.empty?
         Patch::CreateSuccessResponsesApi.new.send(message, *args)
       else
         super

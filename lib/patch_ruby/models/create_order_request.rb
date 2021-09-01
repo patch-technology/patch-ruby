@@ -60,6 +60,7 @@ module Patch
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
       if Object.const_defined?('Patch::CreateOrderRequestsApi::OPERATIONS') && Patch::CreateOrderRequestsApi::OPERATIONS.include?(message)
+        args = [{}] if args.empty?
         Patch::CreateOrderRequestsApi.new.send(message, *args)
       else
         super

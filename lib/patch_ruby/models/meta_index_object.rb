@@ -54,6 +54,7 @@ module Patch
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
       if Object.const_defined?('Patch::MetaIndexObjectsApi::OPERATIONS') && Patch::MetaIndexObjectsApi::OPERATIONS.include?(message)
+        args = [{}] if args.empty?
         Patch::MetaIndexObjectsApi.new.send(message, *args)
       else
         super

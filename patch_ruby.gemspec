@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
 
   # Start custom
   s.add_development_dependency 'factory_bot', '~> 6.2'
+  s.add_development_dependency 'pry'
   # End custom
 
 end
