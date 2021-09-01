@@ -7,6 +7,9 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ['2.7.1']
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -14,19 +17,20 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.1
+          ruby-version: ${{ matrix.ruby }}
 
       - name: Install Ruby Dependencies
         run: bundle install
 
-      - name: Run RSpec
+      - name: Run tests
         env:
           SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
-        run: bundle exec rspec
+        run: make test
 
       - name: Notify slack
         uses: kpritam/slack-job-status-action@v1
         with:
+          if: ${{ always() }}
           job-status: ${{ job.status }}
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           channel: github-actions

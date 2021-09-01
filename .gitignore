@@ -38,9 +38,10 @@ build/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-# OpenAPI generator ignores are defined alongside the generation scripts
+# Ignore openapi-generator artifacts
 .openapi-generator-ignore
 /.openapi-generator/
+git_push.sh
 
 .byebug_history
 .DS_Store
