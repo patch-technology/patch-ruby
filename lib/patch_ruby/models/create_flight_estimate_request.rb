@@ -17,6 +17,16 @@ module Patch
   class CreateFlightEstimateRequest
     attr_accessor :distance_m
 
+    attr_accessor :origin_airport
+
+    attr_accessor :destination_airport
+
+    attr_accessor :aircraft_code
+
+    attr_accessor :cabin_class
+
+    attr_accessor :passenger_count
+
     attr_accessor :project_id
 
     attr_accessor :create_order
@@ -25,6 +35,11 @@ module Patch
     def self.attribute_map
       {
         :'distance_m' => :'distance_m',
+        :'origin_airport' => :'origin_airport',
+        :'destination_airport' => :'destination_airport',
+        :'aircraft_code' => :'aircraft_code',
+        :'cabin_class' => :'cabin_class',
+        :'passenger_count' => :'passenger_count',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
@@ -39,6 +54,11 @@ module Patch
     def self.openapi_types
       {
         :'distance_m' => :'Integer',
+        :'origin_airport' => :'String',
+        :'destination_airport' => :'String',
+        :'aircraft_code' => :'String',
+        :'cabin_class' => :'String',
+        :'passenger_count' => :'Integer',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
@@ -47,6 +67,12 @@ module Patch
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'distance_m',
+        :'origin_airport',
+        :'destination_airport',
+        :'aircraft_code',
+        :'cabin_class',
+        :'passenger_count',
         :'project_id',
         :'create_order'
       ])
@@ -83,6 +109,26 @@ module Patch
         self.distance_m = attributes[:'distance_m']
       end
 
+      if attributes.key?(:'origin_airport')
+        self.origin_airport = attributes[:'origin_airport']
+      end
+
+      if attributes.key?(:'destination_airport')
+        self.destination_airport = attributes[:'destination_airport']
+      end
+
+      if attributes.key?(:'aircraft_code')
+        self.aircraft_code = attributes[:'aircraft_code']
+      end
+
+      if attributes.key?(:'cabin_class')
+        self.cabin_class = attributes[:'cabin_class']
+      end
+
+      if attributes.key?(:'passenger_count')
+        self.passenger_count = attributes[:'passenger_count']
+      end
+
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
@@ -96,15 +142,11 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @distance_m.nil?
-        invalid_properties.push('invalid value for "distance_m", distance_m cannot be nil.')
-      end
-
-      if @distance_m > 400000000
+      if !@distance_m.nil? && @distance_m > 400000000
         invalid_properties.push('invalid value for "distance_m", must be smaller than or equal to 400000000.')
       end
 
-      if @distance_m < 0
+      if !@distance_m.nil? && @distance_m < 0
         invalid_properties.push('invalid value for "distance_m", must be greater than or equal to 0.')
       end
 
@@ -114,24 +156,19 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @distance_m.nil?
-      return false if @distance_m > 400000000
-      return false if @distance_m < 0
+      return false if !@distance_m.nil? && @distance_m > 400000000
+      return false if !@distance_m.nil? && @distance_m < 0
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] distance_m Value to be assigned
     def distance_m=(distance_m)
-      if distance_m.nil?
-        fail ArgumentError, 'distance_m cannot be nil'
-      end
-
-      if distance_m > 400000000
+      if !distance_m.nil? && distance_m > 400000000
         fail ArgumentError, 'invalid value for "distance_m", must be smaller than or equal to 400000000.'
       end
 
-      if distance_m < 0
+      if !distance_m.nil? && distance_m < 0
         fail ArgumentError, 'invalid value for "distance_m", must be greater than or equal to 0.'
       end
 
@@ -144,6 +181,11 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           distance_m == o.distance_m &&
+          origin_airport == o.origin_airport &&
+          destination_airport == o.destination_airport &&
+          aircraft_code == o.aircraft_code &&
+          cabin_class == o.cabin_class &&
+          passenger_count == o.passenger_count &&
           project_id == o.project_id &&
           create_order == o.create_order
     end
@@ -157,7 +199,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [distance_m, project_id, create_order].hash
+      [distance_m, origin_airport, destination_airport, aircraft_code, cabin_class, passenger_count, project_id, create_order].hash
     end
 
     # Builds the object from hash
