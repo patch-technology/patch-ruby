@@ -35,8 +35,9 @@ module Patch
     # @param create_bitcoin_estimate_request [CreateBitcoinEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_bitcoin_estimate(create_bitcoin_estimate_request, opts = {})
-      data, _status_code, _headers = create_bitcoin_estimate_with_http_info(create_bitcoin_estimate_request, opts)
+    def create_bitcoin_estimate(create_bitcoin_estimate_request = {}, opts = {})
+      _create_bitcoin_estimate_request = Patch::CreateBitcoinEstimateRequest.new(create_bitcoin_estimate_request) 
+      data, _status_code, _headers = create_bitcoin_estimate_with_http_info(_create_bitcoin_estimate_request, opts)
       data
     end
 
@@ -100,8 +101,9 @@ module Patch
     # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_ethereum_estimate(create_ethereum_estimate_request, opts = {})
-      data, _status_code, _headers = create_ethereum_estimate_with_http_info(create_ethereum_estimate_request, opts)
+    def create_ethereum_estimate(create_ethereum_estimate_request = {}, opts = {})
+      _create_ethereum_estimate_request = Patch::CreateEthereumEstimateRequest.new(create_ethereum_estimate_request) 
+      data, _status_code, _headers = create_ethereum_estimate_with_http_info(_create_ethereum_estimate_request, opts)
       data
     end
 
@@ -165,8 +167,9 @@ module Patch
     # @param create_flight_estimate_request [CreateFlightEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_flight_estimate(create_flight_estimate_request, opts = {})
-      data, _status_code, _headers = create_flight_estimate_with_http_info(create_flight_estimate_request, opts)
+    def create_flight_estimate(create_flight_estimate_request = {}, opts = {})
+      _create_flight_estimate_request = Patch::CreateFlightEstimateRequest.new(create_flight_estimate_request) 
+      data, _status_code, _headers = create_flight_estimate_with_http_info(_create_flight_estimate_request, opts)
       data
     end
 
@@ -230,8 +233,9 @@ module Patch
     # @param create_mass_estimate_request [CreateMassEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_mass_estimate(create_mass_estimate_request, opts = {})
-      data, _status_code, _headers = create_mass_estimate_with_http_info(create_mass_estimate_request, opts)
+    def create_mass_estimate(create_mass_estimate_request = {}, opts = {})
+      _create_mass_estimate_request = Patch::CreateMassEstimateRequest.new(create_mass_estimate_request) 
+      data, _status_code, _headers = create_mass_estimate_with_http_info(_create_mass_estimate_request, opts)
       data
     end
 
@@ -295,8 +299,9 @@ module Patch
     # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_shipping_estimate(create_shipping_estimate_request, opts = {})
-      data, _status_code, _headers = create_shipping_estimate_with_http_info(create_shipping_estimate_request, opts)
+    def create_shipping_estimate(create_shipping_estimate_request = {}, opts = {})
+      _create_shipping_estimate_request = Patch::CreateShippingEstimateRequest.new(create_shipping_estimate_request) 
+      data, _status_code, _headers = create_shipping_estimate_with_http_info(_create_shipping_estimate_request, opts)
       data
     end
 
@@ -360,8 +365,9 @@ module Patch
     # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
-    def create_vehicle_estimate(create_vehicle_estimate_request, opts = {})
-      data, _status_code, _headers = create_vehicle_estimate_with_http_info(create_vehicle_estimate_request, opts)
+    def create_vehicle_estimate(create_vehicle_estimate_request = {}, opts = {})
+      _create_vehicle_estimate_request = Patch::CreateVehicleEstimateRequest.new(create_vehicle_estimate_request) 
+      data, _status_code, _headers = create_vehicle_estimate_with_http_info(_create_vehicle_estimate_request, opts)
       data
     end
 
@@ -426,6 +432,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
     def retrieve_estimate(id, opts = {})
+        
       data, _status_code, _headers = retrieve_estimate_with_http_info(id, opts)
       data
     end
@@ -489,6 +496,7 @@ module Patch
     # @option opts [Integer] :page 
     # @return [EstimateListResponse]
     def retrieve_estimates(opts = {})
+        
       data, _status_code, _headers = retrieve_estimates_with_http_info(opts)
       data
     end
