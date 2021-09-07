@@ -30,7 +30,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [ProjectResponse]
     def retrieve_project(id, opts = {})
-        
+      
       data, _status_code, _headers = retrieve_project_with_http_info(id, opts)
       data
     end
@@ -97,10 +97,7 @@ module Patch
     # @option opts [Integer] :minimum_available_mass 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
-        
-        
-        
-        
+      
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
       data
     end

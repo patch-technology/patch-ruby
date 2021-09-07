@@ -33,7 +33,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def cancel_order(id, opts = {})
-        
+      
       data, _status_code, _headers = cancel_order_with_http_info(id, opts)
       data
     end
@@ -163,7 +163,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def place_order(id, opts = {})
-        
+      
       data, _status_code, _headers = place_order_with_http_info(id, opts)
       data
     end
@@ -227,7 +227,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def retrieve_order(id, opts = {})
-        
+      
       data, _status_code, _headers = retrieve_order_with_http_info(id, opts)
       data
     end
@@ -294,10 +294,7 @@ module Patch
     # @option opts [String] :metadata_example2 
     # @return [OrderListResponse]
     def retrieve_orders(opts = {})
-        
-        
-        
-        
+      
       data, _status_code, _headers = retrieve_orders_with_http_info(opts)
       data
     end

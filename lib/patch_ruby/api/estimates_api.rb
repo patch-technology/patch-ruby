@@ -432,7 +432,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [EstimateResponse]
     def retrieve_estimate(id, opts = {})
-        
+      
       data, _status_code, _headers = retrieve_estimate_with_http_info(id, opts)
       data
     end
@@ -496,7 +496,7 @@ module Patch
     # @option opts [Integer] :page 
     # @return [EstimateListResponse]
     def retrieve_estimates(opts = {})
-        
+      
       data, _status_code, _headers = retrieve_estimates_with_http_info(opts)
       data
     end

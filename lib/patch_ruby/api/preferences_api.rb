@@ -98,7 +98,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def delete_preference(id, opts = {})
-        
+      
       data, _status_code, _headers = delete_preference_with_http_info(id, opts)
       data
     end
@@ -162,7 +162,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def retrieve_preference(id, opts = {})
-        
+      
       data, _status_code, _headers = retrieve_preference_with_http_info(id, opts)
       data
     end
@@ -226,7 +226,7 @@ module Patch
     # @option opts [Integer] :page 
     # @return [PreferenceListResponse]
     def retrieve_preferences(opts = {})
-        
+      
       data, _status_code, _headers = retrieve_preferences_with_http_info(opts)
       data
     end
