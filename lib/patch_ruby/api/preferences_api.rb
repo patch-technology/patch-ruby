@@ -31,8 +31,9 @@ module Patch
     # @param create_preference_request [CreatePreferenceRequest] 
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
-    def create_preference(create_preference_request, opts = {})
-      data, _status_code, _headers = create_preference_with_http_info(create_preference_request, opts)
+    def create_preference(create_preference_request = {}, opts = {})
+      _create_preference_request = Patch::CreatePreferenceRequest.new(create_preference_request) 
+      data, _status_code, _headers = create_preference_with_http_info(_create_preference_request, opts)
       data
     end
 
@@ -97,6 +98,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def delete_preference(id, opts = {})
+      
       data, _status_code, _headers = delete_preference_with_http_info(id, opts)
       data
     end
@@ -160,6 +162,7 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @return [PreferenceResponse]
     def retrieve_preference(id, opts = {})
+      
       data, _status_code, _headers = retrieve_preference_with_http_info(id, opts)
       data
     end
@@ -223,6 +226,7 @@ module Patch
     # @option opts [Integer] :page 
     # @return [PreferenceListResponse]
     def retrieve_preferences(opts = {})
+      
       data, _status_code, _headers = retrieve_preferences_with_http_info(opts)
       data
     end
