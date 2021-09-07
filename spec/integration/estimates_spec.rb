@@ -30,6 +30,21 @@ RSpec.describe 'Estimates Integration' do
     expect(flight_estimate.data.mass_g).to eq 1_000_622
   end
 
+  it 'supports creating flight estimates with origin and destination' do
+    flight_estimate = Patch::Estimate.create_flight_estimate(
+      origin_airport: "SFO",
+      destination_airport: "LAX"
+    )
+
+    flight_estimate_longer = Patch::Estimate.create_flight_estimate(
+      origin_airport: "SFO",
+      destination_airport: "JFK"
+    )
+
+    expect(flight_estimate.data.type).to eq 'flight'
+    expect(flight_estimate_longer.data.mass_g).to be > 2 * flight_estimate.data.mass_g
+  end
+
   it 'supports creating vehicle estimates' do
     distance_m = 10_000
     make = "Toyota"
