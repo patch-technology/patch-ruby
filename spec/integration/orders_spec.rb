@@ -37,6 +37,7 @@ RSpec.describe 'Orders Integration' do
     order = create_order_response.data
     expect(create_order_response.success).to eq true
     expect(order.id).not_to be_nil
+    expect(order.created_at).to be_a_kind_of(Time)
     expect(order.mass_g).to eq(order_mass_g)
     expect(order.price_cents_usd).to be_between(expected_price - 2, expected_price + 2)
     expect(order.patch_fee_cents_usd).to be_kind_of(Integer)
