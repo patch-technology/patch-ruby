@@ -18,6 +18,9 @@ module Patch
     # A unique uid for the record. UIDs will be prepended by ord_prod or ord_test depending on the mode it was created in.
     attr_accessor :id
 
+    # The timestamp at which the order was created
+    attr_accessor :created_at
+
     # The amount of carbon offsets in grams purchased through this order.
     attr_accessor :mass_g
 
@@ -71,6 +74,7 @@ module Patch
     def self.attribute_map
       {
         :'id' => :'id',
+        :'created_at' => :'created_at',
         :'mass_g' => :'mass_g',
         :'production' => :'production',
         :'state' => :'state',
@@ -92,6 +96,7 @@ module Patch
     def self.openapi_types
       {
         :'id' => :'String',
+        :'created_at' => :'Time',
         :'mass_g' => :'Integer',
         :'production' => :'Boolean',
         :'state' => :'String',
@@ -141,6 +146,10 @@ module Patch
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
       end
 
       if attributes.key?(:'mass_g')
@@ -288,6 +297,7 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          created_at == o.created_at &&
           mass_g == o.mass_g &&
           production == o.production &&
           state == o.state &&
@@ -308,7 +318,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
+      [id, created_at, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
     end
 
     # Builds the object from hash

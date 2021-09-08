@@ -41,7 +41,7 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'timestamp' => :'String',
+        :'timestamp' => :'Time',
         :'transaction_value_btc_sats' => :'Integer',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
