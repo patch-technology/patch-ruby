@@ -87,13 +87,13 @@ RSpec.describe 'Orders Integration' do
   end
 
   it 'supports place and cancel for orders created via an estimate' do
-    create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100)
+    create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
     order_to_place_id = create_estimate_to_place_response.data.order.id
 
     place_order_response = Patch::Order.place_order(order_to_place_id)
     expect(place_order_response.data.state).to eq 'placed'
 
-    create_estimate_to_cancel_response = Patch::Estimate.create_mass_estimate(mass_g: 100)
+    create_estimate_to_cancel_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
     order_to_cancel_id = create_estimate_to_cancel_response.data.order.id
 
     cancel_order_response = Patch::Order.cancel_order(order_to_cancel_id)

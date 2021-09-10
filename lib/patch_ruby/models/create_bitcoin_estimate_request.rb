@@ -19,6 +19,8 @@ module Patch
 
     attr_accessor :transaction_value_btc_sats
 
+    attr_accessor :average_daily_balance_btc_sats
+
     attr_accessor :project_id
 
     attr_accessor :create_order
@@ -28,6 +30,7 @@ module Patch
       {
         :'timestamp' => :'timestamp',
         :'transaction_value_btc_sats' => :'transaction_value_btc_sats',
+        :'average_daily_balance_btc_sats' => :'average_daily_balance_btc_sats',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
@@ -43,6 +46,7 @@ module Patch
       {
         :'timestamp' => :'Time',
         :'transaction_value_btc_sats' => :'Integer',
+        :'average_daily_balance_btc_sats' => :'Integer',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
@@ -53,6 +57,7 @@ module Patch
       Set.new([
         :'timestamp',
         :'transaction_value_btc_sats',
+        :'average_daily_balance_btc_sats',
         :'project_id',
         :'create_order'
       ])
@@ -93,12 +98,18 @@ module Patch
         self.transaction_value_btc_sats = attributes[:'transaction_value_btc_sats']
       end
 
+      if attributes.key?(:'average_daily_balance_btc_sats')
+        self.average_daily_balance_btc_sats = attributes[:'average_daily_balance_btc_sats']
+      end
+
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
 
       if attributes.key?(:'create_order')
         self.create_order = attributes[:'create_order']
+      else
+        self.create_order = false
       end
     end
 
@@ -122,6 +133,7 @@ module Patch
       self.class == o.class &&
           timestamp == o.timestamp &&
           transaction_value_btc_sats == o.transaction_value_btc_sats &&
+          average_daily_balance_btc_sats == o.average_daily_balance_btc_sats &&
           project_id == o.project_id &&
           create_order == o.create_order
     end
@@ -135,7 +147,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [timestamp, transaction_value_btc_sats, project_id, create_order].hash
+      [timestamp, transaction_value_btc_sats, average_daily_balance_btc_sats, project_id, create_order].hash
     end
 
     # Builds the object from hash
