@@ -21,6 +21,8 @@ module Patch
 
     attr_accessor :transaction_value_eth_gwei
 
+    attr_accessor :average_daily_balance_eth_gwei
+
     attr_accessor :project_id
 
     attr_accessor :create_order
@@ -31,6 +33,7 @@ module Patch
         :'timestamp' => :'timestamp',
         :'gas_used' => :'gas_used',
         :'transaction_value_eth_gwei' => :'transaction_value_eth_gwei',
+        :'average_daily_balance_eth_gwei' => :'average_daily_balance_eth_gwei',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
@@ -47,6 +50,7 @@ module Patch
         :'timestamp' => :'String',
         :'gas_used' => :'Integer',
         :'transaction_value_eth_gwei' => :'Integer',
+        :'average_daily_balance_eth_gwei' => :'Integer',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
@@ -58,6 +62,7 @@ module Patch
         :'timestamp',
         :'gas_used',
         :'transaction_value_eth_gwei',
+        :'average_daily_balance_eth_gwei',
         :'project_id',
         :'create_order'
       ])
@@ -102,12 +107,18 @@ module Patch
         self.transaction_value_eth_gwei = attributes[:'transaction_value_eth_gwei']
       end
 
+      if attributes.key?(:'average_daily_balance_eth_gwei')
+        self.average_daily_balance_eth_gwei = attributes[:'average_daily_balance_eth_gwei']
+      end
+
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
 
       if attributes.key?(:'create_order')
         self.create_order = attributes[:'create_order']
+      else
+        self.create_order = false
       end
     end
 
@@ -132,6 +143,7 @@ module Patch
           timestamp == o.timestamp &&
           gas_used == o.gas_used &&
           transaction_value_eth_gwei == o.transaction_value_eth_gwei &&
+          average_daily_balance_eth_gwei == o.average_daily_balance_eth_gwei &&
           project_id == o.project_id &&
           create_order == o.create_order
     end
@@ -145,7 +157,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [timestamp, gas_used, transaction_value_eth_gwei, project_id, create_order].hash
+      [timestamp, gas_used, transaction_value_eth_gwei, average_daily_balance_eth_gwei, project_id, create_order].hash
     end
 
     # Builds the object from hash

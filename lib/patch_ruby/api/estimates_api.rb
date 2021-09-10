@@ -96,7 +96,7 @@ module Patch
       return data, status_code, headers
     end
 
-    # Create an ethereum estimate given a timestamp and gas used
+    # Create an ethereum estimate
     # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
     # @param [Hash] opts the optional parameters
@@ -107,7 +107,7 @@ module Patch
       data
     end
 
-    # Create an ethereum estimate given a timestamp and gas used
+    # Create an ethereum estimate
     # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
     # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
     # @param [Hash] opts the optional parameters

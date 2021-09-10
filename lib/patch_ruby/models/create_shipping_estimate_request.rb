@@ -127,6 +127,8 @@ module Patch
 
       if attributes.key?(:'create_order')
         self.create_order = attributes[:'create_order']
+      else
+        self.create_order = false
       end
     end
 

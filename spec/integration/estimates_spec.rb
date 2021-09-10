@@ -92,7 +92,7 @@ RSpec.describe 'Estimates Integration' do
 
 
   it 'supports creating bitcoin estimates with partial information' do
-    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate({})
+    bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate()
 
     expect(bitcoin_estimate.data.type).to eq 'bitcoin'
     expect(bitcoin_estimate.data.mass_g).to be >= 2_000
@@ -122,6 +122,19 @@ RSpec.describe 'Estimates Integration' do
 
     expect(bitcoin_estimate_1.data.type).to eq 'bitcoin'
     expect(bitcoin_estimate_1.data.mass_g).to be > bitcoin_estimate_2.data.mass_g # Bitcoin was emitting less in July 2021 than in June
+  end
+
+  it 'supports creating bitcoin estimates with a average_daily_balance_btc_sats' do
+    bitcoin_estimate_1 = Patch::Estimate.create_bitcoin_estimate(
+      average_daily_balance_btc_sats: 1000000
+    )
+
+    bitcoin_estimate_2 = Patch::Estimate.create_bitcoin_estimate(
+      average_daily_balance_btc_sats: 10000000
+    )
+
+    expect(bitcoin_estimate_1.data.type).to eq 'bitcoin'
+    expect(bitcoin_estimate_1.data.mass_g).to be < bitcoin_estimate_2.data.mass_g
   end
 
   it 'supports creating ethereum estimates with a gas amount' do
