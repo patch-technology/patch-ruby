@@ -11,5 +11,8 @@ FactoryBot.define do
     average_price_per_tonne_cents_usd { 120 }
     remaining_mass_g { 1_000 }
     standard { 'european_biochar_certificate' }
+    state { 'CO' }
+    latitude { 45.0 }
+    longitude { 45.0 }
   end
 end

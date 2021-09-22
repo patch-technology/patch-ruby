@@ -42,9 +42,16 @@ RSpec.describe 'Projects Integration' do
     it 'returns the expected fields' do
       project = Patch::Project.retrieve_projects(page: 1).data.first
 
+      keys = attributes_for(:project).keys
+      expect(project.to_hash.keys).to include(*keys)
+
       expect(project.photos).to be_an_instance_of(Array)
       expect(project.average_price_per_tonne_cents_usd).to be_an_instance_of(Integer)
       expect(project.remaining_mass_g).to be_an_instance_of(Integer)
+      expect(project.state).to be_an_instance_of(String)
+      expect(project.longitude).to be_an_instance_of(Float)
+      expect(project.latitude).to be_an_instance_of(Float)
+      # TODO: add test for technology type hash
     end
   end
 end
