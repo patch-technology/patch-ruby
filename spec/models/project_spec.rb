@@ -46,8 +46,8 @@ describe 'Project' do
         latitude: @instance.latitude,
         standard: @instance.standard,
         mechanism: @instance.mechanism,
-        technology_type: @instance.technology_type,
-        sdgs: @instance.sdgs
+        technology_type: @instance.technology_type.to_hash,
+        sdgs: @instance.sdgs.map(&:to_hash)
       }
     }
     let(:nullable_properties) do

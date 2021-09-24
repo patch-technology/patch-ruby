@@ -152,6 +152,7 @@ module Patch
         :'photos',
         :'standard',
         :'sdgs',
+        :'tagline'
       ])
     end
 

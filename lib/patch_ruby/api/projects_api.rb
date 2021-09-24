@@ -25,19 +25,19 @@ module Patch
       @api_client = api_client
     end
     # Retrieves a project
-    # Retrieves a project available on Patch's platform.
-    # @param id [String]
+    # Retrieves a project available on Patch's platform. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [ProjectResponse]
     def retrieve_project(id, opts = {})
-
+      
       data, _status_code, _headers = retrieve_project_with_http_info(id, opts)
       data
     end
 
     # Retrieves a project
-    # Retrieves a project available on Patch&#39;s platform.
-    # @param id [String]
+    # Retrieves a project available on Patch&#39;s platform. 
+    # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(ProjectResponse, Integer, Hash)>] ProjectResponse data, response status code and response headers
     def retrieve_project_with_http_info(id, opts = {})
@@ -89,26 +89,26 @@ module Patch
     end
 
     # Retrieves a list of projects
-    # Retrieves a list of projects available for purchase on Patch's platform.
+    # Retrieves a list of projects available for purchase on Patch's platform. 
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page
-    # @option opts [String] :country
-    # @option opts [String] :type
-    # @option opts [Integer] :minimum_available_mass
+    # @option opts [Integer] :page 
+    # @option opts [String] :country 
+    # @option opts [String] :type 
+    # @option opts [Integer] :minimum_available_mass 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
-
+      
       data, _status_code, _headers = retrieve_projects_with_http_info(opts)
       data
     end
 
     # Retrieves a list of projects
-    # Retrieves a list of projects available for purchase on Patch&#39;s platform.
+    # Retrieves a list of projects available for purchase on Patch&#39;s platform. 
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page
-    # @option opts [String] :country
-    # @option opts [String] :type
-    # @option opts [Integer] :minimum_available_mass
+    # @option opts [Integer] :page 
+    # @option opts [String] :country 
+    # @option opts [String] :type 
+    # @option opts [Integer] :minimum_available_mass 
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
