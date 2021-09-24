@@ -14,5 +14,8 @@ FactoryBot.define do
     state { 'CO' }
     latitude { 45.0 }
     longitude { 45.0 }
+    mechanism { 'removal' }
+    association(:sdg)
+    association(:technology_type)
   end
 end

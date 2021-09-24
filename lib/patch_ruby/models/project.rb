@@ -65,6 +65,9 @@ module Patch
 
     attr_accessor :technology_type
 
+    # A short description of the project
+    attr_accessor :tagline
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -106,7 +109,8 @@ module Patch
         :'remaining_mass_g' => :'remaining_mass_g',
         :'standard' => :'standard',
         :'sdgs' => :'sdgs',
-        :'technology_type' => :'technology_type'
+        :'technology_type' => :'technology_type',
+        :'tagline' => :'tagline'
       }
     end
 
@@ -134,7 +138,8 @@ module Patch
         :'remaining_mass_g' => :'Integer',
         :'standard' => :'Standard',
         :'sdgs' => :'Array<Sdg>',
-        :'technology_type' => :'TechnologyType'
+        :'technology_type' => :'TechnologyType',
+        :'tagline' => :'String'
       }
     end
 
@@ -248,6 +253,10 @@ module Patch
       if attributes.key?(:'technology_type')
         self.technology_type = attributes[:'technology_type']
       end
+
+      if attributes.key?(:'tagline')
+        self.tagline = attributes[:'tagline']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -348,7 +357,8 @@ module Patch
           remaining_mass_g == o.remaining_mass_g &&
           standard == o.standard &&
           sdgs == o.sdgs &&
-          technology_type == o.technology_type
+          technology_type == o.technology_type &&
+          tagline == o.tagline
     end
 
     # @see the `==` method
@@ -360,7 +370,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs, technology_type].hash
+      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs, technology_type, tagline].hash
     end
 
     # Builds the object from hash

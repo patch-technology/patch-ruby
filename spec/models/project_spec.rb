@@ -44,7 +44,9 @@ describe 'Project' do
         state: @instance.state,
         longitude: @instance.longitude,
         latitude: @instance.latitude,
-        standard: @instance.standard
+        standard: @instance.standard,
+        tagline: @instance.tagline,
+        mechanism: @instance.mechanism
       }
     }
     let(:nullable_properties) do
