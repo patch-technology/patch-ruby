@@ -41,10 +41,18 @@ describe 'Project' do
         photos: @instance.photos,
         average_price_per_tonne_cents_usd: @instance.average_price_per_tonne_cents_usd,
         remaining_mass_g: @instance.remaining_mass_g,
-        standard: @instance.standard
+        state: @instance.state,
+        longitude: @instance.longitude,
+        latitude: @instance.latitude,
+        standard: @instance.standard,
+        mechanism: @instance.mechanism,
+        technology_type: @instance.technology_type.to_hash,
+        sdgs: @instance.sdgs.map(&:to_hash)
       }
     }
-    let(:nullable_properties) { Set.new([:photos, :standard, :sdgs]) }
+    let(:nullable_properties) do
+      Set.new(%i[photos standard sdgs state latitude longitude tagline])
+    end
   end
 
   describe 'test an instance of Project' do
