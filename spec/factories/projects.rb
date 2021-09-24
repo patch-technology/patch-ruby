@@ -1,6 +1,9 @@
 FactoryBot.define do
   factory :project, class: Patch::Project do
     sequence(:id) { |n| n }
+    association(:technology_type)
+    sdgs { build_list(:sdg, 1) }
+
     production { false }
     name { "New Project" }
     description { "New Descirption" }
@@ -15,7 +18,5 @@ FactoryBot.define do
     latitude { 45.0 }
     longitude { 45.0 }
     mechanism { 'removal' }
-    sdgs { build_list(:sdg, 1) }
-    association(:technology_type)
   end
 end
