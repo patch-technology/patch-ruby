@@ -45,12 +45,13 @@ describe 'Project' do
         longitude: @instance.longitude,
         latitude: @instance.latitude,
         standard: @instance.standard,
-        tagline: @instance.tagline,
-        mechanism: @instance.mechanism
+        mechanism: @instance.mechanism,
+        technology_type: @instance.technology_type,
+        sdgs: @instance.sdgs
       }
     }
     let(:nullable_properties) do
-      Set.new(%i[photos standard sdgs state latitude longitude])
+      Set.new(%i[photos standard sdgs state latitude longitude tagline])
     end
   end
 
