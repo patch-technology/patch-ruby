@@ -293,7 +293,6 @@ module Patch
     def build_request_url(path, opts = {})
       # Add leading and trailing slashes to path
       path = "/#{path}".gsub(/\/+/, '/')
-      return "http://api.patch.test:3000#{path}"
       @config.base_url(opts[:operation]) + path
     end
 
