@@ -51,7 +51,7 @@ describe 'Project' do
       }
     }
     let(:nullable_properties) do
-      Set.new(%i[photos standard sdgs state latitude longitude tagline])
+      Set.new(%i[photos standard sdgs state latitude longitude])
     end
   end
 
