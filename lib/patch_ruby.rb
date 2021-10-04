@@ -46,12 +46,14 @@ require 'patch_ruby/models/project_response'
 require 'patch_ruby/models/sdg'
 require 'patch_ruby/models/standard'
 require 'patch_ruby/models/technology_type'
+require 'patch_ruby/models/technology_type_list_response'
 
 # APIs
 require 'patch_ruby/api/estimates_api'
 require 'patch_ruby/api/orders_api'
 require 'patch_ruby/api/preferences_api'
 require 'patch_ruby/api/projects_api'
+require 'patch_ruby/api/technology_types_api'
 
 module Patch
   class << self
