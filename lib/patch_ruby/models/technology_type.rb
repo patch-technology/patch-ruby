@@ -14,11 +14,12 @@ require 'date'
 require 'time'
 
 module Patch
+  # An object containing the technology type's name, slug and parent_technology_type.
   class TechnologyType
     # Unique identifier for this type of technology.
     attr_accessor :slug
 
-    # Name of this technology type.
+    # Display name of this technology type.
     attr_accessor :name
 
     attr_accessor :parent_technology_type
@@ -96,12 +97,22 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @slug.nil?
+        invalid_properties.push('invalid value for "slug", slug cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @slug.nil?
+      return false if @name.nil?
       true
     end
 

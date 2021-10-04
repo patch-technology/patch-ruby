@@ -27,10 +27,10 @@ module Patch
     # The description of the project.
     attr_accessor :description
 
-    # The type of carbon removal project, currently available project types are Biomass, Dac, Forestry, Mineralization, Ocean, Renewables, Soil.
+    # Deprecated. Favor the technology_type field instead.
     attr_accessor :type
 
-    # The mechanism of the project. removal or avoidance.
+    # The mechanism of the project. Either removal or avoidance.
     attr_accessor :mechanism
 
     # The country of origin of the project.
@@ -63,10 +63,10 @@ module Patch
     # An array returning the UN Sustainable Development Goals associated with this project.
     attr_accessor :sdgs
 
-    attr_accessor :technology_type
-
-    # A short description of the project
+    # A short description of the project.
     attr_accessor :tagline
+
+    attr_accessor :technology_type
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -109,8 +109,8 @@ module Patch
         :'remaining_mass_g' => :'remaining_mass_g',
         :'standard' => :'standard',
         :'sdgs' => :'sdgs',
-        :'technology_type' => :'technology_type',
-        :'tagline' => :'tagline'
+        :'tagline' => :'tagline',
+        :'technology_type' => :'technology_type'
       }
     end
 
@@ -138,8 +138,8 @@ module Patch
         :'remaining_mass_g' => :'Integer',
         :'standard' => :'Standard',
         :'sdgs' => :'Array<Sdg>',
-        :'technology_type' => :'TechnologyType',
-        :'tagline' => :'String'
+        :'tagline' => :'String',
+        :'technology_type' => :'TechnologyType'
       }
     end
 
@@ -152,7 +152,6 @@ module Patch
         :'photos',
         :'standard',
         :'sdgs',
-        :'tagline'
       ])
     end
 
@@ -251,12 +250,12 @@ module Patch
         end
       end
 
-      if attributes.key?(:'technology_type')
-        self.technology_type = attributes[:'technology_type']
-      end
-
       if attributes.key?(:'tagline')
         self.tagline = attributes[:'tagline']
+      end
+
+      if attributes.key?(:'technology_type')
+        self.technology_type = attributes[:'technology_type']
       end
     end
 
@@ -296,6 +295,10 @@ module Patch
         invalid_properties.push('invalid value for "remaining_mass_g", remaining_mass_g cannot be nil.')
       end
 
+      if @technology_type.nil?
+        invalid_properties.push('invalid value for "technology_type", technology_type cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -306,25 +309,14 @@ module Patch
       return false if @production.nil?
       return false if @name.nil?
       return false if @description.nil?
-      type_validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "renewables", "soil"])
-      return false unless type_validator.valid?(@type)
       mechanism_validator = EnumAttributeValidator.new('String', ["removal", "avoidance"])
       return false unless mechanism_validator.valid?(@mechanism)
       return false if @country.nil?
       return false if @developer.nil?
       return false if @average_price_per_tonne_cents_usd.nil?
       return false if @remaining_mass_g.nil?
+      return false if @technology_type.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] type Object to be assigned
-    def type=(type)
-      validator = EnumAttributeValidator.new('String', ["biomass", "dac", "forestry", "mineralization", "ocean", "renewables", "soil"])
-      unless validator.valid?(type)
-        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
-      end
-      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -358,8 +350,8 @@ module Patch
           remaining_mass_g == o.remaining_mass_g &&
           standard == o.standard &&
           sdgs == o.sdgs &&
-          technology_type == o.technology_type &&
-          tagline == o.tagline
+          tagline == o.tagline &&
+          technology_type == o.technology_type
     end
 
     # @see the `==` method
@@ -371,7 +363,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs, technology_type, tagline].hash
+      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs, tagline, technology_type].hash
     end
 
     # Builds the object from hash

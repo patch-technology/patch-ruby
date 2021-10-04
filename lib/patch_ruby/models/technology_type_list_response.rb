@@ -14,19 +14,19 @@ require 'date'
 require 'time'
 
 module Patch
-  # An object containing the parent technology type's name and slug.
-  class ParentTechnologyType
-    # Unique identifier for this type of technology.
-    attr_accessor :slug
+  class TechnologyTypeListResponse
+    attr_accessor :success
 
-    # Name of this technology type.
-    attr_accessor :name
+    attr_accessor :error
+
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'slug' => :'slug',
-        :'name' => :'name'
+        :'success' => :'success',
+        :'error' => :'error',
+        :'data' => :'data'
       }
     end
 
@@ -38,14 +38,16 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'slug' => :'String',
-        :'name' => :'String'
+        :'success' => :'Boolean',
+        :'error' => :'Object',
+        :'data' => :'Array<TechnologyType>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'error',
       ])
     end
 
@@ -54,8 +56,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::ParentTechnologyTypesApi::OPERATIONS') && Patch::ParentTechnologyTypesApi::OPERATIONS.include?(message)
-        Patch::ParentTechnologyTypesApi.new.send(message, *args)
+      if Object.const_defined?('Patch::TechnologyTypeListResponsesApi::OPERATIONS') && Patch::TechnologyTypeListResponsesApi::OPERATIONS.include?(message)
+        Patch::TechnologyTypeListResponsesApi.new.send(message, *args)
       else
         super
       end
@@ -65,23 +67,29 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::ParentTechnologyType` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::TechnologyTypeListResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::ParentTechnologyType`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::TechnologyTypeListResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'slug')
-        self.slug = attributes[:'slug']
+      if attributes.key?(:'success')
+        self.success = attributes[:'success']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'error')
+        self.error = attributes[:'error']
+      end
+
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
     end
 
@@ -89,12 +97,22 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @success.nil?
+        invalid_properties.push('invalid value for "success", success cannot be nil.')
+      end
+
+      if @data.nil?
+        invalid_properties.push('invalid value for "data", data cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @success.nil?
+      return false if @data.nil?
       true
     end
 
@@ -103,8 +121,9 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          slug == o.slug &&
-          name == o.name
+          success == o.success &&
+          error == o.error &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -116,7 +135,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [slug, name].hash
+      [success, error, data].hash
     end
 
     # Builds the object from hash

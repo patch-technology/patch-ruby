@@ -31,7 +31,7 @@ module Patch
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "patch-ruby/1.14.0"
+      @user_agent = "patch-ruby/1.15.0"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
@@ -293,6 +293,7 @@ module Patch
     def build_request_url(path, opts = {})
       # Add leading and trailing slashes to path
       path = "/#{path}".gsub(/\/+/, '/')
+      return "http://api.patch.test:3000#{path}"
       @config.base_url(opts[:operation]) + path
     end
 
