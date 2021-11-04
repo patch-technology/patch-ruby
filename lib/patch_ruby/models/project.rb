@@ -57,7 +57,10 @@ module Patch
     # The remaining mass in grams available for purchase for this project.
     attr_accessor :remaining_mass_g
 
-    # An object returning the Standard associated with this project.
+    # The name of the project verifier. A verifier is the organization that verifies the calculations of the actual amount of greenhouse gas emissions that have been avoided or sequestered through implementation of the project.
+    attr_accessor :verifier
+
+    # An object returning the Standard associated with this project. Standards provide guidance on GHG quantification, monitoring, and reporting. Standards can include protocols/methodologies and guidance documents.
     attr_accessor :standard
 
     # An array returning the UN Sustainable Development Goals associated with this project.
@@ -107,6 +110,7 @@ module Patch
         :'photos' => :'photos',
         :'average_price_per_tonne_cents_usd' => :'average_price_per_tonne_cents_usd',
         :'remaining_mass_g' => :'remaining_mass_g',
+        :'verifier' => :'verifier',
         :'standard' => :'standard',
         :'sdgs' => :'sdgs',
         :'tagline' => :'tagline',
@@ -136,6 +140,7 @@ module Patch
         :'photos' => :'Array<Photo>',
         :'average_price_per_tonne_cents_usd' => :'Integer',
         :'remaining_mass_g' => :'Integer',
+        :'verifier' => :'String',
         :'standard' => :'Standard',
         :'sdgs' => :'Array<Sdg>',
         :'tagline' => :'String',
@@ -238,6 +243,10 @@ module Patch
 
       if attributes.key?(:'remaining_mass_g')
         self.remaining_mass_g = attributes[:'remaining_mass_g']
+      end
+
+      if attributes.key?(:'verifier')
+        self.verifier = attributes[:'verifier']
       end
 
       if attributes.key?(:'standard')
@@ -348,6 +357,7 @@ module Patch
           photos == o.photos &&
           average_price_per_tonne_cents_usd == o.average_price_per_tonne_cents_usd &&
           remaining_mass_g == o.remaining_mass_g &&
+          verifier == o.verifier &&
           standard == o.standard &&
           sdgs == o.sdgs &&
           tagline == o.tagline &&
@@ -363,7 +373,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, standard, sdgs, tagline, technology_type].hash
+      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, verifier, standard, sdgs, tagline, technology_type].hash
     end
 
     # Builds the object from hash
