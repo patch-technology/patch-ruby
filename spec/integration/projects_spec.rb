@@ -49,7 +49,6 @@ RSpec.describe 'Projects Integration' do
       expect(project.average_price_per_tonne_cents_usd)
         .to be_an_instance_of(Integer)
       expect(project.remaining_mass_g).to be_an_instance_of(Integer)
-      expect(project.state).to be_an_instance_of(String)
       expect(project.longitude).to be_an_instance_of(Float)
       expect(project.latitude).to be_an_instance_of(Float)
 

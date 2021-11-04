@@ -30,7 +30,7 @@ module Patch
     # The current state of the order.
     attr_accessor :state
 
-    # The current state of the allocated carbon offsets of the order.
+    # DEPRECATED. Indicates if the order has been fully allocated to projects.
     attr_accessor :allocation_state
 
     # The total price in cents USD of the carbon offsets purchased through this order.
