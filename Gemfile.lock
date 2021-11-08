@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    patch_ruby (1.15.1)
+    patch_ruby (1.15.2)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -70,6 +70,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  arm64-darwin-20
   x86_64-darwin-20
 
 DEPENDENCIES

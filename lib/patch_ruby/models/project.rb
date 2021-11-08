@@ -71,6 +71,9 @@ module Patch
 
     attr_accessor :technology_type
 
+    # An array of objects containing the highlight's slug and title.  A highlight's title is a short string that spotlights a characteristic about the project.
+    attr_accessor :highlights
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -114,7 +117,8 @@ module Patch
         :'standard' => :'standard',
         :'sdgs' => :'sdgs',
         :'tagline' => :'tagline',
-        :'technology_type' => :'technology_type'
+        :'technology_type' => :'technology_type',
+        :'highlights' => :'highlights'
       }
     end
 
@@ -144,7 +148,8 @@ module Patch
         :'standard' => :'Standard',
         :'sdgs' => :'Array<Sdg>',
         :'tagline' => :'String',
-        :'technology_type' => :'TechnologyType'
+        :'technology_type' => :'TechnologyType',
+        :'highlights' => :'Array<Highlight>'
       }
     end
 
@@ -266,6 +271,12 @@ module Patch
       if attributes.key?(:'technology_type')
         self.technology_type = attributes[:'technology_type']
       end
+
+      if attributes.key?(:'highlights')
+        if (value = attributes[:'highlights']).is_a?(Array)
+          self.highlights = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -308,6 +319,10 @@ module Patch
         invalid_properties.push('invalid value for "technology_type", technology_type cannot be nil.')
       end
 
+      if @highlights.nil?
+        invalid_properties.push('invalid value for "highlights", highlights cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -325,6 +340,7 @@ module Patch
       return false if @average_price_per_tonne_cents_usd.nil?
       return false if @remaining_mass_g.nil?
       return false if @technology_type.nil?
+      return false if @highlights.nil?
       true
     end
 
@@ -361,7 +377,8 @@ module Patch
           standard == o.standard &&
           sdgs == o.sdgs &&
           tagline == o.tagline &&
-          technology_type == o.technology_type
+          technology_type == o.technology_type &&
+          highlights == o.highlights
     end
 
     # @see the `==` method
@@ -373,7 +390,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, verifier, standard, sdgs, tagline, technology_type].hash
+      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, verifier, standard, sdgs, tagline, technology_type, highlights].hash
     end
 
     # Builds the object from hash
