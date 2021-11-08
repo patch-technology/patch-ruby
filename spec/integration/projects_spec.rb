@@ -61,6 +61,8 @@ RSpec.describe 'Projects Integration' do
       expect(parent_type).to be_an_instance_of(Patch::ParentTechnologyType)
       expect(parent_type.name).to be_an_instance_of(String)
       expect(parent_type.slug).to be_an_instance_of(String)
+
+      expect(project.highlights).to be_an_instance_of(Array)
     end
   end
 end
