@@ -53,9 +53,6 @@ end
 
 In Patch, orders represent a purchase of carbon offsets or negative emissions by mass. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
 
-In Patch, orders represent a purchase of carbon offsets or negative emissions by mass.
-Place orders directly if you know the amount of carbon dioxide you would like to sequester.
-If you do not know how much to purchase, use an estimate.
 You can also create an order with a maximum desired price, and we'll allocate enough mass to
 fulfill the order for you.
 
