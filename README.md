@@ -53,9 +53,6 @@ end
 
 In Patch, orders represent a purchase of carbon offsets or negative emissions by mass. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
 
-In Patch, orders represent a purchase of carbon offsets or negative emissions by mass.
-Place orders directly if you know the amount of carbon dioxide you would like to sequester.
-If you do not know how much to purchase, use an estimate.
 You can also create an order with a maximum desired price, and we'll allocate enough mass to
 fulfill the order for you.
 
@@ -218,7 +215,13 @@ page = 1 # Pass in which page of preferences you'd like
 Patch::Preference.retrieve_preferences(page: page)
 ```
 
-## Development
+## Contributing
+
+While we value open-source contributions to this SDK, the core of this library is generated programmatically. Complex additions made directly to the library would have to be moved over to our generation code, otherwise they would be overwritten upon the next generated release. Feel free to open a PR as a proof of concept, but know that we will not be able to merge it as-is. We suggest opening an issue first to discuss with us!
+
+On the other hand, contributions to the README, as well as new test cases are always very welcome!
+
+### Testing locally
 
 To build the gem locally, run:
 
@@ -232,20 +235,16 @@ This will create a .gem file. To install the local gem:
 gem install patch_ruby-1.x.x.gem
 ```
 
-Install dependencies:
+### Running tests
 
-```bash
-bundle install
-```
-
-Set up required environment variables:
+Set up the required environment variable.
 
 ```bash
 export SANDBOX_API_KEY=<SANDBOX API KEY>
 ```
 
-Run tests:
+then run the tests:
 
 ```bash
-bundle exec rspec
+make test
 ```
