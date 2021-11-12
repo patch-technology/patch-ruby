@@ -15,17 +15,21 @@ require 'time'
 
 module Patch
   class Highlight
-    # A unique identifier for each highlight
+    # A unique identifier for each highlight.
     attr_accessor :slug
 
     # A short string that spotlights a characteristic about the project.
     attr_accessor :title
 
+    # A URL for the corresponding icon.
+    attr_accessor :icon_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'slug' => :'slug',
-        :'title' => :'title'
+        :'title' => :'title',
+        :'icon_url' => :'icon_url'
       }
     end
 
@@ -38,7 +42,8 @@ module Patch
     def self.openapi_types
       {
         :'slug' => :'String',
-        :'title' => :'String'
+        :'title' => :'String',
+        :'icon_url' => :'String'
       }
     end
 
@@ -82,6 +87,10 @@ module Patch
       if attributes.key?(:'title')
         self.title = attributes[:'title']
       end
+
+      if attributes.key?(:'icon_url')
+        self.icon_url = attributes[:'icon_url']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -96,6 +105,10 @@ module Patch
         invalid_properties.push('invalid value for "title", title cannot be nil.')
       end
 
+      if @icon_url.nil?
+        invalid_properties.push('invalid value for "icon_url", icon_url cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -104,6 +117,7 @@ module Patch
     def valid?
       return false if @slug.nil?
       return false if @title.nil?
+      return false if @icon_url.nil?
       true
     end
 
@@ -113,7 +127,8 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           slug == o.slug &&
-          title == o.title
+          title == o.title &&
+          icon_url == o.icon_url
     end
 
     # @see the `==` method
@@ -125,7 +140,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [slug, title].hash
+      [slug, title, icon_url].hash
     end
 
     # Builds the object from hash
