@@ -30,8 +30,6 @@ RSpec.describe 'Orders Integration' do
     order_mass_g = 100_000
     tonne_per_gram = 1_000_000
 
-    expected_price = (average_price_per_tonne_cents_usd.to_f / tonne_per_gram) * order_mass_g
-
     create_order_response = Patch::Order.create_order(mass_g: order_mass_g, project_id: project_id)
 
     order = create_order_response.data
@@ -39,7 +37,7 @@ RSpec.describe 'Orders Integration' do
     expect(order.id).not_to be_nil
     expect(order.created_at).to be_a_kind_of(Time)
     expect(order.mass_g).to eq(order_mass_g)
-    expect(order.price_cents_usd).to be_between(expected_price - 2, expected_price + 2)
+    expect(order.price_cents_usd).to be_kind_of(Integer)
     expect(order.patch_fee_cents_usd).to be_kind_of(Integer)
     expect(order.registry_url).not_to be_empty
   end
