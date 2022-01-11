@@ -27,7 +27,7 @@ module Patch
     # The description of the project.
     attr_accessor :description
 
-    # Deprecated. Favor the technology_type field instead.
+    # DEPRECATED. Favor the technology_type field instead.
     attr_accessor :type
 
     # The mechanism of the project. Either removal or avoidance.
