@@ -39,7 +39,7 @@ module Patch
     # The Patch Fee in cents USD for this order.
     attr_accessor :patch_fee_cents_usd
 
-    # An array containing the inventory allocations for this order.
+    # DEPRECATED. An array containing the inventory allocations for this order.
     attr_accessor :allocations
 
     # The url of this order in the public registry.
@@ -223,10 +223,6 @@ module Patch
         invalid_properties.push('invalid value for "allocation_state", allocation_state cannot be nil.')
       end
 
-      if @allocations.nil?
-        invalid_properties.push('invalid value for "allocations", allocations cannot be nil.')
-      end
-
       if @metadata.nil?
         invalid_properties.push('invalid value for "metadata", metadata cannot be nil.')
       end
@@ -248,7 +244,6 @@ module Patch
       return false if @allocation_state.nil?
       allocation_state_validator = EnumAttributeValidator.new('String', ["pending", "allocated"])
       return false unless allocation_state_validator.valid?(@allocation_state)
-      return false if @allocations.nil?
       return false if @metadata.nil?
       true
     end
