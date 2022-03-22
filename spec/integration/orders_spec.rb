@@ -84,7 +84,17 @@ RSpec.describe 'Orders Integration' do
       .to all(have_key(:user))
   end
 
-  it 'supports place and cancel for orders created via an estimate' do
+  it 'supports creation in draft state' do
+    create_order_response =
+      Patch::Order.create_order(mass_g: 100, state: "draft")
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.mass_g).to eq(100)
+    expect(create_order_response.data.state).to eq("draft")
+  end
+
+  xit 'supports place and cancel for orders created via an estimate' do
     create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
     order_to_place_id = create_estimate_to_place_response.data.order.id
 

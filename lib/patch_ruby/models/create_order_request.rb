@@ -23,13 +23,38 @@ module Patch
 
     attr_accessor :metadata
 
+    attr_accessor :state
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'mass_g' => :'mass_g',
         :'total_price_cents_usd' => :'total_price_cents_usd',
         :'project_id' => :'project_id',
-        :'metadata' => :'metadata'
+        :'metadata' => :'metadata',
+        :'state' => :'state'
       }
     end
 
@@ -44,7 +69,8 @@ module Patch
         :'mass_g' => :'Integer',
         :'total_price_cents_usd' => :'Integer',
         :'project_id' => :'String',
-        :'metadata' => :'Object'
+        :'metadata' => :'Object',
+        :'state' => :'String'
       }
     end
 
@@ -96,6 +122,10 @@ module Patch
       if attributes.key?(:'metadata')
         self.metadata = attributes[:'metadata']
       end
+
+      if attributes.key?(:'state')
+        self.state = attributes[:'state']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -123,6 +153,8 @@ module Patch
       return false if !@mass_g.nil? && @mass_g > 100000000000
       return false if !@mass_g.nil? && @mass_g < 0
       return false if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
+      state_validator = EnumAttributeValidator.new('String', ["draft", "placed"])
+      return false unless state_validator.valid?(@state)
       true
     end
 
@@ -150,6 +182,16 @@ module Patch
       @total_price_cents_usd = total_price_cents_usd
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] state Object to be assigned
+    def state=(state)
+      validator = EnumAttributeValidator.new('String', ["draft", "placed"])
+      unless validator.valid?(state)
+        fail ArgumentError, "invalid value for \"state\", must be one of #{validator.allowable_values}."
+      end
+      @state = state
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -158,7 +200,8 @@ module Patch
           mass_g == o.mass_g &&
           total_price_cents_usd == o.total_price_cents_usd &&
           project_id == o.project_id &&
-          metadata == o.metadata
+          metadata == o.metadata &&
+          state == o.state
     end
 
     # @see the `==` method
@@ -170,7 +213,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, total_price_cents_usd, project_id, metadata].hash
+      [mass_g, total_price_cents_usd, project_id, metadata, state].hash
     end
 
     # Builds the object from hash
