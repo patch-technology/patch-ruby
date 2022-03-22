@@ -92,7 +92,7 @@ module Patch
     end
 
     # Creates an order
-    # Creates an order in the `placed` state. To create a `draft` order, create an estimate first. 
+    # Creates an order in the `placed` or `draft` state. 
     # @param create_order_request [CreateOrderRequest] 
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
@@ -103,7 +103,7 @@ module Patch
     end
 
     # Creates an order
-    # Creates an order in the &#x60;placed&#x60; state. To create a &#x60;draft&#x60; order, create an estimate first. 
+    # Creates an order in the &#x60;placed&#x60; or &#x60;draft&#x60; state. 
     # @param create_order_request [CreateOrderRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
