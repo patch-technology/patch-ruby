@@ -30,7 +30,9 @@ describe 'CreateOrderRequest' do
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
     let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g, total_price_cents_usd: @instance.total_price_cents_usd, metadata: @instance.metadata } }
-    let(:nullable_properties) { Set.new }
+    let(:nullable_properties) do
+      Set.new(%i[mass_g total_price_cents_usd project_id metadata state vintage_year])
+    end
   end
 
   describe 'test an instance of CreateOrderRequest' do
