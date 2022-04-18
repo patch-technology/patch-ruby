@@ -25,6 +25,8 @@ module Patch
 
     attr_accessor :state
 
+    attr_accessor :vintage_year
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -54,7 +56,8 @@ module Patch
         :'total_price_cents_usd' => :'total_price_cents_usd',
         :'project_id' => :'project_id',
         :'metadata' => :'metadata',
-        :'state' => :'state'
+        :'state' => :'state',
+        :'vintage_year' => :'vintage_year'
       }
     end
 
@@ -70,13 +73,20 @@ module Patch
         :'total_price_cents_usd' => :'Integer',
         :'project_id' => :'String',
         :'metadata' => :'Object',
-        :'state' => :'String'
+        :'state' => :'String',
+        :'vintage_year' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'mass_g',
+        :'total_price_cents_usd',
+        :'project_id',
+        :'metadata',
+        :'state',
+        :'vintage_year'
       ])
     end
 
@@ -126,6 +136,10 @@ module Patch
       if attributes.key?(:'state')
         self.state = attributes[:'state']
       end
+
+      if attributes.key?(:'vintage_year')
+        self.vintage_year = attributes[:'vintage_year']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -144,6 +158,14 @@ module Patch
         invalid_properties.push('invalid value for "total_price_cents_usd", must be greater than or equal to 1.')
       end
 
+      if !@vintage_year.nil? && @vintage_year > 2100
+        invalid_properties.push('invalid value for "vintage_year", must be smaller than or equal to 2100.')
+      end
+
+      if !@vintage_year.nil? && @vintage_year < 1900
+        invalid_properties.push('invalid value for "vintage_year", must be greater than or equal to 1900.')
+      end
+
       invalid_properties
     end
 
@@ -155,6 +177,8 @@ module Patch
       return false if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
       state_validator = EnumAttributeValidator.new('String', ["draft", "placed"])
       return false unless state_validator.valid?(@state)
+      return false if !@vintage_year.nil? && @vintage_year > 2100
+      return false if !@vintage_year.nil? && @vintage_year < 1900
       true
     end
 
@@ -192,6 +216,20 @@ module Patch
       @state = state
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] vintage_year Value to be assigned
+    def vintage_year=(vintage_year)
+      if !vintage_year.nil? && vintage_year > 2100
+        fail ArgumentError, 'invalid value for "vintage_year", must be smaller than or equal to 2100.'
+      end
+
+      if !vintage_year.nil? && vintage_year < 1900
+        fail ArgumentError, 'invalid value for "vintage_year", must be greater than or equal to 1900.'
+      end
+
+      @vintage_year = vintage_year
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -201,7 +239,8 @@ module Patch
           total_price_cents_usd == o.total_price_cents_usd &&
           project_id == o.project_id &&
           metadata == o.metadata &&
-          state == o.state
+          state == o.state &&
+          vintage_year == o.vintage_year
     end
 
     # @see the `==` method
@@ -213,7 +252,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, total_price_cents_usd, project_id, metadata, state].hash
+      [mass_g, total_price_cents_usd, project_id, metadata, state, vintage_year].hash
     end
 
     # Builds the object from hash

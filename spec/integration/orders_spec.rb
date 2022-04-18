@@ -107,4 +107,13 @@ RSpec.describe 'Orders Integration' do
     cancel_order_response = Patch::Order.cancel_order(order_to_cancel_id)
     expect(cancel_order_response.data.state).to eq 'cancelled'
   end
+
+  it 'supports create with a vintage year' do
+    create_order_response =
+      Patch::Order.create_order(mass_g: 100, vintage_year: 2022)
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.mass_g).to eq(100)
+  end
 end
