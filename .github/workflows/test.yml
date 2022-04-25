@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby-version: [3.0.1, 2.7.4, 2.6.8]
+        ruby-version: [3.0.2, 2.7.4, 2.6.8]
       max-parallel: 1
 
     steps:
@@ -23,9 +23,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
-
-      - name: Install Ruby Dependencies
-        run: bundle install
+          bundler-cache: true
 
       - name: Build Gem
         run: gem build -o patch_ruby.gem patch_ruby.gemspec
@@ -34,3 +32,11 @@ jobs:
         env:
           SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: bundle exec rspec
+
+      - name: Notify slack
+        if: always()
+        uses: kpritam/slack-job-status-action@v1
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel: eng-notifications
