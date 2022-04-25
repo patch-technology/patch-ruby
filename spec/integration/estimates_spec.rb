@@ -27,7 +27,7 @@ RSpec.describe 'Estimates Integration' do
     )
 
     expect(flight_estimate.data.type).to eq 'flight'
-    expect(flight_estimate.data.mass_g).to eq 1_000_622
+    expect(flight_estimate.data.mass_g).to be >= 1_000_000
   end
 
   it 'supports creating flight estimates with origin and destination' do
