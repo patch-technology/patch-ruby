@@ -27,6 +27,14 @@ module Patch
 
     attr_accessor :vintage_year
 
+    attr_accessor :total_price
+
+    attr_accessor :currency
+
+    attr_accessor :amount
+
+    attr_accessor :unit
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -57,7 +65,11 @@ module Patch
         :'project_id' => :'project_id',
         :'metadata' => :'metadata',
         :'state' => :'state',
-        :'vintage_year' => :'vintage_year'
+        :'vintage_year' => :'vintage_year',
+        :'total_price' => :'total_price',
+        :'currency' => :'currency',
+        :'amount' => :'amount',
+        :'unit' => :'unit'
       }
     end
 
@@ -74,7 +86,11 @@ module Patch
         :'project_id' => :'String',
         :'metadata' => :'Object',
         :'state' => :'String',
-        :'vintage_year' => :'Integer'
+        :'vintage_year' => :'Integer',
+        :'total_price' => :'Integer',
+        :'currency' => :'String',
+        :'amount' => :'Integer',
+        :'unit' => :'String'
       }
     end
 
@@ -86,7 +102,11 @@ module Patch
         :'project_id',
         :'metadata',
         :'state',
-        :'vintage_year'
+        :'vintage_year',
+        :'total_price',
+        :'currency',
+        :'amount',
+        :'unit'
       ])
     end
 
@@ -140,6 +160,22 @@ module Patch
       if attributes.key?(:'vintage_year')
         self.vintage_year = attributes[:'vintage_year']
       end
+
+      if attributes.key?(:'total_price')
+        self.total_price = attributes[:'total_price']
+      end
+
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
+      end
+
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
+      end
+
+      if attributes.key?(:'unit')
+        self.unit = attributes[:'unit']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -166,6 +202,18 @@ module Patch
         invalid_properties.push('invalid value for "vintage_year", must be greater than or equal to 1900.')
       end
 
+      if !@total_price.nil? && @total_price < 1
+        invalid_properties.push('invalid value for "total_price", must be greater than or equal to 1.')
+      end
+
+      if !@amount.nil? && @amount > 100000000000
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000.')
+      end
+
+      if !@amount.nil? && @amount < 0
+        invalid_properties.push('invalid value for "amount", must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -179,6 +227,11 @@ module Patch
       return false unless state_validator.valid?(@state)
       return false if !@vintage_year.nil? && @vintage_year > 2100
       return false if !@vintage_year.nil? && @vintage_year < 1900
+      return false if !@total_price.nil? && @total_price < 1
+      return false if !@amount.nil? && @amount > 100000000000
+      return false if !@amount.nil? && @amount < 0
+      unit_validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      return false unless unit_validator.valid?(@unit)
       true
     end
 
@@ -230,6 +283,40 @@ module Patch
       @vintage_year = vintage_year
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] total_price Value to be assigned
+    def total_price=(total_price)
+      if !total_price.nil? && total_price < 1
+        fail ArgumentError, 'invalid value for "total_price", must be greater than or equal to 1.'
+      end
+
+      @total_price = total_price
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] amount Value to be assigned
+    def amount=(amount)
+      if !amount.nil? && amount > 100000000000
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000.'
+      end
+
+      if !amount.nil? && amount < 0
+        fail ArgumentError, 'invalid value for "amount", must be greater than or equal to 0.'
+      end
+
+      @amount = amount
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] unit Object to be assigned
+    def unit=(unit)
+      validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      unless validator.valid?(unit)
+        fail ArgumentError, "invalid value for \"unit\", must be one of #{validator.allowable_values}."
+      end
+      @unit = unit
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -240,7 +327,11 @@ module Patch
           project_id == o.project_id &&
           metadata == o.metadata &&
           state == o.state &&
-          vintage_year == o.vintage_year
+          vintage_year == o.vintage_year &&
+          total_price == o.total_price &&
+          currency == o.currency &&
+          amount == o.amount &&
+          unit == o.unit
     end
 
     # @see the `==` method
@@ -252,7 +343,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, total_price_cents_usd, project_id, metadata, state, vintage_year].hash
+      [mass_g, total_price_cents_usd, project_id, metadata, state, vintage_year, total_price, currency, amount, unit].hash
     end
 
     # Builds the object from hash

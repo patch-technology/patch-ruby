@@ -116,4 +116,36 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.id).not_to be_nil
     expect(create_order_response.data.mass_g).to eq(100)
   end
+
+  it 'supports create with an amount and unit' do
+    create_order_response =
+      Patch::Order.create_order(amount: 100, unit: "g")
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.amount).to eq(100)
+    expect(create_order_response.data.unit).to eq("g")
+    expect(create_order_response.data.inventory[0]).to be_an_instance_of(
+      Patch::OrderInventory
+    )
+    expect(create_order_response.data.inventory[0].project).to be_an_instance_of(
+      Patch::OrderInventoryProject
+    )
+    expect(create_order_response.data.inventory[0].unit).to eq("g")
+  end
+
+  it 'supports create with a total price and currency' do
+    create_order_response =
+      Patch::Order.create_order(total_price: 100, currency: "EUR")
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(
+      create_order_response.data.price + create_order_response.data.patch_fee
+    ).to be > 99
+    expect(
+      create_order_response.data.price + create_order_response.data.patch_fee
+    ).to be < 101
+    expect(create_order_response.data.currency).to eq "EUR"
+  end
 end

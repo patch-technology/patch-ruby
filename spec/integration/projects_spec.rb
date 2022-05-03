@@ -63,6 +63,15 @@ RSpec.describe 'Projects Integration' do
       expect(parent_type.slug).to be_an_instance_of(String)
 
       expect(project.highlights).to be_an_instance_of(Array)
+
+      inventory = project.inventory;
+      expect(inventory).to be_an_instance_of(Array)
+      expect(inventory[0]).to be_an_instance_of(Patch::Inventory)
+      expect(inventory[0].vintage_year).to be_an_instance_of(Integer)
+      expect(inventory[0].amount_available).to be_an_instance_of(Integer)
+      expect(inventory[0].price).to be_an_instance_of(Integer)
+      expect(inventory[0].currency).to be_an_instance_of(String)
+      expect(inventory[0].unit).to be_an_instance_of(String)
     end
   end
 end
