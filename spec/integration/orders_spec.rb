@@ -142,10 +142,10 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.id).not_to be_nil
     expect(
       create_order_response.data.price + create_order_response.data.patch_fee
-    ).to be > 99
+    ).to be >= 99
     expect(
       create_order_response.data.price + create_order_response.data.patch_fee
-    ).to be < 101
+    ).to be <= 101
     expect(create_order_response.data.currency).to eq "EUR"
   end
 end
