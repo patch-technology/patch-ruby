@@ -51,9 +51,9 @@ end
 
 ### Orders
 
-In Patch, orders represent a purchase of carbon offsets or negative emissions by mass. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
+In Patch, orders represent a purchase of carbon offsets or negative emissions by amount. Place orders directly if you know the amount of carbon dioxide you would like to sequester. If you do not know how much to purchase, use an estimate.
 
-You can also create an order with a maximum desired price, and we'll allocate enough mass to
+You can also create an order with a maximum desired price, and we'll allocate enough to
 fulfill the order for you.
 
 [API Reference](https://docs.patch.io/#/?id=orders)
@@ -62,23 +62,25 @@ fulfill the order for you.
 
 ```ruby
 # Create an order - you can create an order
-# providing either mass_g or total_price_cents_usd, but not both
+# providing either amount (and unit) or total_price (and currency), but not both
 
-# Create order with mass
-mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
-Patch::Order.create_order(mass_g: mass)
+# Create order with amount
+amount = 1_000_000 # Pass in the amount in unit specified
+unit = "g"
+Patch::Order.create_order(amount: amount, unit: unit)
 
-# Create an order with maximum total price
-total_price_cents_usd = 5_00 # Pass in the total price in cents (i.e. 5 dollars)
-Patch::Order.create_order(total_price_cents_usd: total_price_cents_usd)
+# Create an order with total price
+total_price = 5_00 # Pass in the total price in smallest currency unit (ie cents for USD).
+currency = "USD"
+Patch::Order.create_order(total_price: total_price, currency: currency)
 
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID
-Patch::Order.create_order(mass_g: mass, project_id: project_id)
+Patch::Order.create_order(amount: amount, unit: unit, project_id: project_id)
 
 ## Orders also accept a metadata field (optional)
 metadata = {user: "john doe"}
-Patch::Order.create_order(mass_g: mass, metadata: metadata)
+Patch::Order.create_order(amount: amount, unit: unit, metadata: metadata)
 
 # Retrieve an order
 order_id = 'ord_test_1234' # Pass in the order's id

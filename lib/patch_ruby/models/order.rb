@@ -21,7 +21,7 @@ module Patch
     # The timestamp at which the order was created
     attr_accessor :created_at
 
-    # The amount of carbon offsets in grams purchased through this order.
+    # DEPRECATED, use `amount` and `unit` fields instead. The amount of carbon offsets in grams purchased through this order.
     attr_accessor :mass_g
 
     # A boolean indicating if this order is a production or test mode order.
@@ -30,13 +30,28 @@ module Patch
     # The current state of the order.
     attr_accessor :state
 
+    # The amount in `unit`s purchased through this order.
+    attr_accessor :amount
+
+    # The unit of measurement (ie \"g\" or \"Wh\") for the `amount` ordered.
+    attr_accessor :unit
+
+    # The total price for the `amount` ordered. Prices are always represented in the smallest currency unit (ie cents for USD).
+    attr_accessor :price
+
+    # The Patch Fee for this order. Patch Fee is always represented in the smallest currency unit (ie cents for USD).
+    attr_accessor :patch_fee
+
+    # The currency code for the `price` and `patch_fee`.
+    attr_accessor :currency
+
     # DEPRECATED. Indicates if the order has been fully allocated to projects.
     attr_accessor :allocation_state
 
-    # The total price in cents USD of the carbon offsets purchased through this order.
+    # DEPRECATED, use the `price` and `currency` fields instead. The total price in cents USD of the carbon offsets purchased through this order.
     attr_accessor :price_cents_usd
 
-    # The Patch Fee in cents USD for this order.
+    # DEPRECATED, use the `patch_fee` and `currency` fields instead. The Patch Fee in cents USD for this order.
     attr_accessor :patch_fee_cents_usd
 
     # DEPRECATED. An array containing the inventory allocations for this order.
@@ -47,6 +62,9 @@ module Patch
 
     # An optional JSON object containing metadata for this order.
     attr_accessor :metadata
+
+    # An array containing the inventory allocated for this order. Inventory is grouped by project, vintage year, and price.
+    attr_accessor :inventory
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -78,12 +96,18 @@ module Patch
         :'mass_g' => :'mass_g',
         :'production' => :'production',
         :'state' => :'state',
+        :'amount' => :'amount',
+        :'unit' => :'unit',
+        :'price' => :'price',
+        :'patch_fee' => :'patch_fee',
+        :'currency' => :'currency',
         :'allocation_state' => :'allocation_state',
         :'price_cents_usd' => :'price_cents_usd',
         :'patch_fee_cents_usd' => :'patch_fee_cents_usd',
         :'allocations' => :'allocations',
         :'registry_url' => :'registry_url',
-        :'metadata' => :'metadata'
+        :'metadata' => :'metadata',
+        :'inventory' => :'inventory'
       }
     end
 
@@ -100,12 +124,18 @@ module Patch
         :'mass_g' => :'Integer',
         :'production' => :'Boolean',
         :'state' => :'String',
+        :'amount' => :'Integer',
+        :'unit' => :'String',
+        :'price' => :'Integer',
+        :'patch_fee' => :'Integer',
+        :'currency' => :'String',
         :'allocation_state' => :'String',
         :'price_cents_usd' => :'Integer',
         :'patch_fee_cents_usd' => :'Integer',
         :'allocations' => :'Array<Allocation>',
         :'registry_url' => :'String',
-        :'metadata' => :'Object'
+        :'metadata' => :'Object',
+        :'inventory' => :'Array<OrderInventory>'
       }
     end
 
@@ -164,6 +194,26 @@ module Patch
         self.state = attributes[:'state']
       end
 
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
+      end
+
+      if attributes.key?(:'unit')
+        self.unit = attributes[:'unit']
+      end
+
+      if attributes.key?(:'price')
+        self.price = attributes[:'price']
+      end
+
+      if attributes.key?(:'patch_fee')
+        self.patch_fee = attributes[:'patch_fee']
+      end
+
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
+      end
+
       if attributes.key?(:'allocation_state')
         self.allocation_state = attributes[:'allocation_state']
       end
@@ -188,6 +238,12 @@ module Patch
 
       if attributes.key?(:'metadata')
         self.metadata = attributes[:'metadata']
+      end
+
+      if attributes.key?(:'inventory')
+        if (value = attributes[:'inventory']).is_a?(Array)
+          self.inventory = value
+        end
       end
     end
 
@@ -219,6 +275,34 @@ module Patch
         invalid_properties.push('invalid value for "state", state cannot be nil.')
       end
 
+      if @amount.nil?
+        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
+      end
+
+      if @amount > 100000000000
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000.')
+      end
+
+      if @amount < 0
+        invalid_properties.push('invalid value for "amount", must be greater than or equal to 0.')
+      end
+
+      if @unit.nil?
+        invalid_properties.push('invalid value for "unit", unit cannot be nil.')
+      end
+
+      if @price.nil?
+        invalid_properties.push('invalid value for "price", price cannot be nil.')
+      end
+
+      if @patch_fee.nil?
+        invalid_properties.push('invalid value for "patch_fee", patch_fee cannot be nil.')
+      end
+
+      if @currency.nil?
+        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
+      end
+
       if @allocation_state.nil?
         invalid_properties.push('invalid value for "allocation_state", allocation_state cannot be nil.')
       end
@@ -241,6 +325,13 @@ module Patch
       return false if @state.nil?
       state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "processing", "complete", "cancelled"])
       return false unless state_validator.valid?(@state)
+      return false if @amount.nil?
+      return false if @amount > 100000000000
+      return false if @amount < 0
+      return false if @unit.nil?
+      return false if @price.nil?
+      return false if @patch_fee.nil?
+      return false if @currency.nil?
       return false if @allocation_state.nil?
       allocation_state_validator = EnumAttributeValidator.new('String', ["pending", "allocated"])
       return false unless allocation_state_validator.valid?(@allocation_state)
@@ -276,6 +367,24 @@ module Patch
       @state = state
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] amount Value to be assigned
+    def amount=(amount)
+      if amount.nil?
+        fail ArgumentError, 'amount cannot be nil'
+      end
+
+      if amount > 100000000000
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000.'
+      end
+
+      if amount < 0
+        fail ArgumentError, 'invalid value for "amount", must be greater than or equal to 0.'
+      end
+
+      @amount = amount
+    end
+
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] allocation_state Object to be assigned
     def allocation_state=(allocation_state)
@@ -296,12 +405,18 @@ module Patch
           mass_g == o.mass_g &&
           production == o.production &&
           state == o.state &&
+          amount == o.amount &&
+          unit == o.unit &&
+          price == o.price &&
+          patch_fee == o.patch_fee &&
+          currency == o.currency &&
           allocation_state == o.allocation_state &&
           price_cents_usd == o.price_cents_usd &&
           patch_fee_cents_usd == o.patch_fee_cents_usd &&
           allocations == o.allocations &&
           registry_url == o.registry_url &&
-          metadata == o.metadata
+          metadata == o.metadata &&
+          inventory == o.inventory
     end
 
     # @see the `==` method
@@ -313,7 +428,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, mass_g, production, state, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata].hash
+      [id, created_at, mass_g, production, state, amount, unit, price, patch_fee, currency, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata, inventory].hash
     end
 
     # Builds the object from hash

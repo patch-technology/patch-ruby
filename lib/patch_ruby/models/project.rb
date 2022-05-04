@@ -51,10 +51,10 @@ module Patch
     # An array of URLs for photos of the project.
     attr_accessor :photos
 
-    # The average price per tonne in USD cents for carbon offsets supplied by this project.
+    # DEPRECATED. The average price per tonne in USD cents for carbon offsets supplied by this project.
     attr_accessor :average_price_per_tonne_cents_usd
 
-    # The remaining mass in grams available for purchase for this project.
+    # DEPRECATED. The remaining mass in grams available for purchase for this project.
     attr_accessor :remaining_mass_g
 
     # The name of the project verifier, when applicable. A verifier is the organization that verifies the calculations of the actual amount of greenhouse gas emissions that have been avoided or sequestered through implementation of the project.
@@ -71,8 +71,11 @@ module Patch
 
     attr_accessor :technology_type
 
-    # An array of objects containing the highlight's slug, title, and a URL for the corresponding icon.  A highlight's title is a short string that spotlights a characteristic about the project.
+    # An array of objects containing the highlight's slug, title, and a URL for the corresponding icon. A highlight's title is a short string that spotlights a characteristic about the project.
     attr_accessor :highlights
+
+    # An array of objects containing available inventory for a project. Available inventory is grouped by a project's vintage year and returns amount and pricing available for a given vintage year.
+    attr_accessor :inventory
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -118,7 +121,8 @@ module Patch
         :'sdgs' => :'sdgs',
         :'tagline' => :'tagline',
         :'technology_type' => :'technology_type',
-        :'highlights' => :'highlights'
+        :'highlights' => :'highlights',
+        :'inventory' => :'inventory'
       }
     end
 
@@ -149,7 +153,8 @@ module Patch
         :'sdgs' => :'Array<Sdg>',
         :'tagline' => :'String',
         :'technology_type' => :'TechnologyType',
-        :'highlights' => :'Array<Highlight>'
+        :'highlights' => :'Array<Highlight>',
+        :'inventory' => :'Array<Inventory>'
       }
     end
 
@@ -280,6 +285,12 @@ module Patch
           self.highlights = value
         end
       end
+
+      if attributes.key?(:'inventory')
+        if (value = attributes[:'inventory']).is_a?(Array)
+          self.inventory = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -326,6 +337,10 @@ module Patch
         invalid_properties.push('invalid value for "highlights", highlights cannot be nil.')
       end
 
+      if @inventory.nil?
+        invalid_properties.push('invalid value for "inventory", inventory cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -344,6 +359,7 @@ module Patch
       return false if @remaining_mass_g.nil?
       return false if @technology_type.nil?
       return false if @highlights.nil?
+      return false if @inventory.nil?
       true
     end
 
@@ -381,7 +397,8 @@ module Patch
           sdgs == o.sdgs &&
           tagline == o.tagline &&
           technology_type == o.technology_type &&
-          highlights == o.highlights
+          highlights == o.highlights &&
+          inventory == o.inventory
     end
 
     # @see the `==` method
@@ -393,7 +410,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, verifier, standard, sdgs, tagline, technology_type, highlights].hash
+      [id, production, name, description, type, mechanism, country, state, latitude, longitude, developer, photos, average_price_per_tonne_cents_usd, remaining_mass_g, verifier, standard, sdgs, tagline, technology_type, highlights, inventory].hash
     end
 
     # Builds the object from hash

@@ -11,5 +11,5 @@ OpenAPI Generator version: 5.3.1
 =end
 
 module Patch
-  VERSION = '1.20.0'
+  VERSION = '1.21.0'
 end
