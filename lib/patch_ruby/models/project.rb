@@ -51,10 +51,10 @@ module Patch
     # An array of URLs for photos of the project.
     attr_accessor :photos
 
-    # The average price per tonne in USD cents for carbon offsets supplied by this project.
+    # DEPRECATED. The average price per tonne in USD cents for carbon offsets supplied by this project.
     attr_accessor :average_price_per_tonne_cents_usd
 
-    # The remaining mass in grams available for purchase for this project.
+    # DEPRECATED. The remaining mass in grams available for purchase for this project.
     attr_accessor :remaining_mass_g
 
     # The name of the project verifier, when applicable. A verifier is the organization that verifies the calculations of the actual amount of greenhouse gas emissions that have been avoided or sequestered through implementation of the project.

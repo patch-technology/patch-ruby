@@ -64,7 +64,7 @@ RSpec.describe 'Projects Integration' do
 
       expect(project.highlights).to be_an_instance_of(Array)
 
-      inventory = project.inventory;
+      inventory = project.inventory
       expect(inventory).to be_an_instance_of(Array)
       expect(inventory[0]).to be_an_instance_of(Patch::Inventory)
       expect(inventory[0].vintage_year).to be_an_instance_of(Integer)
