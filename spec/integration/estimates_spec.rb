@@ -60,8 +60,8 @@ RSpec.describe 'Estimates Integration' do
     )
 
     expect(vehicle_estimate.data.type).to eq 'vehicle'
-    expect(vehicle_estimate.data.mass_g).to eq 5_500
-    expect(vehicle_estimate.data.order.mass_g).to eq 5_500
+    expect(vehicle_estimate.data.mass_g).to be >= 1_000
+    expect(vehicle_estimate.data.order.amount).to be >= 1_000
   end
 
   it 'supports creating vehicle estimates with partial information' do
