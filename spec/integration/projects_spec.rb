@@ -38,40 +38,48 @@ RSpec.describe 'Projects Integration' do
     end
   end
 
-  describe 'returned fields' do
-    it 'returns the expected fields' do
-      project = Patch::Project.retrieve_projects(page: 1).data.first
+  it 'returns the expected fields' do
+    project = Patch::Project.retrieve_projects(page: 1).data.first
 
-      keys = attributes_for(:project).keys
-      expect(project.to_hash.keys).to include(*keys)
+    keys = attributes_for(:project).keys
+    expect(project.to_hash.keys).to include(*keys)
 
-      expect(project.photos).to be_an_instance_of(Array)
-      expect(project.average_price_per_tonne_cents_usd)
-        .to be_an_instance_of(Integer)
-      expect(project.remaining_mass_g).to be_an_instance_of(Integer)
-      expect(project.longitude).to be_an_instance_of(Float)
-      expect(project.latitude).to be_an_instance_of(Float)
+    expect(project.photos).to be_an_instance_of(Array)
+    expect(project.average_price_per_tonne_cents_usd)
+      .to be_an_instance_of(Integer)
+    expect(project.remaining_mass_g).to be_an_instance_of(Integer)
+    expect(project.longitude).to be_an_instance_of(Float)
+    expect(project.latitude).to be_an_instance_of(Float)
 
-      expect(project.technology_type)
-        .to be_an_instance_of(Patch::TechnologyType)
-      expect(project.technology_type.name).to be_an_instance_of(String)
-      expect(project.technology_type.slug).to be_an_instance_of(String)
+    expect(project.technology_type)
+      .to be_an_instance_of(Patch::TechnologyType)
+    expect(project.technology_type.name).to be_an_instance_of(String)
+    expect(project.technology_type.slug).to be_an_instance_of(String)
 
-      parent_type = project.technology_type.parent_technology_type
-      expect(parent_type).to be_an_instance_of(Patch::ParentTechnologyType)
-      expect(parent_type.name).to be_an_instance_of(String)
-      expect(parent_type.slug).to be_an_instance_of(String)
+    parent_type = project.technology_type.parent_technology_type
+    expect(parent_type).to be_an_instance_of(Patch::ParentTechnologyType)
+    expect(parent_type.name).to be_an_instance_of(String)
+    expect(parent_type.slug).to be_an_instance_of(String)
 
-      expect(project.highlights).to be_an_instance_of(Array)
+    expect(project.highlights).to be_an_instance_of(Array)
 
-      inventory = project.inventory
-      expect(inventory).to be_an_instance_of(Array)
-      expect(inventory[0]).to be_an_instance_of(Patch::Inventory)
-      expect(inventory[0].vintage_year).to be_an_instance_of(Integer)
-      expect(inventory[0].amount_available).to be_an_instance_of(Integer)
-      expect(inventory[0].price).to be_an_instance_of(Integer)
-      expect(inventory[0].currency).to be_an_instance_of(String)
-      expect(inventory[0].unit).to be_an_instance_of(String)
-    end
+    inventory = project.inventory
+    expect(inventory).to be_an_instance_of(Array)
+    expect(inventory[0]).to be_an_instance_of(Patch::Inventory)
+    expect(inventory[0].vintage_year).to be_an_instance_of(Integer)
+    expect(inventory[0].amount_available).to be_an_instance_of(Integer)
+    expect(inventory[0].price).to be_an_instance_of(Integer)
+    expect(inventory[0].currency).to be_an_instance_of(String)
+    expect(inventory[0].unit).to be_an_instance_of(String)
+  end
+
+  it 'retrieves projects in the requested language' do
+    projects_response = Patch::Project.retrieve_projects(accept_language: 'fr')
+
+    expect(projects_response.data.first.name).to include 'Projet' # French
+
+    project_id = projects_response.data.first.id
+    project_response = Patch::Project.retrieve_project(project_id, accept_language: 'fr')
+    expect(project_response.data.name).to include 'Projet' # Frenc
   end
 end
