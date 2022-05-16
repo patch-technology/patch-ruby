@@ -189,6 +189,15 @@ Patch::Project.retrieve_projects(type: type)
 # Retrieve a list of projects with at least 100 grams of available offsets
 minimum_available_mass = 100
 Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
+
+# Retrieve a project in a different language
+# See http://docs.patch.test:3000/#/internationalization for more information and support 
+project_id = 'pro_test_1234'
+Patch::Project.retrieve_project(project_id, accept_language: 'fr')
+
+# Retrieve a list of projects in a different language
+# See http://docs.patch.test:3000/#/internationalization for more information and support 
+Patch::Project.retrieve_projects(accept_language: 'fr')
 ```
 ## Contributing
 

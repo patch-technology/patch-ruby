@@ -28,6 +28,7 @@ module Patch
     # Retrieves a project available on Patch's platform. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language 
     # @return [ProjectResponse]
     def retrieve_project(id, opts = {})
     
@@ -39,6 +40,7 @@ module Patch
     # Retrieves a project available on Patch&#39;s platform. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :accept_language 
     # @return [Array<(ProjectResponse, Integer, Hash)>] ProjectResponse data, response status code and response headers
     def retrieve_project_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -58,6 +60,7 @@ module Patch
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -95,6 +98,7 @@ module Patch
     # @option opts [String] :country 
     # @option opts [String] :type 
     # @option opts [Integer] :minimum_available_mass 
+    # @option opts [String] :accept_language 
     # @return [ProjectListResponse]
     def retrieve_projects(opts = {})
     
@@ -109,6 +113,7 @@ module Patch
     # @option opts [String] :country 
     # @option opts [String] :type 
     # @option opts [Integer] :minimum_available_mass 
+    # @option opts [String] :accept_language 
     # @return [Array<(ProjectListResponse, Integer, Hash)>] ProjectListResponse data, response status code and response headers
     def retrieve_projects_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -128,6 +133,7 @@ module Patch
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}

@@ -77,28 +77,6 @@ module Patch
     # An array of objects containing available inventory for a project. Available inventory is grouped by a project's vintage year and returns amount and pricing available for a given vintage year.
     attr_accessor :inventory
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -351,8 +329,6 @@ module Patch
       return false if @production.nil?
       return false if @name.nil?
       return false if @description.nil?
-      mechanism_validator = EnumAttributeValidator.new('String', ["removal", "avoidance"])
-      return false unless mechanism_validator.valid?(@mechanism)
       return false if @country.nil?
       return false if @developer.nil?
       return false if @average_price_per_tonne_cents_usd.nil?
@@ -361,16 +337,6 @@ module Patch
       return false if @highlights.nil?
       return false if @inventory.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] mechanism Object to be assigned
-    def mechanism=(mechanism)
-      validator = EnumAttributeValidator.new('String', ["removal", "avoidance"])
-      unless validator.valid?(mechanism)
-        fail ArgumentError, "invalid value for \"mechanism\", must be one of #{validator.allowable_values}."
-      end
-      @mechanism = mechanism
     end
 
     # Checks equality by comparing each attribute.
