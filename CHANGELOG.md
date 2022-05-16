@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adds support for the `acceptLanguage` option on `projects`, to add support for the `Accept-Language` header.
+- Adds support for the `accept_language` option on `projects`, to add support for the `Accept-Language` header.
 
 ## [1.21.0] - 2022-05-03
 
