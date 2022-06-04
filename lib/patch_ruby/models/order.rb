@@ -24,7 +24,7 @@ module Patch
     # DEPRECATED, use `amount` and `unit` fields instead. The amount of carbon offsets in grams purchased through this order.
     attr_accessor :mass_g
 
-    # A boolean indicating if this order is a production or test mode order.
+    # A boolean indicating if this order is a production or demo mode order.
     attr_accessor :production
 
     # The current state of the order.
@@ -65,6 +65,8 @@ module Patch
 
     # An array containing the inventory allocated for this order. Inventory is grouped by project, vintage year, and price.
     attr_accessor :inventory
+
+    attr_accessor :issued_to
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -107,7 +109,8 @@ module Patch
         :'allocations' => :'allocations',
         :'registry_url' => :'registry_url',
         :'metadata' => :'metadata',
-        :'inventory' => :'inventory'
+        :'inventory' => :'inventory',
+        :'issued_to' => :'issued_to'
       }
     end
 
@@ -135,7 +138,8 @@ module Patch
         :'allocations' => :'Array<Allocation>',
         :'registry_url' => :'String',
         :'metadata' => :'Object',
-        :'inventory' => :'Array<OrderInventory>'
+        :'inventory' => :'Array<OrderInventory>',
+        :'issued_to' => :'IssuedTo'
       }
     end
 
@@ -244,6 +248,10 @@ module Patch
         if (value = attributes[:'inventory']).is_a?(Array)
           self.inventory = value
         end
+      end
+
+      if attributes.key?(:'issued_to')
+        self.issued_to = attributes[:'issued_to']
       end
     end
 
@@ -416,7 +424,8 @@ module Patch
           allocations == o.allocations &&
           registry_url == o.registry_url &&
           metadata == o.metadata &&
-          inventory == o.inventory
+          inventory == o.inventory &&
+          issued_to == o.issued_to
     end
 
     # @see the `==` method
@@ -428,7 +437,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, mass_g, production, state, amount, unit, price, patch_fee, currency, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata, inventory].hash
+      [id, created_at, mass_g, production, state, amount, unit, price, patch_fee, currency, allocation_state, price_cents_usd, patch_fee_cents_usd, allocations, registry_url, metadata, inventory, issued_to].hash
     end
 
     # Builds the object from hash

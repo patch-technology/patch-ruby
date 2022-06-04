@@ -14,22 +14,13 @@ require 'date'
 require 'time'
 
 module Patch
-  class Allocation
-    # A unique uid for the record. UIDs will be prepended by all_prod or all_test depending on the mode it was created in.
-    attr_accessor :id
-
-    # A boolean indicating if this project is a production or demo mode project.
-    attr_accessor :production
-
-    # The amount (in grams) of allocated carbon offsets.
-    attr_accessor :mass_g
+  class PlaceOrderRequest
+    attr_accessor :issued_to
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'production' => :'production',
-        :'mass_g' => :'mass_g'
+        :'issued_to' => :'issued_to'
       }
     end
 
@@ -41,15 +32,14 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'production' => :'Boolean',
-        :'mass_g' => :'Integer'
+        :'issued_to' => :'V1OrdersIssuedTo'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'issued_to'
       ])
     end
 
@@ -58,8 +48,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::AllocationsApi::OPERATIONS') && Patch::AllocationsApi::OPERATIONS.include?(message)
-        Patch::AllocationsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::PlaceOrderRequestsApi::OPERATIONS') && Patch::PlaceOrderRequestsApi::OPERATIONS.include?(message)
+        Patch::PlaceOrderRequestsApi.new.send(message, *args)
       else
         super
       end
@@ -69,27 +59,19 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Allocation` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::PlaceOrderRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Allocation`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::PlaceOrderRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'production')
-        self.production = attributes[:'production']
-      end
-
-      if attributes.key?(:'mass_g')
-        self.mass_g = attributes[:'mass_g']
+      if attributes.key?(:'issued_to')
+        self.issued_to = attributes[:'issued_to']
       end
     end
 
@@ -97,27 +79,12 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
-      if @production.nil?
-        invalid_properties.push('invalid value for "production", production cannot be nil.')
-      end
-
-      if @mass_g.nil?
-        invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @production.nil?
-      return false if @mass_g.nil?
       true
     end
 
@@ -126,9 +93,7 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          production == o.production &&
-          mass_g == o.mass_g
+          issued_to == o.issued_to
     end
 
     # @see the `==` method
@@ -140,7 +105,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, mass_g].hash
+      [issued_to].hash
     end
 
     # Builds the object from hash

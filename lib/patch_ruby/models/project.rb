@@ -18,7 +18,7 @@ module Patch
     # A unique uid for the record. UIDs will be prepended by pro_prod or pro_test depending on the mode it was created in.
     attr_accessor :id
 
-    # A boolean indicating if this project is a production or test mode project.
+    # A boolean indicating if this project is a production or demo mode project.
     attr_accessor :production
 
     # The name of the project.

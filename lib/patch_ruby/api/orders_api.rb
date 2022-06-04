@@ -28,19 +28,19 @@ module Patch
       @api_client = api_client
     end
     # Cancel an order
-    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the `draft` or `placed` state can be cancelled. 
-    # @param id [String] 
+    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the `draft` or `placed` state can be cancelled.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def cancel_order(id, opts = {})
-    
+
       data, _status_code, _headers = cancel_order_with_http_info(id, opts)
       data
     end
 
     # Cancel an order
-    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; or &#x60;placed&#x60; state can be cancelled. 
-    # @param id [String] 
+    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; or &#x60;placed&#x60; state can be cancelled.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
     def cancel_order_with_http_info(id, opts = {})
@@ -92,19 +92,19 @@ module Patch
     end
 
     # Creates an order
-    # Creates an order in the `placed` or `draft` state. 
-    # @param create_order_request [CreateOrderRequest] 
+    # Creates an order in the `placed` or `draft` state.
+    # @param create_order_request [CreateOrderRequest]
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def create_order(create_order_request = {}, opts = {})
-      _create_order_request = Patch::CreateOrderRequest.new(create_order_request) 
+      _create_order_request = Patch::CreateOrderRequest.new(create_order_request)
       data, _status_code, _headers = create_order_with_http_info(_create_order_request, opts)
       data
     end
 
     # Creates an order
-    # Creates an order in the &#x60;placed&#x60; or &#x60;draft&#x60; state. 
-    # @param create_order_request [CreateOrderRequest] 
+    # Creates an order in the &#x60;placed&#x60; or &#x60;draft&#x60; state.
+    # @param create_order_request [CreateOrderRequest]
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
     def create_order_with_http_info(create_order_request, opts = {})
@@ -161,20 +161,22 @@ module Patch
     end
 
     # Place an order
-    # Placing an order confirms an order's allocation of offsets. Only orders that are in the `draft` state can be placed 
-    # @param id [String] 
+    # Placing an order confirms an order's allocation of offsets. Only orders that are in the `draft` state can be placed
+    # @param id [String]
     # @param [Hash] opts the optional parameters
+    # @option opts [PlaceOrderRequest] :place_order_request
     # @return [OrderResponse]
-    def place_order(id, opts = {})
-    
-      data, _status_code, _headers = place_order_with_http_info(id, opts)
+    def place_order(id, place_order_request = {}, opts = {})
+      _place_order_request = Patch::PlaceOrderRequest.new(place_order_request)
+      data, _status_code, _headers = place_order_with_http_info(id, opts.merge!({place_order_request: place_order_request}))
       data
     end
 
     # Place an order
-    # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
-    # @param id [String] 
+    # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed
+    # @param id [String]
     # @param [Hash] opts the optional parameters
+    # @option opts [PlaceOrderRequest] :place_order_request
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
     def place_order_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -194,12 +196,17 @@ module Patch
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body]
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'place_order_request'])
 
       # return_type
       return_type = opts[:debug_return_type] || 'OrderResponse'
@@ -225,19 +232,19 @@ module Patch
     end
 
     # Retrieves an order
-    # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
-    # @param id [String] 
+    # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [OrderResponse]
     def retrieve_order(id, opts = {})
-    
+
       data, _status_code, _headers = retrieve_order_with_http_info(id, opts)
       data
     end
 
     # Retrieves an order
-    # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
-    # @param id [String] 
+    # Retrieves a given order and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
     def retrieve_order_with_http_info(id, opts = {})
@@ -289,26 +296,26 @@ module Patch
     end
 
     # Retrieves a list of orders
-    # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
+    # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
-    # @option opts [String] :metadata 
-    # @option opts [String] :metadata_example1 
-    # @option opts [String] :metadata_example2 
+    # @option opts [Integer] :page
+    # @option opts [String] :metadata
+    # @option opts [String] :metadata_example1
+    # @option opts [String] :metadata_example2
     # @return [OrderListResponse]
     def retrieve_orders(opts = {})
-    
+
       data, _status_code, _headers = retrieve_orders_with_http_info(opts)
       data
     end
 
     # Retrieves a list of orders
-    # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for. 
+    # Retrieves a list of orders and its allocation offsets or negative emissions. You can only retrieve orders associated with the organization you are querying for.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :page 
-    # @option opts [String] :metadata 
-    # @option opts [String] :metadata_example1 
-    # @option opts [String] :metadata_example2 
+    # @option opts [Integer] :page
+    # @option opts [String] :metadata
+    # @option opts [String] :metadata_example1
+    # @option opts [String] :metadata_example2
     # @return [Array<(OrderListResponse, Integer, Hash)>] OrderListResponse data, response status code and response headers
     def retrieve_orders_with_http_info(opts = {})
       if @api_client.config.debugging

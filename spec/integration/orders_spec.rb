@@ -42,6 +42,29 @@ RSpec.describe 'Orders Integration' do
     expect(order.registry_url).not_to be_empty
   end
 
+  it 'supports create with issued_to' do
+    retrieve_project_response = Patch::Project.retrieve_project(
+      Constants::BIOMASS_TEST_PROJECT_ID
+    )
+
+    issued_to = {email: 'envimpact@companyb.com', name: 'Company B'}
+    total_price_cents_usd = 50_00
+
+    create_order_response = Patch::Order.create_order(
+      total_price_cents_usd: total_price_cents_usd,
+      issued_to: issued_to
+    )
+
+    expect(create_order_response.success).to eq true
+
+    order = create_order_response.data
+
+    expect(order.id).not_to be_nil
+    expect(order.price_cents_usd + order.patch_fee_cents_usd).to eq total_price_cents_usd
+    expect(order.issued_to.email).to eq(issued_to[:email])
+    expect(order.issued_to.name).to eq(issued_to[:name])
+  end
+
   it 'supports create with a total price' do
     retrieve_project_response = Patch::Project.retrieve_project(
       Constants::BIOMASS_TEST_PROJECT_ID
@@ -106,6 +129,17 @@ RSpec.describe 'Orders Integration' do
 
     cancel_order_response = Patch::Order.cancel_order(order_to_cancel_id)
     expect(cancel_order_response.data.state).to eq 'cancelled'
+  end
+
+  it 'supports place order with issued_to' do
+    create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
+    order_to_place_id = create_estimate_to_place_response.data.order.id
+
+    issued_to = {email: 'envimpact@companya.com', name: 'Company A'}
+    place_order_response = Patch::Order.place_order(order_to_place_id, { issued_to: issued_to})
+    expect(place_order_response.data.state).to eq 'placed'
+    expect(place_order_response.data.issued_to.email).to eq(issued_to[:email])
+    expect(place_order_response.data.issued_to.name).to eq(issued_to[:name])
   end
 
   it 'supports create with a vintage year' do

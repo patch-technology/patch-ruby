@@ -74,6 +74,12 @@ total_price = 5_00 # Pass in the total price in smallest currency unit (ie cents
 currency = "USD"
 Patch::Order.create_order(total_price: total_price, currency: currency)
 
+# Create an order with issued_to field (optional)
+total_price = 5_00 # Pass in the total price in smallest currency unit (ie cents for USD).
+currency = "USD"
+issued_to = {email: "envimpact@companya.com", name: "Company A"}
+Patch::Order.create_order(total_price: total_price, currency: currency, issued_to: issued_to)
+
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID
 Patch::Order.create_order(amount: amount, unit: unit, project_id: project_id)
@@ -89,6 +95,11 @@ Patch::Order.retrieve_order(order_id)
 # Place an order
 order_id = 'ord_test_1234' # Pass in the order's id
 Patch::Order.place_order(order_id)
+
+## Placing an order on behalf of another party with the issued_to field (optional)
+order_id = 'ord_test_1234' # Pass in the order's id
+issued_to = {email: "envimpact@companya.com", name: "Company A"}
+Patch::Order.place_order(order_id, issued_to: issued_to)
 
 # Cancel an order
 order_id = 'ord_test_1234' # Pass in the order's id
@@ -191,12 +202,12 @@ minimum_available_mass = 100
 Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
 
 # Retrieve a project in a different language
-# See http://docs.patch.test:3000/#/internationalization for more information and support 
+# See http://docs.patch.test:3000/#/internationalization for more information and support
 project_id = 'pro_test_1234'
 Patch::Project.retrieve_project(project_id, accept_language: 'fr')
 
 # Retrieve a list of projects in a different language
-# See http://docs.patch.test:3000/#/internationalization for more information and support 
+# See http://docs.patch.test:3000/#/internationalization for more information and support
 Patch::Project.retrieve_projects(accept_language: 'fr')
 ```
 ## Contributing
