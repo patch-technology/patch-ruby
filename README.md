@@ -230,6 +230,25 @@ This will create a .gem file. To install the local gem:
 gem install patch_ruby-1.x.x.gem
 ```
 
+Once you have installed the gem, you can easily test with `irb`. Here's an example of testing Order creation:
+```bash
+brett@Bretts-MacBook-Pro patch-ruby $ irb
+irb(main):001:0> require 'patch_ruby'
+=> true
+irb(main):002:0>
+irb(main):003:1* Patch.configure do |config|
+irb(main):004:1*   # Configure the Patch gem with your API key here
+irb(main):005:1*   config.access_token = ENV['SANDBOX_API_KEY']
+irb(main):006:0> end
+=> "[REDACTED]"
+irb(main):007:0> total_price = 5_00
+=> 500
+irb(main):008:0> currency = "USD"
+=> "USD"
+irb(main):009:0> issued_to = {email: "envimpact@companya.com", name: "Company A"}
+irb(main):010:0> Patch::Order.create_order(total_price: total_price, currency: currency, issued_to: issued_to)
+```
+
 ### Running tests
 
 Set up the required environment variable.
