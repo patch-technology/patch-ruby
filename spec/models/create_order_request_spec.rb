@@ -31,7 +31,7 @@ describe 'CreateOrderRequest' do
     let(:instance) { @instance }
     let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g, total_price_cents_usd: @instance.total_price_cents_usd, metadata: @instance.metadata } }
     let(:nullable_properties) do
-      Set.new(%i[mass_g total_price_cents_usd project_id metadata state vintage_year total_price currency amount unit])
+      Set.new(%i[mass_g total_price_cents_usd project_id metadata state vintage_year total_price currency amount unit issued_to])
     end
   end
 

@@ -18,7 +18,7 @@ module Patch
     # A unique uid for the record. UIDs will be prepended by est_prod or est_test depending on the mode it was created in.
     attr_accessor :id
 
-    # A boolean indicating if this estimate is a production or test mode estimate.
+    # A boolean indicating if this estimate is a production or demo mode estimate.
     attr_accessor :production
 
     # The type of estimate. Available types are mass, flight, shipping, vehicle, and crypto.

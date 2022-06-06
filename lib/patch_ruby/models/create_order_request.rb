@@ -35,6 +35,8 @@ module Patch
 
     attr_accessor :unit
 
+    attr_accessor :issued_to
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -69,7 +71,8 @@ module Patch
         :'total_price' => :'total_price',
         :'currency' => :'currency',
         :'amount' => :'amount',
-        :'unit' => :'unit'
+        :'unit' => :'unit',
+        :'issued_to' => :'issued_to'
       }
     end
 
@@ -90,7 +93,8 @@ module Patch
         :'total_price' => :'Integer',
         :'currency' => :'String',
         :'amount' => :'Integer',
-        :'unit' => :'String'
+        :'unit' => :'String',
+        :'issued_to' => :'V1OrdersIssuedTo'
       }
     end
 
@@ -106,7 +110,8 @@ module Patch
         :'total_price',
         :'currency',
         :'amount',
-        :'unit'
+        :'unit',
+        :'issued_to'
       ])
     end
 
@@ -175,6 +180,10 @@ module Patch
 
       if attributes.key?(:'unit')
         self.unit = attributes[:'unit']
+      end
+
+      if attributes.key?(:'issued_to')
+        self.issued_to = attributes[:'issued_to']
       end
     end
 
@@ -331,7 +340,8 @@ module Patch
           total_price == o.total_price &&
           currency == o.currency &&
           amount == o.amount &&
-          unit == o.unit
+          unit == o.unit &&
+          issued_to == o.issued_to
     end
 
     # @see the `==` method
@@ -343,7 +353,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mass_g, total_price_cents_usd, project_id, metadata, state, vintage_year, total_price, currency, amount, unit].hash
+      [mass_g, total_price_cents_usd, project_id, metadata, state, vintage_year, total_price, currency, amount, unit, issued_to].hash
     end
 
     # Builds the object from hash
