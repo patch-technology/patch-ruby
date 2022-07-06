@@ -76,10 +76,10 @@ RSpec.describe 'Projects Integration' do
   it 'retrieves projects in the requested language' do
     projects_response = Patch::Project.retrieve_projects(accept_language: 'fr')
 
-    expect(projects_response.data.first.name).to include 'Projet' # French
+    expect(projects_response.data.first.name).to include 'Démo' # French
 
     project_id = projects_response.data.first.id
     project_response = Patch::Project.retrieve_project(project_id, accept_language: 'fr')
-    expect(project_response.data.name).to include 'Projet' # Frenc
+    expect(project_response.data.name).to include 'Démo' # Frenc
   end
 end
