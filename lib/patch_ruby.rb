@@ -60,7 +60,6 @@ require 'patch_ruby/models/v1_orders_issued_to'
 require 'patch_ruby/api/estimates_api'
 require 'patch_ruby/api/orders_api'
 require 'patch_ruby/api/projects_api'
-require 'patch_ruby/api/shipping_api'
 require 'patch_ruby/api/technology_types_api'
 
 module Patch
