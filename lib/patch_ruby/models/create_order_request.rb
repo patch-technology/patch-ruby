@@ -232,7 +232,7 @@ module Patch
       return false if !@mass_g.nil? && @mass_g > 100000000000
       return false if !@mass_g.nil? && @mass_g < 0
       return false if !@total_price_cents_usd.nil? && @total_price_cents_usd < 1
-      state_validator = EnumAttributeValidator.new('String', ["draft", "placed"])
+      state_validator = EnumAttributeValidator.new('String', ["draft", "reserved", "placed"])
       return false unless state_validator.valid?(@state)
       return false if !@vintage_year.nil? && @vintage_year > 2100
       return false if !@vintage_year.nil? && @vintage_year < 1900
@@ -271,7 +271,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ["draft", "placed"])
+      validator = EnumAttributeValidator.new('String', ["draft", "reserved", "placed"])
       unless validator.valid?(state)
         fail ArgumentError, "invalid value for \"state\", must be one of #{validator.allowable_values}."
       end

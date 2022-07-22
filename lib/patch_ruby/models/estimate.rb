@@ -71,6 +71,8 @@ module Patch
     def self.method_missing(message, *args, &block)
       if Object.const_defined?('Patch::EstimatesApi::OPERATIONS') && Patch::EstimatesApi::OPERATIONS.include?(message)
         Patch::EstimatesApi.new.send(message, *args)
+      elsif Object.const_defined?('Patch::ShippingApi::OPERATIONS') && Patch::ShippingApi::OPERATIONS.include?(message)
+        Patch::ShippingApi.new.send(message, *args)
       else
         super
       end

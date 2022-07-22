@@ -30,7 +30,7 @@ module Patch
     # DEPRECATED. Favor the technology_type field instead.
     attr_accessor :type
 
-    # The mechanism of the project. Either removal or avoidance.
+    # The mechanism of the project. One of: removal, avoidance, avoidance_and_removal.
     attr_accessor :mechanism
 
     # The country of origin of the project.

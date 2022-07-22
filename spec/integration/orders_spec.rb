@@ -47,7 +47,7 @@ RSpec.describe 'Orders Integration' do
       Constants::BIOMASS_TEST_PROJECT_ID
     )
 
-    issued_to = {email: 'envimpact@companyb.com', name: 'Company B'}
+    issued_to = { email: 'envimpact@companyb.com', name: 'Company B' }
     total_price_cents_usd = 50_00
 
     create_order_response = Patch::Order.create_order(
@@ -135,8 +135,8 @@ RSpec.describe 'Orders Integration' do
     create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
     order_to_place_id = create_estimate_to_place_response.data.order.id
 
-    issued_to = {email: 'envimpact@companya.com', name: 'Company A'}
-    place_order_response = Patch::Order.place_order(order_to_place_id, { issued_to: issued_to})
+    issued_to = { email: 'envimpact@companya.com', name: 'Company A' }
+    place_order_response = Patch::Order.place_order(order_to_place_id, issued_to: issued_to)
     expect(place_order_response.data.state).to eq 'placed'
     expect(place_order_response.data.issued_to.email).to eq(issued_to[:email])
     expect(place_order_response.data.issued_to.name).to eq(issued_to[:name])
