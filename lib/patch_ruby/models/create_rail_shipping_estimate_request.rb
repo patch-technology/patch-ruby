@@ -173,7 +173,7 @@ module Patch
       if attributes.key?(:'fuel_type')
         self.fuel_type = attributes[:'fuel_type']
       else
-        self.fuel_type = 'DEFAULT'
+        self.fuel_type = 'default'
       end
 
       if attributes.key?(:'freight_mass_g')
@@ -227,7 +227,7 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      fuel_type_validator = EnumAttributeValidator.new('String', ["DEFAULT", "DIESEL", "ELEC"])
+      fuel_type_validator = EnumAttributeValidator.new('String', ["default", "diesel", "elec"])
       return false unless fuel_type_validator.valid?(@fuel_type)
       return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
       return false if !@freight_mass_g.nil? && @freight_mass_g < 0
@@ -241,7 +241,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] fuel_type Object to be assigned
     def fuel_type=(fuel_type)
-      validator = EnumAttributeValidator.new('String', ["DEFAULT", "DIESEL", "ELEC"])
+      validator = EnumAttributeValidator.new('String', ["default", "diesel", "elec"])
       unless validator.valid?(fuel_type)
         fail ArgumentError, "invalid value for \"fuel_type\", must be one of #{validator.allowable_values}."
       end

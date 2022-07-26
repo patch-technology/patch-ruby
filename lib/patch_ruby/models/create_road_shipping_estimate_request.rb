@@ -191,7 +191,7 @@ module Patch
       if attributes.key?(:'cargo_type')
         self.cargo_type = attributes[:'cargo_type']
       else
-        self.cargo_type = 'AVERAGE_MIXED'
+        self.cargo_type = 'average_mixed'
       end
 
       if attributes.key?(:'container_size_code')
@@ -215,7 +215,7 @@ module Patch
       if attributes.key?(:'fuel_type')
         self.fuel_type = attributes[:'fuel_type']
       else
-        self.fuel_type = 'DIESEL'
+        self.fuel_type = 'diesel'
       end
 
       if attributes.key?(:'number_of_containers')
@@ -275,7 +275,7 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      cargo_type_validator = EnumAttributeValidator.new('String', ["AVERAGE_MIXED", "CONTAINER"])
+      cargo_type_validator = EnumAttributeValidator.new('String', ["average_mixed", "container"])
       return false unless cargo_type_validator.valid?(@cargo_type)
       container_size_code_validator = EnumAttributeValidator.new('String', ["20GP", "40GP", "22G1", "42G1", "40HC", "45G1"])
       return false unless container_size_code_validator.valid?(@container_size_code)
@@ -285,7 +285,7 @@ module Patch
       return false unless emissions_scope_validator.valid?(@emissions_scope)
       return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
       return false if !@freight_mass_g.nil? && @freight_mass_g < 0
-      fuel_type_validator = EnumAttributeValidator.new('String', ["CNG", "DIESEL", "LNG", "PETROL"])
+      fuel_type_validator = EnumAttributeValidator.new('String', ["cng", "diesel", "lng", "petrol"])
       return false unless fuel_type_validator.valid?(@fuel_type)
       return false if !@number_of_containers.nil? && @number_of_containers < 0
       return false if !@truck_weight_t.nil? && @truck_weight_t > 60
@@ -296,7 +296,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] cargo_type Object to be assigned
     def cargo_type=(cargo_type)
-      validator = EnumAttributeValidator.new('String', ["AVERAGE_MIXED", "CONTAINER"])
+      validator = EnumAttributeValidator.new('String', ["average_mixed", "container"])
       unless validator.valid?(cargo_type)
         fail ArgumentError, "invalid value for \"cargo_type\", must be one of #{validator.allowable_values}."
       end
@@ -354,7 +354,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] fuel_type Object to be assigned
     def fuel_type=(fuel_type)
-      validator = EnumAttributeValidator.new('String', ["CNG", "DIESEL", "LNG", "PETROL"])
+      validator = EnumAttributeValidator.new('String', ["cng", "diesel", "lng", "petrol"])
       unless validator.valid?(fuel_type)
         fail ArgumentError, "invalid value for \"fuel_type\", must be one of #{validator.allowable_values}."
       end

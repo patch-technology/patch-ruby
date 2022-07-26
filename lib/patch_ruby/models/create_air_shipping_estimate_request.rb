@@ -15,11 +15,11 @@ require 'time'
 
 module Patch
   class CreateAirShippingEstimateRequest
-    attr_accessor :destination_iata
+    attr_accessor :destination_airport
 
-    attr_accessor :origin_iata
+    attr_accessor :origin_airport
 
-    attr_accessor :aircraft_iata
+    attr_accessor :aircraft_code
 
     attr_accessor :aircraft_type
 
@@ -58,9 +58,9 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'destination_iata' => :'destination_iata',
-        :'origin_iata' => :'origin_iata',
-        :'aircraft_iata' => :'aircraft_iata',
+        :'destination_airport' => :'destination_airport',
+        :'origin_airport' => :'origin_airport',
+        :'aircraft_code' => :'aircraft_code',
         :'aircraft_type' => :'aircraft_type',
         :'freight_mass_g' => :'freight_mass_g',
         :'distance_m' => :'distance_m',
@@ -78,9 +78,9 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'destination_iata' => :'String',
-        :'origin_iata' => :'String',
-        :'aircraft_iata' => :'String',
+        :'destination_airport' => :'String',
+        :'origin_airport' => :'String',
+        :'aircraft_code' => :'String',
         :'aircraft_type' => :'String',
         :'freight_mass_g' => :'Integer',
         :'distance_m' => :'Integer',
@@ -93,9 +93,9 @@ module Patch
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'destination_iata',
-        :'origin_iata',
-        :'aircraft_iata',
+        :'destination_airport',
+        :'origin_airport',
+        :'aircraft_code',
         :'aircraft_type',
         :'distance_m',
         :'emissions_scope',
@@ -131,22 +131,22 @@ module Patch
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'destination_iata')
-        self.destination_iata = attributes[:'destination_iata']
+      if attributes.key?(:'destination_airport')
+        self.destination_airport = attributes[:'destination_airport']
       end
 
-      if attributes.key?(:'origin_iata')
-        self.origin_iata = attributes[:'origin_iata']
+      if attributes.key?(:'origin_airport')
+        self.origin_airport = attributes[:'origin_airport']
       end
 
-      if attributes.key?(:'aircraft_iata')
-        self.aircraft_iata = attributes[:'aircraft_iata']
+      if attributes.key?(:'aircraft_code')
+        self.aircraft_code = attributes[:'aircraft_code']
       end
 
       if attributes.key?(:'aircraft_type')
         self.aircraft_type = attributes[:'aircraft_type']
       else
-        self.aircraft_type = 'UNKNOWN'
+        self.aircraft_type = 'unknown'
       end
 
       if attributes.key?(:'freight_mass_g')
@@ -200,7 +200,7 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      aircraft_type_validator = EnumAttributeValidator.new('String', ["PASSENGER", "CARGO", "UNKNOWN"])
+      aircraft_type_validator = EnumAttributeValidator.new('String', ["passenger", "cargo", "unknown"])
       return false unless aircraft_type_validator.valid?(@aircraft_type)
       return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
       return false if !@freight_mass_g.nil? && @freight_mass_g < 0
@@ -214,7 +214,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] aircraft_type Object to be assigned
     def aircraft_type=(aircraft_type)
-      validator = EnumAttributeValidator.new('String', ["PASSENGER", "CARGO", "UNKNOWN"])
+      validator = EnumAttributeValidator.new('String', ["passenger", "cargo", "unknown"])
       unless validator.valid?(aircraft_type)
         fail ArgumentError, "invalid value for \"aircraft_type\", must be one of #{validator.allowable_values}."
       end
@@ -264,9 +264,9 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          destination_iata == o.destination_iata &&
-          origin_iata == o.origin_iata &&
-          aircraft_iata == o.aircraft_iata &&
+          destination_airport == o.destination_airport &&
+          origin_airport == o.origin_airport &&
+          aircraft_code == o.aircraft_code &&
           aircraft_type == o.aircraft_type &&
           freight_mass_g == o.freight_mass_g &&
           distance_m == o.distance_m &&
@@ -284,7 +284,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination_iata, origin_iata, aircraft_iata, aircraft_type, freight_mass_g, distance_m, emissions_scope, project_id, create_order].hash
+      [destination_airport, origin_airport, aircraft_code, aircraft_type, freight_mass_g, distance_m, emissions_scope, project_id, create_order].hash
     end
 
     # Builds the object from hash

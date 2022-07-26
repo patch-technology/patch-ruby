@@ -175,7 +175,7 @@ RSpec.describe 'Estimates Integration' do
   context "when creating an air shipping estimate" do
     it "supports creating an estimate using distance" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
-        aircraft_type: "CARGO",
+        aircraft_type: "cargo",
         create_order: false,
         distance_m: 29_530,
         freight_mass_g: 23_845
@@ -198,27 +198,27 @@ RSpec.describe 'Estimates Integration' do
       expect(estimates.length).not_to be_zero
     end
 
-    it "supports creating an estimate using airport iatas" do
+    it "supports creating an estimate using airports" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
-        aircraft_type: "CARGO",
+        aircraft_type: "cargo",
         create_order: false,
-        destination_iata: "JFK",
+        destination_airport: "JFK",
         freight_mass_g: 31_300,
-        origin_iata: "SFO"
+        origin_airport: "SFO"
       )
-      expect(air_shipping_estimate.data.type).to eq('shipping')
+      expect(air_shipping_estimate.data.type).to eq('shipping_air')
       expect(air_shipping_estimate.data.mass_g).to be >= 20_000
     end
 
     it "supports creating an estimate with an order" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
-        aircraft_type: "CARGO",
+        aircraft_type: "cargo",
         create_order: true,
-        destination_iata: "JFK",
+        destination_airport: "JFK",
         freight_mass_g: 19_140,
-        origin_iata: "SFO"
+        origin_airport: "SFO"
       )
-      expect(air_shipping_estimate.data.type).to eq('shipping')
+      expect(air_shipping_estimate.data.type).to eq('shipping_air')
       expect(air_shipping_estimate.data.mass_g).to be >= 20_000
       expect(air_shipping_estimate.data.order.amount).to be >= 10_000
     end
@@ -231,7 +231,7 @@ RSpec.describe 'Estimates Integration' do
         distance_m: 211_900,
         emissions_scope: "wtw",
         freight_mass_g: 359_000,
-        fuel_type: "DIESEL"
+        fuel_type: "diesel"
       )
 
       estimate_id = rail_shipping_estimate.data.id
@@ -257,10 +257,10 @@ RSpec.describe 'Estimates Integration' do
         destination_locode: "USSEA",
         emissions_scope: "wtw",
         freight_mass_g: 419_060,
-        fuel_type: "DIESEL",
+        fuel_type: "diesel",
         origin_locode: "USSD2"
       )
-      expect(rail_shipping_estimate.data.type).to eq('shipping')
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
       expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
     end
 
@@ -271,11 +271,11 @@ RSpec.describe 'Estimates Integration' do
         destination_postal_code: "97209",
         emissions_scope: "wtw",
         freight_mass_g: 226_000,
-        fuel_type: "DIESEL",
+        fuel_type: "diesel",
         origin_country_code: "US",
         origin_postal_code: "90210"
       )
-      expect(rail_shipping_estimate.data.type).to eq('shipping')
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
       expect(rail_shipping_estimate.data.mass_g).to be >= 4_000
     end
 
@@ -286,7 +286,7 @@ RSpec.describe 'Estimates Integration' do
         freight_mass_g: 359_000,
         origin_locode: "USSD2"
       )
-      expect(rail_shipping_estimate.data.type).to eq('shipping')
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
       expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
       expect(rail_shipping_estimate.data.order.amount).to be >= 10_000
     end
@@ -296,12 +296,12 @@ RSpec.describe 'Estimates Integration' do
     it "supports creating an estimate using distance" do
       road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
         create_order: false,
-        cargo_type: "CONTAINER",
+        cargo_type: "container",
         container_size_code: "40GP",
         distance_m: 226_163,
         emissions_scope: "wtw",
         freight_mass_g: 493_708,
-        fuel_type: "DIESEL",
+        fuel_type: "diesel",
         number_of_containers: 1,
         truck_weight_t: 12
       )
@@ -332,7 +332,7 @@ RSpec.describe 'Estimates Integration' do
         freight_mass_g: 124_870,
         origin_locode: "USSD2"
       )
-      expect(road_shipping_estimate.data.type).to eq('shipping')
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
       expect(road_shipping_estimate.data.mass_g).to be >= 15_000
     end
 
@@ -346,7 +346,7 @@ RSpec.describe 'Estimates Integration' do
         origin_country_code: "US",
         origin_postal_code: "90210"
       )
-      expect(road_shipping_estimate.data.type).to eq('shipping')
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
       expect(road_shipping_estimate.data.mass_g).to be >= 4_000
     end
 
@@ -357,7 +357,7 @@ RSpec.describe 'Estimates Integration' do
         freight_mass_g: 359_000,
         origin_locode: "USSD2"
       )
-      expect(road_shipping_estimate.data.type).to eq('shipping')
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
       expect(road_shipping_estimate.data.mass_g).to be >= 15_000
       expect(road_shipping_estimate.data.order.amount).to be >= 10_000
     end
@@ -401,7 +401,7 @@ RSpec.describe 'Estimates Integration' do
         freight_mass_g: 124_870,
         origin_locode: "FRMRS"
       )
-      expect(sea_shipping_estimate.data.type).to eq('shipping')
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
       expect(sea_shipping_estimate.data.mass_g).to be >= 10_000
     end
 
@@ -415,7 +415,7 @@ RSpec.describe 'Estimates Integration' do
         origin_country_code: "US",
         origin_postal_code: "90210"
       )
-      expect(sea_shipping_estimate.data.type).to eq('shipping')
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
       expect(sea_shipping_estimate.data.mass_g).to be >= 4_000
     end
 
@@ -426,7 +426,7 @@ RSpec.describe 'Estimates Integration' do
         freight_mass_g: 359_000,
         origin_locode: "USSD2"
       )
-      expect(sea_shipping_estimate.data.type).to eq('shipping')
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
       expect(sea_shipping_estimate.data.mass_g).to be >= 15_000
       expect(sea_shipping_estimate.data.order.amount).to be >= 10_000
     end
