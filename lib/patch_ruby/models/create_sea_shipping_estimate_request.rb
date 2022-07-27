@@ -29,8 +29,6 @@ module Patch
 
     attr_accessor :container_size_code
 
-    attr_accessor :distance_m
-
     attr_accessor :emissions_scope
 
     attr_accessor :freight_mass_g
@@ -77,7 +75,6 @@ module Patch
         :'origin_locode' => :'origin_locode',
         :'origin_postal_code' => :'origin_postal_code',
         :'container_size_code' => :'container_size_code',
-        :'distance_m' => :'distance_m',
         :'emissions_scope' => :'emissions_scope',
         :'freight_mass_g' => :'freight_mass_g',
         :'freight_volume_cubic_m' => :'freight_volume_cubic_m',
@@ -103,7 +100,6 @@ module Patch
         :'origin_locode' => :'String',
         :'origin_postal_code' => :'String',
         :'container_size_code' => :'String',
-        :'distance_m' => :'Integer',
         :'emissions_scope' => :'String',
         :'freight_mass_g' => :'Integer',
         :'freight_volume_cubic_m' => :'Integer',
@@ -123,7 +119,6 @@ module Patch
         :'origin_country_code',
         :'origin_locode',
         :'origin_postal_code',
-        :'distance_m',
         :'emissions_scope',
         :'freight_volume_cubic_m',
         :'number_of_containers',
@@ -188,10 +183,6 @@ module Patch
         self.container_size_code = attributes[:'container_size_code']
       end
 
-      if attributes.key?(:'distance_m')
-        self.distance_m = attributes[:'distance_m']
-      end
-
       if attributes.key?(:'emissions_scope')
         self.emissions_scope = attributes[:'emissions_scope']
       else
@@ -229,14 +220,6 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@distance_m.nil? && @distance_m > 400000000
-        invalid_properties.push('invalid value for "distance_m", must be smaller than or equal to 400000000.')
-      end
-
-      if !@distance_m.nil? && @distance_m < 0
-        invalid_properties.push('invalid value for "distance_m", must be greater than or equal to 0.')
-      end
-
       if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
         invalid_properties.push('invalid value for "freight_mass_g", must be smaller than or equal to 2000000000.')
       end
@@ -261,8 +244,6 @@ module Patch
     def valid?
       container_size_code_validator = EnumAttributeValidator.new('String', ["20GP", "40GP", "22G1", "42G1", "40HC", "45G1"])
       return false unless container_size_code_validator.valid?(@container_size_code)
-      return false if !@distance_m.nil? && @distance_m > 400000000
-      return false if !@distance_m.nil? && @distance_m < 0
       emissions_scope_validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
       return false unless emissions_scope_validator.valid?(@emissions_scope)
       return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
@@ -280,20 +261,6 @@ module Patch
         fail ArgumentError, "invalid value for \"container_size_code\", must be one of #{validator.allowable_values}."
       end
       @container_size_code = container_size_code
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] distance_m Value to be assigned
-    def distance_m=(distance_m)
-      if !distance_m.nil? && distance_m > 400000000
-        fail ArgumentError, 'invalid value for "distance_m", must be smaller than or equal to 400000000.'
-      end
-
-      if !distance_m.nil? && distance_m < 0
-        fail ArgumentError, 'invalid value for "distance_m", must be greater than or equal to 0.'
-      end
-
-      @distance_m = distance_m
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -352,7 +319,6 @@ module Patch
           origin_locode == o.origin_locode &&
           origin_postal_code == o.origin_postal_code &&
           container_size_code == o.container_size_code &&
-          distance_m == o.distance_m &&
           emissions_scope == o.emissions_scope &&
           freight_mass_g == o.freight_mass_g &&
           freight_volume_cubic_m == o.freight_volume_cubic_m &&
@@ -371,7 +337,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination_country_code, destination_locode, destination_postal_code, origin_country_code, origin_locode, origin_postal_code, container_size_code, distance_m, emissions_scope, freight_mass_g, freight_volume_cubic_m, number_of_containers, vessel_imo, project_id, create_order].hash
+      [destination_country_code, destination_locode, destination_postal_code, origin_country_code, origin_locode, origin_postal_code, container_size_code, emissions_scope, freight_mass_g, freight_volume_cubic_m, number_of_containers, vessel_imo, project_id, create_order].hash
     end
 
     # Builds the object from hash

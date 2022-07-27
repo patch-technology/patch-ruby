@@ -31,8 +31,6 @@ module Patch
 
     attr_accessor :freight_mass_g
 
-    attr_accessor :distance_m
-
     attr_accessor :emissions_scope
 
     attr_accessor :project_id
@@ -72,7 +70,6 @@ module Patch
         :'origin_postal_code' => :'origin_postal_code',
         :'fuel_type' => :'fuel_type',
         :'freight_mass_g' => :'freight_mass_g',
-        :'distance_m' => :'distance_m',
         :'emissions_scope' => :'emissions_scope',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
@@ -95,7 +92,6 @@ module Patch
         :'origin_postal_code' => :'String',
         :'fuel_type' => :'String',
         :'freight_mass_g' => :'Integer',
-        :'distance_m' => :'Integer',
         :'emissions_scope' => :'String',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
@@ -112,7 +108,6 @@ module Patch
         :'origin_locode',
         :'origin_postal_code',
         :'fuel_type',
-        :'distance_m',
         :'emissions_scope',
         :'project_id',
         :'create_order'
@@ -180,10 +175,6 @@ module Patch
         self.freight_mass_g = attributes[:'freight_mass_g']
       end
 
-      if attributes.key?(:'distance_m')
-        self.distance_m = attributes[:'distance_m']
-      end
-
       if attributes.key?(:'emissions_scope')
         self.emissions_scope = attributes[:'emissions_scope']
       else
@@ -213,14 +204,6 @@ module Patch
         invalid_properties.push('invalid value for "freight_mass_g", must be greater than or equal to 0.')
       end
 
-      if !@distance_m.nil? && @distance_m > 400000000
-        invalid_properties.push('invalid value for "distance_m", must be smaller than or equal to 400000000.')
-      end
-
-      if !@distance_m.nil? && @distance_m < 0
-        invalid_properties.push('invalid value for "distance_m", must be greater than or equal to 0.')
-      end
-
       invalid_properties
     end
 
@@ -231,8 +214,6 @@ module Patch
       return false unless fuel_type_validator.valid?(@fuel_type)
       return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
       return false if !@freight_mass_g.nil? && @freight_mass_g < 0
-      return false if !@distance_m.nil? && @distance_m > 400000000
-      return false if !@distance_m.nil? && @distance_m < 0
       emissions_scope_validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
       return false unless emissions_scope_validator.valid?(@emissions_scope)
       true
@@ -262,20 +243,6 @@ module Patch
       @freight_mass_g = freight_mass_g
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] distance_m Value to be assigned
-    def distance_m=(distance_m)
-      if !distance_m.nil? && distance_m > 400000000
-        fail ArgumentError, 'invalid value for "distance_m", must be smaller than or equal to 400000000.'
-      end
-
-      if !distance_m.nil? && distance_m < 0
-        fail ArgumentError, 'invalid value for "distance_m", must be greater than or equal to 0.'
-      end
-
-      @distance_m = distance_m
-    end
-
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] emissions_scope Object to be assigned
     def emissions_scope=(emissions_scope)
@@ -299,7 +266,6 @@ module Patch
           origin_postal_code == o.origin_postal_code &&
           fuel_type == o.fuel_type &&
           freight_mass_g == o.freight_mass_g &&
-          distance_m == o.distance_m &&
           emissions_scope == o.emissions_scope &&
           project_id == o.project_id &&
           create_order == o.create_order
@@ -314,7 +280,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination_country_code, destination_locode, destination_postal_code, origin_country_code, origin_locode, origin_postal_code, fuel_type, freight_mass_g, distance_m, emissions_scope, project_id, create_order].hash
+      [destination_country_code, destination_locode, destination_postal_code, origin_country_code, origin_locode, origin_postal_code, fuel_type, freight_mass_g, emissions_scope, project_id, create_order].hash
     end
 
     # Builds the object from hash
