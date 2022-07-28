@@ -173,31 +173,6 @@ RSpec.describe 'Estimates Integration' do
   end
 
   context "when creating an air shipping estimate" do
-    it "supports creating an estimate using distance" do
-      air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
-        aircraft_type: "cargo",
-        create_order: false,
-        distance_m: 29_530,
-        freight_mass_g: 23_845
-      )
-
-      estimate_id = air_shipping_estimate.data.id
-      retrieved_estimate = Patch::Estimate.retrieve_estimate(estimate_id)
-      expect(retrieved_estimate.data.id).to eq(estimate_id)
-
-      page_limit = 1
-      next_page = 1
-      estimates = []
-
-      while !next_page.nil? && next_page <= page_limit
-        retrieved_estimates = Patch::Estimate.retrieve_estimates(page: next_page)
-        next_page = retrieved_estimates.meta.next_page
-        estimates += retrieved_estimates.data
-      end
-
-      expect(estimates.length).not_to be_zero
-    end
-
     it "supports creating an estimate using airports" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
         aircraft_type: "cargo",
@@ -225,32 +200,6 @@ RSpec.describe 'Estimates Integration' do
   end
 
   context "when creating a rail shipping estimate" do
-    it "supports creating an estimate using distance" do
-      rail_shipping_estimate = Patch::Estimate.create_rail_shipping_estimate(
-        create_order: false,
-        distance_m: 211_900,
-        emissions_scope: "wtw",
-        freight_mass_g: 359_000,
-        fuel_type: "diesel"
-      )
-
-      estimate_id = rail_shipping_estimate.data.id
-      retrieved_estimate = Patch::Estimate.retrieve_estimate(estimate_id)
-      expect(retrieved_estimate.data.id).to eq(estimate_id)
-
-      page_limit = 1
-      next_page = 1
-      estimates = []
-
-      while !next_page.nil? && next_page <= page_limit
-        retrieved_estimates = Patch::Estimate.retrieve_estimates(page: next_page)
-        next_page = retrieved_estimates.meta.next_page
-        estimates += retrieved_estimates.data
-      end
-
-      expect(estimates.length).not_to be_zero
-    end
-
     it "supports creating an estimate using locodes" do
       rail_shipping_estimate = Patch::Estimate.create_rail_shipping_estimate(
         create_order: false,
@@ -293,36 +242,6 @@ RSpec.describe 'Estimates Integration' do
   end
 
   context "when creating a road shipping estimate" do
-    it "supports creating an estimate using distance" do
-      road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
-        create_order: false,
-        cargo_type: "container",
-        container_size_code: "40GP",
-        distance_m: 226_163,
-        emissions_scope: "wtw",
-        freight_mass_g: 493_708,
-        fuel_type: "diesel",
-        number_of_containers: 1,
-        truck_weight_t: 12
-      )
-
-      estimate_id = road_shipping_estimate.data.id
-      retrieved_estimate = Patch::Estimate.retrieve_estimate(estimate_id)
-      expect(retrieved_estimate.data.id).to eq(estimate_id)
-
-      page_limit = 1
-      next_page = 1
-      estimates = []
-
-      while !next_page.nil? && next_page <= page_limit
-        retrieved_estimates = Patch::Estimate.retrieve_estimates(page: next_page)
-        next_page = retrieved_estimates.meta.next_page
-        estimates += retrieved_estimates.data
-      end
-
-      expect(estimates.length).not_to be_zero
-    end
-
     it "supports creating an estimate using locodes" do
       road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
         create_order: false,
@@ -364,34 +283,6 @@ RSpec.describe 'Estimates Integration' do
   end
 
   context "when creating a sea shipping estimate" do
-    it "supports creating an estimate using distance" do
-      sea_shipping_estimate = Patch::Estimate.create_sea_shipping_estimate(
-        create_order: false,
-        container_size_code: "40GP",
-        distance_m: 15_035_214,
-        emissions_scope: "wtw",
-        freight_mass_g: 493_708,
-        freight_volume_cubic_m: 34,
-        number_of_containers: 1,
-      )
-
-      estimate_id = sea_shipping_estimate.data.id
-      retrieved_estimate = Patch::Estimate.retrieve_estimate(estimate_id)
-      expect(retrieved_estimate.data.id).to eq(estimate_id)
-
-      page_limit = 1
-      next_page = 1
-      estimates = []
-
-      while !next_page.nil? && next_page <= page_limit
-        retrieved_estimates = Patch::Estimate.retrieve_estimates(page: next_page)
-        next_page = retrieved_estimates.meta.next_page
-        estimates += retrieved_estimates.data
-      end
-
-      expect(estimates.length).not_to be_zero
-    end
-
     it "supports creating an estimate using locodes" do
       sea_shipping_estimate = Patch::Estimate.create_sea_shipping_estimate(
         create_order: false,
