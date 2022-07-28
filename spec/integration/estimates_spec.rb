@@ -171,4 +171,155 @@ RSpec.describe 'Estimates Integration' do
     expect(create_estimate_response.data.mass_g).to be >= 100_000
     expect(create_estimate_response.data.id).not_to be_nil
   end
+
+  context "when creating an air shipping estimate" do
+    it "supports creating an estimate using airports" do
+      air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
+        aircraft_type: "cargo",
+        create_order: false,
+        destination_airport: "JFK",
+        freight_mass_g: 31_300,
+        origin_airport: "SFO"
+      )
+      expect(air_shipping_estimate.data.type).to eq('shipping_air')
+      expect(air_shipping_estimate.data.mass_g).to be >= 20_000
+    end
+
+    it "supports creating an estimate with an order" do
+      air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
+        aircraft_type: "cargo",
+        create_order: true,
+        destination_airport: "JFK",
+        freight_mass_g: 19_140,
+        origin_airport: "SFO"
+      )
+      expect(air_shipping_estimate.data.type).to eq('shipping_air')
+      expect(air_shipping_estimate.data.mass_g).to be >= 20_000
+      expect(air_shipping_estimate.data.order.amount).to be >= 10_000
+    end
+  end
+
+  context "when creating a rail shipping estimate" do
+    it "supports creating an estimate using locodes" do
+      rail_shipping_estimate = Patch::Estimate.create_rail_shipping_estimate(
+        create_order: false,
+        destination_locode: "USSEA",
+        emissions_scope: "wtw",
+        freight_mass_g: 419_060,
+        fuel_type: "diesel",
+        origin_locode: "USSD2"
+      )
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
+      expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
+    end
+
+    it "supports creating an estimate using postal codes" do
+      rail_shipping_estimate = Patch::Estimate.create_rail_shipping_estimate(
+        create_order: false,
+        destination_country_code: "US",
+        destination_postal_code: "97209",
+        emissions_scope: "wtw",
+        freight_mass_g: 226_000,
+        fuel_type: "diesel",
+        origin_country_code: "US",
+        origin_postal_code: "90210"
+      )
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
+      expect(rail_shipping_estimate.data.mass_g).to be >= 4_000
+    end
+
+    it "supports creating an estimate with an order" do
+      rail_shipping_estimate = Patch::Estimate.create_rail_shipping_estimate(
+        create_order: true,
+        destination_locode: "USSEA",
+        freight_mass_g: 359_000,
+        origin_locode: "USSD2"
+      )
+      expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
+      expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
+      expect(rail_shipping_estimate.data.order.amount).to be >= 10_000
+    end
+  end
+
+  context "when creating a road shipping estimate" do
+    it "supports creating an estimate using locodes" do
+      road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
+        create_order: false,
+        container_size_code: "20GP",
+        destination_locode: "USSEA",
+        emissions_scope: "wtw",
+        freight_mass_g: 124_870,
+        origin_locode: "USSD2"
+      )
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
+      expect(road_shipping_estimate.data.mass_g).to be >= 15_000
+    end
+
+    it "supports creating an estimate using postal codes" do
+      road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
+        create_order: false,
+        destination_country_code: "US",
+        destination_postal_code: "97209",
+        emissions_scope: "wtw",
+        freight_mass_g: 226_000,
+        origin_country_code: "US",
+        origin_postal_code: "90210"
+      )
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
+      expect(road_shipping_estimate.data.mass_g).to be >= 4_000
+    end
+
+    it "supports creating an estimate with an order" do
+      road_shipping_estimate = Patch::Estimate.create_road_shipping_estimate(
+        create_order: true,
+        destination_locode: "USSEA",
+        freight_mass_g: 359_000,
+        origin_locode: "USSD2"
+      )
+      expect(road_shipping_estimate.data.type).to eq('shipping_road')
+      expect(road_shipping_estimate.data.mass_g).to be >= 15_000
+      expect(road_shipping_estimate.data.order.amount).to be >= 10_000
+    end
+  end
+
+  context "when creating a sea shipping estimate" do
+    it "supports creating an estimate using locodes" do
+      sea_shipping_estimate = Patch::Estimate.create_sea_shipping_estimate(
+        create_order: false,
+        container_size_code: "20GP",
+        destination_locode: "HKHKG",
+        emissions_scope: "wtw",
+        freight_mass_g: 124_870,
+        origin_locode: "FRMRS"
+      )
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
+      expect(sea_shipping_estimate.data.mass_g).to be >= 10_000
+    end
+
+    it "supports creating an estimate using postal codes" do
+      sea_shipping_estimate = Patch::Estimate.create_sea_shipping_estimate(
+        create_order: false,
+        destination_country_code: "US",
+        destination_postal_code: "97209",
+        emissions_scope: "wtw",
+        freight_mass_g: 226_000,
+        origin_country_code: "US",
+        origin_postal_code: "90210"
+      )
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
+      expect(sea_shipping_estimate.data.mass_g).to be >= 4_000
+    end
+
+    it "supports creating an estimate with an order" do
+      sea_shipping_estimate = Patch::Estimate.create_sea_shipping_estimate(
+        create_order: true,
+        destination_locode: "USSEA",
+        freight_mass_g: 359_000,
+        origin_locode: "USSD2"
+      )
+      expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
+      expect(sea_shipping_estimate.data.mass_g).to be >= 15_000
+      expect(sea_shipping_estimate.data.order.amount).to be >= 10_000
+    end
+  end
 end

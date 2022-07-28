@@ -331,7 +331,7 @@ module Patch
       return false if @mass_g < 0
       return false if @production.nil?
       return false if @state.nil?
-      state_validator = EnumAttributeValidator.new('String', ["draft", "placed", "processing", "complete", "cancelled"])
+      state_validator = EnumAttributeValidator.new('String', ["draft", "reserved", "placed", "processing", "complete", "cancelled"])
       return false unless state_validator.valid?(@state)
       return false if @amount.nil?
       return false if @amount > 100000000000
@@ -368,7 +368,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ["draft", "placed", "processing", "complete", "cancelled"])
+      validator = EnumAttributeValidator.new('String', ["draft", "reserved", "placed", "processing", "complete", "cancelled"])
       unless validator.valid?(state)
         fail ArgumentError, "invalid value for \"state\", must be one of #{validator.allowable_values}."
       end
