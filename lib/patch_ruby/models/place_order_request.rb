@@ -32,14 +32,13 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issued_to' => :'IssuedTo'
+        :'issued_to' => :'OrderIssuedTo'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'issued_to'
       ])
     end
 
