@@ -47,7 +47,7 @@ module Patch
     end
 
     # Creates a GLEC air shipping estimate given freight mass and logistics
-    # Creates a GLEC air shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a GLEC air shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_air_shipping_estimate_request [CreateAirShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -116,7 +116,7 @@ module Patch
     end
 
     # Create a bitcoin estimate given a timestamp and transaction value
-    # Creates a bitcoin estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a bitcoin estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_bitcoin_estimate_request [CreateBitcoinEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -185,7 +185,7 @@ module Patch
     end
 
     # Create an ethereum estimate
-    # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -254,7 +254,7 @@ module Patch
     end
 
     # Create a flight estimate given the distance traveled in meters
-    # Creates a flight estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a flight estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_flight_estimate_request [CreateFlightEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -323,7 +323,7 @@ module Patch
     end
 
     # Create a hotel estimate.
-    # Creates a hotel estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters. 
+    # Creates a hotel estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
     # @param create_hotel_estimate_request [CreateHotelEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -392,7 +392,7 @@ module Patch
     end
 
     # Create an estimate based on mass of CO2
-    # Creates an estimate for the mass of CO2 to be compensated. An order in the &#x60;draft&#x60; state will also be created, linked to the estimate. 
+    # Creates an estimate for the mass of CO2 to be compensated. An order in the `draft` state will also be created, linked to the estimate. 
     # @param create_mass_estimate_request [CreateMassEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -461,7 +461,7 @@ module Patch
     end
 
     # Creates a GLEC rail shipping estimate given freight mass and logistics
-    # Creates a GLEC rail shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a GLEC rail shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_rail_shipping_estimate_request [CreateRailShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -530,7 +530,7 @@ module Patch
     end
 
     # Creates a GLEC road shipping estimate given freight mass and logistics
-    # Creates a GLEC road shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a GLEC road shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_road_shipping_estimate_request [CreateRoadShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -599,7 +599,7 @@ module Patch
     end
 
     # Creates a GLEC sea shipping estimate given freight mass and logistics
-    # Creates a GLEC sea shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates a GLEC sea shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_sea_shipping_estimate_request [CreateSeaShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -668,7 +668,7 @@ module Patch
     end
 
     # Create a shipping estimate given the distance traveled in meters, package weight, and transportation method.
-    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the &#x60;draft&#x60; state may be created based on the parameters. 
+    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
     # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
@@ -737,7 +737,7 @@ module Patch
     end
 
     # Create a vehicle estimate given the distance traveled in meters and the type of vehicle
-    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the &#x60;draft&#x60; state may be created based on the parameters, linked to the estimate. 
+    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
     # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers

@@ -37,7 +37,7 @@ module Patch
     end
 
     # Retrieves a project
-    # Retrieves a project available on Patch&#39;s platform. 
+    # Retrieves a project available on Patch's platform. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :accept_language 
@@ -107,7 +107,7 @@ module Patch
     end
 
     # Retrieves a list of projects
-    # Retrieves a list of projects available for purchase on Patch&#39;s platform. 
+    # Retrieves a list of projects available for purchase on Patch's platform. 
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page 
     # @option opts [String] :country 

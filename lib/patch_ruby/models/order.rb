@@ -66,6 +66,7 @@ module Patch
     # An array containing the inventory allocated for this order. Inventory is grouped by project, vintage year, and price.
     attr_accessor :inventory
 
+    # An object containing the name & email of the party the inventory will be issued to.
     attr_accessor :issued_to
 
     class EnumAttributeValidator
@@ -139,7 +140,7 @@ module Patch
         :'registry_url' => :'String',
         :'metadata' => :'Object',
         :'inventory' => :'Array<OrderInventory>',
-        :'issued_to' => :'IssuedTo'
+        :'issued_to' => :'OrderIssuedTo'
       }
     end
 
@@ -251,6 +252,9 @@ module Patch
       end
 
       if attributes.key?(:'issued_to')
+        if (value = attributes[:'issued_to']).is_a?(Hash)
+          self.issued_to = value
+        end
         self.issued_to = attributes[:'issued_to']
       end
     end
