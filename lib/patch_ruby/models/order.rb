@@ -139,7 +139,7 @@ module Patch
         :'registry_url' => :'String',
         :'metadata' => :'Object',
         :'inventory' => :'Array<OrderInventory>',
-        :'issued_to' => :'IssuedTo'
+        :'issued_to' => :'OrderIssuedTo'
       }
     end
 

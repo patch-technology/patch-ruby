@@ -32,7 +32,7 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issued_to' => :'V1OrdersIssuedTo'
+        :'issued_to' => :'IssuedTo'
       }
     end
 

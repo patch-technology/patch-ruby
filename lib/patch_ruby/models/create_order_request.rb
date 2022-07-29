@@ -94,7 +94,7 @@ module Patch
         :'currency' => :'String',
         :'amount' => :'Integer',
         :'unit' => :'String',
-        :'issued_to' => :'V1OrdersIssuedTo'
+        :'issued_to' => :'IssuedTo'
       }
     end
 

@@ -14,16 +14,19 @@ require 'date'
 require 'time'
 
 module Patch
-  class IssuedTo
-    attr_accessor :email
-
+  # An object containing the name & email of the party the inventory will be issued to.
+  class OrderIssuedTo
+    # Name provided for the issuee
     attr_accessor :name
+
+    # Email address provided for the issuee
+    attr_accessor :email
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'email' => :'email',
-        :'name' => :'name'
+        :'name' => :'name',
+        :'email' => :'email'
       }
     end
 
@@ -35,16 +38,16 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'email' => :'String',
-        :'name' => :'String'
+        :'name' => :'String',
+        :'email' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'email',
-        :'name'
+        :'name',
+        :'email'
       ])
     end
 
@@ -53,8 +56,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::IssuedTosApi::OPERATIONS') && Patch::IssuedTosApi::OPERATIONS.include?(message)
-        Patch::IssuedTosApi.new.send(message, *args)
+      if Object.const_defined?('Patch::OrderIssuedTosApi::OPERATIONS') && Patch::OrderIssuedTosApi::OPERATIONS.include?(message)
+        Patch::OrderIssuedTosApi.new.send(message, *args)
       else
         super
       end
@@ -64,23 +67,23 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::IssuedTo` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::OrderIssuedTo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::IssuedTo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::OrderIssuedTo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
-      end
-
       if attributes.key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.key?(:'email')
+        self.email = attributes[:'email']
       end
     end
 
@@ -102,8 +105,8 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          email == o.email &&
-          name == o.name
+          name == o.name &&
+          email == o.email
     end
 
     # @see the `==` method
@@ -115,7 +118,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, name].hash
+      [name, email].hash
     end
 
     # Builds the object from hash
