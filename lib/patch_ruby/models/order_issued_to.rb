@@ -16,10 +16,10 @@ require 'time'
 module Patch
   # An object containing the name & email of the party the inventory will be issued to.
   class OrderIssuedTo
-    # Name provided for the issuee
+    # The name of the issuee
     attr_accessor :name
 
-    # Email address provided for the issuee
+    # The email address of the issuee
     attr_accessor :email
 
     # Attribute mapping from ruby-style variable name to JSON key.
