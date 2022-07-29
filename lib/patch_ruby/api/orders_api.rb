@@ -39,7 +39,7 @@ module Patch
     end
 
     # Cancel an order
-    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the &#x60;draft&#x60; or &#x60;placed&#x60; state can be cancelled. 
+    # Cancelling an order removes the associated offset allocation from an order. You will not be charged for cancelled orders. Only orders in the `draft` or `placed` state can be cancelled. 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
@@ -103,7 +103,7 @@ module Patch
     end
 
     # Creates an order
-    # Creates an order in the &#x60;placed&#x60; or &#x60;draft&#x60; state. 
+    # Creates an order in the `placed` or `draft` state. 
     # @param create_order_request [CreateOrderRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderResponse, Integer, Hash)>] OrderResponse data, response status code and response headers
@@ -166,14 +166,14 @@ module Patch
     # @param [Hash] opts the optional parameters
     # @option opts [PlaceOrderRequest] :place_order_request 
     # @return [OrderResponse]
-    def place_order(place_order_request = {}, opts = {})
-      _place_order_request = Patch::PlaceOrderRequest.new(place_order_request) 
-      data, _status_code, _headers = place_order_with_http_info(_place_order_request, opts)
+    def place_order(id, opts = {})
+    
+      data, _status_code, _headers = place_order_with_http_info(id, opts)
       data
     end
 
     # Place an order
-    # Placing an order confirms an order&#39;s allocation of offsets. Only orders that are in the &#x60;draft&#x60; state can be placed 
+    # Placing an order confirms an order's allocation of offsets. Only orders that are in the `draft` state can be placed 
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [PlaceOrderRequest] :place_order_request 
@@ -206,7 +206,7 @@ module Patch
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'place_order_request'])
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts)
 
       # return_type
       return_type = opts[:debug_return_type] || 'OrderResponse'
