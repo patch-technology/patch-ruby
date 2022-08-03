@@ -90,7 +90,6 @@ RSpec.describe 'Estimates Integration' do
     expect(create_estimate_response.data.mass_g).to be >= 10_000
   end
 
-
   it 'supports creating bitcoin estimates with partial information' do
     bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate()
 
@@ -182,7 +181,7 @@ RSpec.describe 'Estimates Integration' do
         origin_airport: "SFO"
       )
       expect(air_shipping_estimate.data.type).to eq('shipping_air')
-      expect(air_shipping_estimate.data.mass_g).to be >= 20_000
+      expect(air_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate with an order" do
@@ -194,8 +193,8 @@ RSpec.describe 'Estimates Integration' do
         origin_airport: "SFO"
       )
       expect(air_shipping_estimate.data.type).to eq('shipping_air')
-      expect(air_shipping_estimate.data.mass_g).to be >= 20_000
-      expect(air_shipping_estimate.data.order.amount).to be >= 10_000
+      expect(air_shipping_estimate.data.mass_g).to be > 0
+      expect(air_shipping_estimate.data.order.amount).to be > 0
     end
   end
 
@@ -210,7 +209,7 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "USSD2"
       )
       expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
-      expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
+      expect(rail_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate using postal codes" do
@@ -225,7 +224,7 @@ RSpec.describe 'Estimates Integration' do
         origin_postal_code: "90210"
       )
       expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
-      expect(rail_shipping_estimate.data.mass_g).to be >= 4_000
+      expect(rail_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate with an order" do
@@ -236,8 +235,8 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "USSD2"
       )
       expect(rail_shipping_estimate.data.type).to eq('shipping_rail')
-      expect(rail_shipping_estimate.data.mass_g).to be >= 15_000
-      expect(rail_shipping_estimate.data.order.amount).to be >= 10_000
+      expect(rail_shipping_estimate.data.mass_g).to be > 0
+      expect(rail_shipping_estimate.data.order.amount).to be > 0
     end
   end
 
@@ -252,7 +251,7 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "USSD2"
       )
       expect(road_shipping_estimate.data.type).to eq('shipping_road')
-      expect(road_shipping_estimate.data.mass_g).to be >= 15_000
+      expect(road_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate using postal codes" do
@@ -266,7 +265,7 @@ RSpec.describe 'Estimates Integration' do
         origin_postal_code: "90210"
       )
       expect(road_shipping_estimate.data.type).to eq('shipping_road')
-      expect(road_shipping_estimate.data.mass_g).to be >= 4_000
+      expect(road_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate with an order" do
@@ -277,8 +276,8 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "USSD2"
       )
       expect(road_shipping_estimate.data.type).to eq('shipping_road')
-      expect(road_shipping_estimate.data.mass_g).to be >= 15_000
-      expect(road_shipping_estimate.data.order.amount).to be >= 10_000
+      expect(road_shipping_estimate.data.mass_g).to be > 0
+      expect(road_shipping_estimate.data.order.amount).to be > 0
     end
   end
 
@@ -293,7 +292,7 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "FRMRS"
       )
       expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
-      expect(sea_shipping_estimate.data.mass_g).to be >= 10_000
+      expect(sea_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate using postal codes" do
@@ -307,7 +306,7 @@ RSpec.describe 'Estimates Integration' do
         origin_postal_code: "90210"
       )
       expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
-      expect(sea_shipping_estimate.data.mass_g).to be >= 4_000
+      expect(sea_shipping_estimate.data.mass_g).to be > 0
     end
 
     it "supports creating an estimate with an order" do
@@ -318,8 +317,8 @@ RSpec.describe 'Estimates Integration' do
         origin_locode: "USSD2"
       )
       expect(sea_shipping_estimate.data.type).to eq('shipping_sea')
-      expect(sea_shipping_estimate.data.mass_g).to be >= 15_000
-      expect(sea_shipping_estimate.data.order.amount).to be >= 10_000
+      expect(sea_shipping_estimate.data.mass_g).to be > 0
+      expect(sea_shipping_estimate.data.order.amount).to be > 0
     end
   end
 end
