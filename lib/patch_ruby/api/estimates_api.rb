@@ -17,6 +17,7 @@ module Patch
     OPERATIONS = [
       :create_air_shipping_estimate,
       :create_bitcoin_estimate,
+      :create_ecommerce_estimate,
       :create_ethereum_estimate,
       :create_flight_estimate,
       :create_hotel_estimate,
@@ -169,6 +170,75 @@ module Patch
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: EstimatesApi#create_bitcoin_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create an e-commerce estimate given the distance traveled in meters, package weight, and transportation method.
+    # Creates a e-commerce estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
+    # @param create_ecommerce_estimate_request [CreateEcommerceEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [EstimateResponse]
+    def create_ecommerce_estimate(create_ecommerce_estimate_request = {}, opts = {})
+      _create_ecommerce_estimate_request = Patch::CreateEcommerceEstimateRequest.new(create_ecommerce_estimate_request) 
+      data, _status_code, _headers = create_ecommerce_estimate_with_http_info(_create_ecommerce_estimate_request, opts)
+      data
+    end
+
+    # Create an e-commerce estimate given the distance traveled in meters, package weight, and transportation method.
+    # Creates a e-commerce estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
+    # @param create_ecommerce_estimate_request [CreateEcommerceEstimateRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
+    def create_ecommerce_estimate_with_http_info(create_ecommerce_estimate_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_ecommerce_estimate ...'
+      end
+      # verify the required parameter 'create_ecommerce_estimate_request' is set
+      if @api_client.config.client_side_validation && create_ecommerce_estimate_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_ecommerce_estimate_request' when calling EstimatesApi.create_ecommerce_estimate"
+      end
+      # resource path
+      local_var_path = '/v1/estimates/ecommerce'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_ecommerce_estimate_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'EstimateResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['bearer_auth']
+
+      new_options = opts.merge(
+        :operation => :"EstimatesApi.create_ecommerce_estimate",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EstimatesApi#create_ecommerce_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

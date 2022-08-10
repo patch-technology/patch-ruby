@@ -14,18 +14,12 @@ require 'date'
 require 'time'
 
 module Patch
-  class CreateAirShippingEstimateRequest
-    attr_accessor :destination_airport
+  class CreateEcommerceEstimateRequest
+    attr_accessor :distance_m
 
-    attr_accessor :origin_airport
+    attr_accessor :package_mass_g
 
-    attr_accessor :aircraft_code
-
-    attr_accessor :aircraft_type
-
-    attr_accessor :freight_mass_g
-
-    attr_accessor :emissions_scope
+    attr_accessor :transportation_method
 
     attr_accessor :project_id
 
@@ -56,12 +50,9 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'destination_airport' => :'destination_airport',
-        :'origin_airport' => :'origin_airport',
-        :'aircraft_code' => :'aircraft_code',
-        :'aircraft_type' => :'aircraft_type',
-        :'freight_mass_g' => :'freight_mass_g',
-        :'emissions_scope' => :'emissions_scope',
+        :'distance_m' => :'distance_m',
+        :'package_mass_g' => :'package_mass_g',
+        :'transportation_method' => :'transportation_method',
         :'project_id' => :'project_id',
         :'create_order' => :'create_order'
       }
@@ -75,12 +66,9 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'destination_airport' => :'String',
-        :'origin_airport' => :'String',
-        :'aircraft_code' => :'String',
-        :'aircraft_type' => :'String',
-        :'freight_mass_g' => :'Integer',
-        :'emissions_scope' => :'String',
+        :'distance_m' => :'Integer',
+        :'package_mass_g' => :'Integer',
+        :'transportation_method' => :'String',
         :'project_id' => :'String',
         :'create_order' => :'Boolean'
       }
@@ -89,11 +77,6 @@ module Patch
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'destination_airport',
-        :'origin_airport',
-        :'aircraft_code',
-        :'aircraft_type',
-        :'emissions_scope',
         :'project_id',
         :'create_order'
       ])
@@ -104,8 +87,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateAirShippingEstimateRequestsApi::OPERATIONS') && Patch::CreateAirShippingEstimateRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateAirShippingEstimateRequestsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::CreateEcommerceEstimateRequestsApi::OPERATIONS') && Patch::CreateEcommerceEstimateRequestsApi::OPERATIONS.include?(message)
+        Patch::CreateEcommerceEstimateRequestsApi.new.send(message, *args)
       else
         super
       end
@@ -115,43 +98,27 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateAirShippingEstimateRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateEcommerceEstimateRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateAirShippingEstimateRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateEcommerceEstimateRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'destination_airport')
-        self.destination_airport = attributes[:'destination_airport']
+      if attributes.key?(:'distance_m')
+        self.distance_m = attributes[:'distance_m']
       end
 
-      if attributes.key?(:'origin_airport')
-        self.origin_airport = attributes[:'origin_airport']
+      if attributes.key?(:'package_mass_g')
+        self.package_mass_g = attributes[:'package_mass_g']
       end
 
-      if attributes.key?(:'aircraft_code')
-        self.aircraft_code = attributes[:'aircraft_code']
-      end
-
-      if attributes.key?(:'aircraft_type')
-        self.aircraft_type = attributes[:'aircraft_type']
-      else
-        self.aircraft_type = 'unknown'
-      end
-
-      if attributes.key?(:'freight_mass_g')
-        self.freight_mass_g = attributes[:'freight_mass_g']
-      end
-
-      if attributes.key?(:'emissions_scope')
-        self.emissions_scope = attributes[:'emissions_scope']
-      else
-        self.emissions_scope = 'ttw'
+      if attributes.key?(:'transportation_method')
+        self.transportation_method = attributes[:'transportation_method']
       end
 
       if attributes.key?(:'project_id')
@@ -169,12 +136,32 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
-        invalid_properties.push('invalid value for "freight_mass_g", must be smaller than or equal to 2000000000.')
+      if @distance_m.nil?
+        invalid_properties.push('invalid value for "distance_m", distance_m cannot be nil.')
       end
 
-      if !@freight_mass_g.nil? && @freight_mass_g < 0
-        invalid_properties.push('invalid value for "freight_mass_g", must be greater than or equal to 0.')
+      if @distance_m > 400000000
+        invalid_properties.push('invalid value for "distance_m", must be smaller than or equal to 400000000.')
+      end
+
+      if @distance_m < 0
+        invalid_properties.push('invalid value for "distance_m", must be greater than or equal to 0.')
+      end
+
+      if @package_mass_g.nil?
+        invalid_properties.push('invalid value for "package_mass_g", package_mass_g cannot be nil.')
+      end
+
+      if @package_mass_g > 2000000000
+        invalid_properties.push('invalid value for "package_mass_g", must be smaller than or equal to 2000000000.')
+      end
+
+      if @package_mass_g < 0
+        invalid_properties.push('invalid value for "package_mass_g", must be greater than or equal to 0.')
+      end
+
+      if @transportation_method.nil?
+        invalid_properties.push('invalid value for "transportation_method", transportation_method cannot be nil.')
       end
 
       invalid_properties
@@ -183,47 +170,62 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      aircraft_type_validator = EnumAttributeValidator.new('String', ["passenger", "cargo", "unknown"])
-      return false unless aircraft_type_validator.valid?(@aircraft_type)
-      return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
-      return false if !@freight_mass_g.nil? && @freight_mass_g < 0
-      emissions_scope_validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
-      return false unless emissions_scope_validator.valid?(@emissions_scope)
+      return false if @distance_m.nil?
+      return false if @distance_m > 400000000
+      return false if @distance_m < 0
+      return false if @package_mass_g.nil?
+      return false if @package_mass_g > 2000000000
+      return false if @package_mass_g < 0
+      return false if @transportation_method.nil?
+      transportation_method_validator = EnumAttributeValidator.new('String', ["air", "rail", "road", "sea"])
+      return false unless transportation_method_validator.valid?(@transportation_method)
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] aircraft_type Object to be assigned
-    def aircraft_type=(aircraft_type)
-      validator = EnumAttributeValidator.new('String', ["passenger", "cargo", "unknown"])
-      unless validator.valid?(aircraft_type)
-        fail ArgumentError, "invalid value for \"aircraft_type\", must be one of #{validator.allowable_values}."
+    # Custom attribute writer method with validation
+    # @param [Object] distance_m Value to be assigned
+    def distance_m=(distance_m)
+      if distance_m.nil?
+        fail ArgumentError, 'distance_m cannot be nil'
       end
-      @aircraft_type = aircraft_type
+
+      if distance_m > 400000000
+        fail ArgumentError, 'invalid value for "distance_m", must be smaller than or equal to 400000000.'
+      end
+
+      if distance_m < 0
+        fail ArgumentError, 'invalid value for "distance_m", must be greater than or equal to 0.'
+      end
+
+      @distance_m = distance_m
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] freight_mass_g Value to be assigned
-    def freight_mass_g=(freight_mass_g)
-      if !freight_mass_g.nil? && freight_mass_g > 2000000000
-        fail ArgumentError, 'invalid value for "freight_mass_g", must be smaller than or equal to 2000000000.'
+    # @param [Object] package_mass_g Value to be assigned
+    def package_mass_g=(package_mass_g)
+      if package_mass_g.nil?
+        fail ArgumentError, 'package_mass_g cannot be nil'
       end
 
-      if !freight_mass_g.nil? && freight_mass_g < 0
-        fail ArgumentError, 'invalid value for "freight_mass_g", must be greater than or equal to 0.'
+      if package_mass_g > 2000000000
+        fail ArgumentError, 'invalid value for "package_mass_g", must be smaller than or equal to 2000000000.'
       end
 
-      @freight_mass_g = freight_mass_g
+      if package_mass_g < 0
+        fail ArgumentError, 'invalid value for "package_mass_g", must be greater than or equal to 0.'
+      end
+
+      @package_mass_g = package_mass_g
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] emissions_scope Object to be assigned
-    def emissions_scope=(emissions_scope)
-      validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
-      unless validator.valid?(emissions_scope)
-        fail ArgumentError, "invalid value for \"emissions_scope\", must be one of #{validator.allowable_values}."
+    # @param [Object] transportation_method Object to be assigned
+    def transportation_method=(transportation_method)
+      validator = EnumAttributeValidator.new('String', ["air", "rail", "road", "sea"])
+      unless validator.valid?(transportation_method)
+        fail ArgumentError, "invalid value for \"transportation_method\", must be one of #{validator.allowable_values}."
       end
-      @emissions_scope = emissions_scope
+      @transportation_method = transportation_method
     end
 
     # Checks equality by comparing each attribute.
@@ -231,12 +233,9 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          destination_airport == o.destination_airport &&
-          origin_airport == o.origin_airport &&
-          aircraft_code == o.aircraft_code &&
-          aircraft_type == o.aircraft_type &&
-          freight_mass_g == o.freight_mass_g &&
-          emissions_scope == o.emissions_scope &&
+          distance_m == o.distance_m &&
+          package_mass_g == o.package_mass_g &&
+          transportation_method == o.transportation_method &&
           project_id == o.project_id &&
           create_order == o.create_order
     end
@@ -250,7 +249,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination_airport, origin_airport, aircraft_code, aircraft_type, freight_mass_g, emissions_scope, project_id, create_order].hash
+      [distance_m, package_mass_g, transportation_method, project_id, create_order].hash
     end
 
     # Builds the object from hash

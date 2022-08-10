@@ -127,16 +127,6 @@ Patch::Estimate.create_mass_estimate(mass_g: mass)
 distance_m = 1_000_000 # Pass in the distance traveled in meters
 Patch::Estimate.create_flight_estimate(distance_m: distance_m)
 
-# Create a shipping estimate
-distance_m = 1_000_000 # Pass in the shipping distance in meters
-package_mass_g = 10_000 # Pass in the weight of the package shipped in grams
-transportation_method = "air" # Pass in the transportation method (air, rail, road, sea)
-Patch::Estimate.create_shipping_estimate(
-  distance_m: distance_m,
-  package_mass_g: package_mass_g,
-  transportation_method: transportation_method
-)
-
 # Create a vehicle estimate
 distance_m = 1_000_000 # Pass in the shipping distance in meters
 make = "Toyota" # Pass in the car make
@@ -149,9 +139,19 @@ Patch::Estimate.create_vehicle_estimate(
   year: year
 )
 
-# Create a flight estimate
+# Create a Bitcoin estimate
 transaction_value_btc_sats = 1000; # [Optional] Pass in the transaction value in satoshis
 Patch::Estimate.create_bitcoin_estimate(transaction_value_btc_sats: transaction_value_btc_sats)
+
+# Create an ecommerce estimate
+distance_m = 1_000_000 # Pass in the shipping distance in meters
+package_mass_g = 10_000 # Pass in the weight of the package shipped in grams
+transportation_method = "air" # Pass in the transportation method (air, rail, road, sea)
+Patch::Estimate.create_ecommerce_estimate(
+  distance_m: distance_m,
+  package_mass_g: package_mass_g,
+  transportation_method: transportation_method
+)
 
 ## You can also specify a project-id field (optional) to be used instead of the preferred one
 project_id = 'pro_test_1234' # Pass in the project's ID

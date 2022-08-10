@@ -196,7 +196,7 @@ module Patch
       if attributes.key?(:'emissions_scope')
         self.emissions_scope = attributes[:'emissions_scope']
       else
-        self.emissions_scope = 'wtw'
+        self.emissions_scope = 'ttw'
       end
 
       if attributes.key?(:'freight_mass_g')
