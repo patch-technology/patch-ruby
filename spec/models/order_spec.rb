@@ -32,16 +32,17 @@ describe 'Order' do
     let(:instance_hash) {
       {
         id: @instance.id,
-        mass_g: @instance.mass_g,
+        amount: @instance.amount,
+        unit: @instance.unit,
         production: @instance.production,
         state: @instance.state,
-        allocation_state: @instance.allocation_state,
-        price_cents_usd: @instance.price_cents_usd,
-        patch_fee_cents_usd: @instance.patch_fee_cents_usd,
+        price: @instance.price,
+        patch_fee: @instance.patch_fee,
+        currency: @instance.currency,
         metadata: @instance.metadata
       }
     }
-    let(:nullable_properties) { Set.new([:patch_fee_cents_usd, :price_cents_usd]) }
+    let(:nullable_properties) { Set.new([]) }
   end
 
   describe 'test an instance of Order' do
@@ -55,7 +56,7 @@ describe 'Order' do
     end
   end
 
-  describe 'test attribute "mass_g"' do
+  describe 'test attribute "amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -77,23 +78,7 @@ describe 'Order' do
     end
   end
 
-  describe 'test attribute "allocation_state"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["pending", "partially_allocated", "allocated"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.allocation_state = value }.not_to raise_error
-      # end
-    end
-  end
-
-  describe 'test attribute "price_cents_usd"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "allocations"' do
+  describe 'test attribute "price"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

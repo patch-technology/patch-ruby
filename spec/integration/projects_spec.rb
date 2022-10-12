@@ -34,7 +34,8 @@ RSpec.describe 'Projects Integration' do
     minimum_available_mass = 100
     projects = Patch::Project.retrieve_projects(minimum_available_mass: minimum_available_mass)
     projects.data.map do |project|
-      expect(project.remaining_mass_g >= minimum_available_mass).to be true
+      project_mass = project.inventory.sum(&:amount_available)
+      expect(project_mass >= minimum_available_mass).to be true
     end
   end
 
@@ -45,9 +46,6 @@ RSpec.describe 'Projects Integration' do
     expect(project.to_hash.keys).to include(*keys)
 
     expect(project.photos).to be_an_instance_of(Array)
-    expect(project.average_price_per_tonne_cents_usd)
-      .to be_an_instance_of(Integer)
-    expect(project.remaining_mass_g).to be_an_instance_of(Integer)
     expect(project.longitude).to be_an_instance_of(Float)
     expect(project.latitude).to be_an_instance_of(Float)
 

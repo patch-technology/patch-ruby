@@ -14,28 +14,18 @@ require 'date'
 require 'time'
 
 module Patch
-  class CreateRailShippingEstimateRequest
-    attr_accessor :destination_country_code
-
-    attr_accessor :destination_locode
-
-    attr_accessor :destination_postal_code
-
-    attr_accessor :origin_country_code
-
-    attr_accessor :origin_locode
-
-    attr_accessor :origin_postal_code
-
-    attr_accessor :fuel_type
-
-    attr_accessor :freight_mass_g
-
-    attr_accessor :emissions_scope
-
+  class CreateOrderLineItemRequest
     attr_accessor :project_id
 
-    attr_accessor :create_order
+    attr_accessor :vintage_year
+
+    attr_accessor :price
+
+    attr_accessor :currency
+
+    attr_accessor :amount
+
+    attr_accessor :unit
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -62,17 +52,12 @@ module Patch
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'destination_country_code' => :'destination_country_code',
-        :'destination_locode' => :'destination_locode',
-        :'destination_postal_code' => :'destination_postal_code',
-        :'origin_country_code' => :'origin_country_code',
-        :'origin_locode' => :'origin_locode',
-        :'origin_postal_code' => :'origin_postal_code',
-        :'fuel_type' => :'fuel_type',
-        :'freight_mass_g' => :'freight_mass_g',
-        :'emissions_scope' => :'emissions_scope',
         :'project_id' => :'project_id',
-        :'create_order' => :'create_order'
+        :'vintage_year' => :'vintage_year',
+        :'price' => :'price',
+        :'currency' => :'currency',
+        :'amount' => :'amount',
+        :'unit' => :'unit'
       }
     end
 
@@ -84,33 +69,23 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'destination_country_code' => :'String',
-        :'destination_locode' => :'String',
-        :'destination_postal_code' => :'String',
-        :'origin_country_code' => :'String',
-        :'origin_locode' => :'String',
-        :'origin_postal_code' => :'String',
-        :'fuel_type' => :'String',
-        :'freight_mass_g' => :'Integer',
-        :'emissions_scope' => :'String',
         :'project_id' => :'String',
-        :'create_order' => :'Boolean'
+        :'vintage_year' => :'Integer',
+        :'price' => :'Integer',
+        :'currency' => :'String',
+        :'amount' => :'Integer',
+        :'unit' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'destination_country_code',
-        :'destination_locode',
-        :'destination_postal_code',
-        :'origin_country_code',
-        :'origin_locode',
-        :'origin_postal_code',
-        :'fuel_type',
-        :'emissions_scope',
-        :'project_id',
-        :'create_order'
+        :'vintage_year',
+        :'price',
+        :'currency',
+        :'amount',
+        :'unit'
       ])
     end
 
@@ -119,8 +94,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateRailShippingEstimateRequestsApi::OPERATIONS') && Patch::CreateRailShippingEstimateRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateRailShippingEstimateRequestsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::CreateOrderLineItemRequestsApi::OPERATIONS') && Patch::CreateOrderLineItemRequestsApi::OPERATIONS.include?(message)
+        Patch::CreateOrderLineItemRequestsApi.new.send(message, *args)
       else
         super
       end
@@ -130,65 +105,39 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateRailShippingEstimateRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateOrderLineItemRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateRailShippingEstimateRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateOrderLineItemRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'destination_country_code')
-        self.destination_country_code = attributes[:'destination_country_code']
-      end
-
-      if attributes.key?(:'destination_locode')
-        self.destination_locode = attributes[:'destination_locode']
-      end
-
-      if attributes.key?(:'destination_postal_code')
-        self.destination_postal_code = attributes[:'destination_postal_code']
-      end
-
-      if attributes.key?(:'origin_country_code')
-        self.origin_country_code = attributes[:'origin_country_code']
-      end
-
-      if attributes.key?(:'origin_locode')
-        self.origin_locode = attributes[:'origin_locode']
-      end
-
-      if attributes.key?(:'origin_postal_code')
-        self.origin_postal_code = attributes[:'origin_postal_code']
-      end
-
-      if attributes.key?(:'fuel_type')
-        self.fuel_type = attributes[:'fuel_type']
-      else
-        self.fuel_type = 'default'
-      end
-
-      if attributes.key?(:'freight_mass_g')
-        self.freight_mass_g = attributes[:'freight_mass_g']
-      end
-
-      if attributes.key?(:'emissions_scope')
-        self.emissions_scope = attributes[:'emissions_scope']
-      else
-        self.emissions_scope = 'ttw'
-      end
 
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
       end
 
-      if attributes.key?(:'create_order')
-        self.create_order = attributes[:'create_order']
-      else
-        self.create_order = false
+      if attributes.key?(:'vintage_year')
+        self.vintage_year = attributes[:'vintage_year']
+      end
+
+      if attributes.key?(:'price')
+        self.price = attributes[:'price']
+      end
+
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
+      end
+
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
+      end
+
+      if attributes.key?(:'unit')
+        self.unit = attributes[:'unit']
       end
     end
 
@@ -196,12 +145,24 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
-        invalid_properties.push('invalid value for "freight_mass_g", must be smaller than or equal to 2000000000.')
+      if !@vintage_year.nil? && @vintage_year > 2100
+        invalid_properties.push('invalid value for "vintage_year", must be smaller than or equal to 2100.')
       end
 
-      if !@freight_mass_g.nil? && @freight_mass_g < 0
-        invalid_properties.push('invalid value for "freight_mass_g", must be greater than or equal to 0.')
+      if !@vintage_year.nil? && @vintage_year < 1900
+        invalid_properties.push('invalid value for "vintage_year", must be greater than or equal to 1900.')
+      end
+
+      if !@price.nil? && @price < 2
+        invalid_properties.push('invalid value for "price", must be greater than or equal to 2.')
+      end
+
+      if !@amount.nil? && @amount > 100000000000
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000.')
+      end
+
+      if !@amount.nil? && @amount < 0
+        invalid_properties.push('invalid value for "amount", must be greater than or equal to 0.')
       end
 
       invalid_properties
@@ -210,47 +171,62 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      fuel_type_validator = EnumAttributeValidator.new('String', ["default", "diesel", "elec"])
-      return false unless fuel_type_validator.valid?(@fuel_type)
-      return false if !@freight_mass_g.nil? && @freight_mass_g > 2000000000
-      return false if !@freight_mass_g.nil? && @freight_mass_g < 0
-      emissions_scope_validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
-      return false unless emissions_scope_validator.valid?(@emissions_scope)
+      return false if !@vintage_year.nil? && @vintage_year > 2100
+      return false if !@vintage_year.nil? && @vintage_year < 1900
+      return false if !@price.nil? && @price < 2
+      return false if !@amount.nil? && @amount > 100000000000
+      return false if !@amount.nil? && @amount < 0
+      unit_validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      return false unless unit_validator.valid?(@unit)
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] fuel_type Object to be assigned
-    def fuel_type=(fuel_type)
-      validator = EnumAttributeValidator.new('String', ["default", "diesel", "elec"])
-      unless validator.valid?(fuel_type)
-        fail ArgumentError, "invalid value for \"fuel_type\", must be one of #{validator.allowable_values}."
+    # Custom attribute writer method with validation
+    # @param [Object] vintage_year Value to be assigned
+    def vintage_year=(vintage_year)
+      if !vintage_year.nil? && vintage_year > 2100
+        fail ArgumentError, 'invalid value for "vintage_year", must be smaller than or equal to 2100.'
       end
-      @fuel_type = fuel_type
+
+      if !vintage_year.nil? && vintage_year < 1900
+        fail ArgumentError, 'invalid value for "vintage_year", must be greater than or equal to 1900.'
+      end
+
+      @vintage_year = vintage_year
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] freight_mass_g Value to be assigned
-    def freight_mass_g=(freight_mass_g)
-      if !freight_mass_g.nil? && freight_mass_g > 2000000000
-        fail ArgumentError, 'invalid value for "freight_mass_g", must be smaller than or equal to 2000000000.'
+    # @param [Object] price Value to be assigned
+    def price=(price)
+      if !price.nil? && price < 2
+        fail ArgumentError, 'invalid value for "price", must be greater than or equal to 2.'
       end
 
-      if !freight_mass_g.nil? && freight_mass_g < 0
-        fail ArgumentError, 'invalid value for "freight_mass_g", must be greater than or equal to 0.'
+      @price = price
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] amount Value to be assigned
+    def amount=(amount)
+      if !amount.nil? && amount > 100000000000
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000.'
       end
 
-      @freight_mass_g = freight_mass_g
+      if !amount.nil? && amount < 0
+        fail ArgumentError, 'invalid value for "amount", must be greater than or equal to 0.'
+      end
+
+      @amount = amount
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] emissions_scope Object to be assigned
-    def emissions_scope=(emissions_scope)
-      validator = EnumAttributeValidator.new('String', ["wtt", "ttw", "wtw"])
-      unless validator.valid?(emissions_scope)
-        fail ArgumentError, "invalid value for \"emissions_scope\", must be one of #{validator.allowable_values}."
+    # @param [Object] unit Object to be assigned
+    def unit=(unit)
+      validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      unless validator.valid?(unit)
+        fail ArgumentError, "invalid value for \"unit\", must be one of #{validator.allowable_values}."
       end
-      @emissions_scope = emissions_scope
+      @unit = unit
     end
 
     # Checks equality by comparing each attribute.
@@ -258,17 +234,12 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          destination_country_code == o.destination_country_code &&
-          destination_locode == o.destination_locode &&
-          destination_postal_code == o.destination_postal_code &&
-          origin_country_code == o.origin_country_code &&
-          origin_locode == o.origin_locode &&
-          origin_postal_code == o.origin_postal_code &&
-          fuel_type == o.fuel_type &&
-          freight_mass_g == o.freight_mass_g &&
-          emissions_scope == o.emissions_scope &&
           project_id == o.project_id &&
-          create_order == o.create_order
+          vintage_year == o.vintage_year &&
+          price == o.price &&
+          currency == o.currency &&
+          amount == o.amount &&
+          unit == o.unit
     end
 
     # @see the `==` method
@@ -280,7 +251,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination_country_code, destination_locode, destination_postal_code, origin_country_code, origin_locode, origin_postal_code, fuel_type, freight_mass_g, emissions_scope, project_id, create_order].hash
+      [project_id, vintage_year, price, currency, amount, unit].hash
     end
 
     # Builds the object from hash
