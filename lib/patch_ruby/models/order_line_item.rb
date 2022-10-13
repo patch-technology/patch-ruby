@@ -14,28 +14,38 @@ require 'date'
 require 'time'
 
 module Patch
-  class CreateVehicleEstimateRequest
-    attr_accessor :distance_m
+  class OrderLineItem
+    # The identifier for this order line item
+    attr_accessor :id
 
-    attr_accessor :make
+    # An object containing information about the project associated with the inventory allocated.
+    attr_accessor :project
 
-    attr_accessor :model
+    # The year in which the climate impacts of the project occurred, or will occur.
+    attr_accessor :vintage_year
 
-    attr_accessor :year
+    # The amount ordered for the given project and vintage year.
+    attr_accessor :amount
 
-    attr_accessor :project_id
+    # The unit of measurement (ie \"g\" or \"Wh\") for the `amount` ordered for the given project and vintage year.
+    attr_accessor :unit
 
-    attr_accessor :create_order
+    # The price for the given amount ordered for the given project and vintage year. Does not include any Patch fee. Prices are always represented in the smallest currency unit (ie cents for USD).
+    attr_accessor :price
+
+    # The currency code for the `price`.
+    attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'distance_m' => :'distance_m',
-        :'make' => :'make',
-        :'model' => :'model',
-        :'year' => :'year',
-        :'project_id' => :'project_id',
-        :'create_order' => :'create_order'
+        :'id' => :'id',
+        :'project' => :'project',
+        :'vintage_year' => :'vintage_year',
+        :'amount' => :'amount',
+        :'unit' => :'unit',
+        :'price' => :'price',
+        :'currency' => :'currency'
       }
     end
 
@@ -47,23 +57,19 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'distance_m' => :'Integer',
-        :'make' => :'String',
-        :'model' => :'String',
-        :'year' => :'Integer',
-        :'project_id' => :'String',
-        :'create_order' => :'Boolean'
+        :'id' => :'String',
+        :'project' => :'OrderLineItemProject',
+        :'vintage_year' => :'Integer',
+        :'amount' => :'Integer',
+        :'unit' => :'String',
+        :'price' => :'Integer',
+        :'currency' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'make',
-        :'model',
-        :'year',
-        :'project_id',
-        :'create_order'
       ])
     end
 
@@ -72,8 +78,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::CreateVehicleEstimateRequestsApi::OPERATIONS') && Patch::CreateVehicleEstimateRequestsApi::OPERATIONS.include?(message)
-        Patch::CreateVehicleEstimateRequestsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::OrderLineItemsApi::OPERATIONS') && Patch::OrderLineItemsApi::OPERATIONS.include?(message)
+        Patch::OrderLineItemsApi.new.send(message, *args)
       else
         super
       end
@@ -83,41 +89,46 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::CreateVehicleEstimateRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::OrderLineItem` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::CreateVehicleEstimateRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::OrderLineItem`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'distance_m')
-        self.distance_m = attributes[:'distance_m']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'make')
-        self.make = attributes[:'make']
+      if attributes.key?(:'project')
+        if (value = attributes[:'project']).is_a?(Hash)
+          self.project = value
+        end
+        self.project = attributes[:'project']
       end
 
-      if attributes.key?(:'model')
-        self.model = attributes[:'model']
+      if attributes.key?(:'vintage_year')
+        self.vintage_year = attributes[:'vintage_year']
       end
 
-      if attributes.key?(:'year')
-        self.year = attributes[:'year']
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
       end
 
-      if attributes.key?(:'project_id')
-        self.project_id = attributes[:'project_id']
+      if attributes.key?(:'unit')
+        self.unit = attributes[:'unit']
       end
 
-      if attributes.key?(:'create_order')
-        self.create_order = attributes[:'create_order']
-      else
-        self.create_order = false
+      if attributes.key?(:'price')
+        self.price = attributes[:'price']
+      end
+
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
       end
     end
 
@@ -125,20 +136,28 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @distance_m.nil?
-        invalid_properties.push('invalid value for "distance_m", distance_m cannot be nil.')
+      if @project.nil?
+        invalid_properties.push('invalid value for "project", project cannot be nil.')
       end
 
-      if @distance_m > 400000000
-        invalid_properties.push('invalid value for "distance_m", must be smaller than or equal to 400000000.')
+      if @vintage_year.nil?
+        invalid_properties.push('invalid value for "vintage_year", vintage_year cannot be nil.')
       end
 
-      if @distance_m < 0
-        invalid_properties.push('invalid value for "distance_m", must be greater than or equal to 0.')
+      if @amount.nil?
+        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
       end
 
-      if !@year.nil? && @year < 1900
-        invalid_properties.push('invalid value for "year", must be greater than or equal to 1900.')
+      if @unit.nil?
+        invalid_properties.push('invalid value for "unit", unit cannot be nil.')
+      end
+
+      if @price.nil?
+        invalid_properties.push('invalid value for "price", price cannot be nil.')
+      end
+
+      if @currency.nil?
+        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
       end
 
       invalid_properties
@@ -147,39 +166,13 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @distance_m.nil?
-      return false if @distance_m > 400000000
-      return false if @distance_m < 0
-      return false if !@year.nil? && @year < 1900
+      return false if @project.nil?
+      return false if @vintage_year.nil?
+      return false if @amount.nil?
+      return false if @unit.nil?
+      return false if @price.nil?
+      return false if @currency.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] distance_m Value to be assigned
-    def distance_m=(distance_m)
-      if distance_m.nil?
-        fail ArgumentError, 'distance_m cannot be nil'
-      end
-
-      if distance_m > 400000000
-        fail ArgumentError, 'invalid value for "distance_m", must be smaller than or equal to 400000000.'
-      end
-
-      if distance_m < 0
-        fail ArgumentError, 'invalid value for "distance_m", must be greater than or equal to 0.'
-      end
-
-      @distance_m = distance_m
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] year Value to be assigned
-    def year=(year)
-      if !year.nil? && year < 1900
-        fail ArgumentError, 'invalid value for "year", must be greater than or equal to 1900.'
-      end
-
-      @year = year
     end
 
     # Checks equality by comparing each attribute.
@@ -187,12 +180,13 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          distance_m == o.distance_m &&
-          make == o.make &&
-          model == o.model &&
-          year == o.year &&
-          project_id == o.project_id &&
-          create_order == o.create_order
+          id == o.id &&
+          project == o.project &&
+          vintage_year == o.vintage_year &&
+          amount == o.amount &&
+          unit == o.unit &&
+          price == o.price &&
+          currency == o.currency
     end
 
     # @see the `==` method
@@ -204,7 +198,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [distance_m, make, model, year, project_id, create_order].hash
+      [id, project, vintage_year, amount, unit, price, currency].hash
     end
 
     # Builds the object from hash

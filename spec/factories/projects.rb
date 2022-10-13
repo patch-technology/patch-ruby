@@ -7,12 +7,9 @@ FactoryBot.define do
     production { false }
     name { "New Project" }
     description { "New Descirption" }
-    type { "biomass" }
     country { "DK" }
-    developer { "Danish Developer" }
+    project_partner { "Danish Developer" }
     photos { [] }
-    average_price_per_tonne_cents_usd { 120 }
-    remaining_mass_g { 1_000 }
     standard { 'european_biochar_certificate' }
     state { 'CO' }
     latitude { 45.0 }

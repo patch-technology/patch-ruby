@@ -29,9 +29,16 @@ describe 'CreateOrderRequest' do
 
   it_behaves_like "a generated class" do
     let(:instance) { @instance }
-    let(:instance_hash) { { project_id: @instance.project_id, mass_g: @instance.mass_g, total_price_cents_usd: @instance.total_price_cents_usd, metadata: @instance.metadata } }
+    let(:instance_hash) { {
+      project_id: @instance.project_id,
+      amount: @instance.amount,
+      unit: @instance.unit,
+      total_price: @instance.total_price,
+      currency: @instance.currency,
+      metadata: @instance.metadata
+    } }
     let(:nullable_properties) do
-      Set.new(%i[mass_g total_price_cents_usd project_id metadata state vintage_year total_price currency amount unit])
+      Set.new(%i[project_id metadata state vintage_year total_price currency amount unit])
     end
   end
 
@@ -40,7 +47,7 @@ describe 'CreateOrderRequest' do
       expect(@instance).to be_instance_of(Patch::CreateOrderRequest)
     end
   end
-  describe 'test attribute "mass_g"' do
+  describe 'test attribute "amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
