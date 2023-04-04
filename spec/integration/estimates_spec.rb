@@ -86,7 +86,7 @@ RSpec.describe 'Estimates Integration' do
       create_order: false
     )
 
-    expect(create_estimate_response.data.type).to eq 'shipping'
+    expect(create_estimate_response.data.type).to eq 'ecommerce'
     expect(create_estimate_response.data.mass_g).to be >= 10_000
   end
 
