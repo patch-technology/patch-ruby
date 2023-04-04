@@ -101,8 +101,8 @@ module Patch
         invalid_properties.push('invalid value for "mass_g", mass_g cannot be nil.')
       end
 
-      if @mass_g > 100000000000
-        invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 100000000000.')
+      if @mass_g > 100000000000000
+        invalid_properties.push('invalid value for "mass_g", must be smaller than or equal to 100000000000000.')
       end
 
       if @mass_g < 0
@@ -116,7 +116,7 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if @mass_g.nil?
-      return false if @mass_g > 100000000000
+      return false if @mass_g > 100000000000000
       return false if @mass_g < 0
       true
     end
@@ -128,8 +128,8 @@ module Patch
         fail ArgumentError, 'mass_g cannot be nil'
       end
 
-      if mass_g > 100000000000
-        fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 100000000000.'
+      if mass_g > 100000000000000
+        fail ArgumentError, 'invalid value for "mass_g", must be smaller than or equal to 100000000000000.'
       end
 
       if mass_g < 0

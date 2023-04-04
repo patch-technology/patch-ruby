@@ -134,6 +134,16 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.unit).to eq("g")
   end
 
+  it 'supports create with a vintage start year and vintage end year' do
+    create_order_response =
+      Patch::Order.create_order(amount: 100, unit: "g", vintage_start_year: 2022, vintage_end_year: 2023)
+
+    expect(create_order_response.success).to eq true
+    expect(create_order_response.data.id).not_to be_nil
+    expect(create_order_response.data.amount).to eq(100)
+    expect(create_order_response.data.unit).to eq("g")
+  end
+
   it 'supports create with an amount and unit' do
     create_order_response =
       Patch::Order.create_order(amount: 100, unit: "g")
@@ -205,6 +215,32 @@ RSpec.describe 'Orders Integration' do
     expect(retrieve_order_response.data.line_items[0].amount).to eq(100000)
 
     # Delete line item
+    delete_line_item_response = Patch::OrderLineItem.delete_order_line_item(order_id, line_item_id)
+    expect(delete_line_item_response.success).to eq(true)
+    expect(delete_line_item_response.data).to eq(line_item_id)
+
+    # Add line item via vintage_start_year and vintage_end_year
+    create_order_line_item_response = Patch::OrderLineItem
+      .create_order_line_item(order_id, { project_id: project_id, amount: 300000, unit: "g", vintage_start_year: 2023, vintage_end_year: 2025 })
+
+    expect(create_order_line_item_response.success).to eq(true)
+    expect(create_order_line_item_response.data.id).not_to be_nil
+    expect(create_order_line_item_response.data.amount).to eq(300000)
+    expect(create_order_line_item_response.data.vintage_start_year).to eq(2023)
+    expect(create_order_line_item_response.data.vintage_end_year).to eq(2025)
+    expect(create_order_line_item_response.data.price).to be >= 0
+
+    # Fetch order and check line item matches
+    retrieve_order_response = Patch::Order.retrieve_order(order_id)
+    expect(retrieve_order_response.data.id).to eq order_id
+    expect(retrieve_order_response.data.line_items.length).to eq(1)
+    expect(retrieve_order_response.data.line_items[0].id).to eq(line_item_id)
+    expect(retrieve_order_response.data.line_items[0].amount).to eq(300000)
+    expect(retrieve_order_response.data.line_items[0].vintage_start_year).to eq(2023)
+    expect(retrieve_order_response.data.line_items[0].vintage_end_year).to eq(2025)
+
+    # Delete line item
+    line_item_id = create_order_line_item_response.data.id
     delete_line_item_response = Patch::OrderLineItem.delete_order_line_item(order_id, line_item_id)
     expect(delete_line_item_response.success).to eq(true)
     expect(delete_line_item_response.data).to eq(line_item_id)

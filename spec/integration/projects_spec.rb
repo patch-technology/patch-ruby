@@ -65,6 +65,8 @@ RSpec.describe 'Projects Integration' do
     expect(inventory).to be_an_instance_of(Array)
     expect(inventory[0]).to be_an_instance_of(Patch::Inventory)
     expect(inventory[0].vintage_year).to be_an_instance_of(Integer)
+    expect(inventory[0].vintage_start_year).to be_an_instance_of(Integer)
+    expect(inventory[0].vintage_end_year).to be_an_instance_of(Integer)
     expect(inventory[0].amount_available).to be_an_instance_of(Integer)
     expect(inventory[0].price).to be_an_instance_of(Integer)
     expect(inventory[0].currency).to be_an_instance_of(String)
@@ -78,6 +80,6 @@ RSpec.describe 'Projects Integration' do
 
     project_id = projects_response.data.last.id
     project_response = Patch::Project.retrieve_project(project_id, accept_language: 'fr')
-    expect(project_response.data.name).to include 'Démo' # Frenc
+    expect(project_response.data.name).to include 'Démo' # French
   end
 end

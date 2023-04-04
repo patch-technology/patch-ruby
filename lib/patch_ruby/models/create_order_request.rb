@@ -23,6 +23,10 @@ module Patch
 
     attr_accessor :vintage_year
 
+    attr_accessor :vintage_start_year
+
+    attr_accessor :vintage_end_year
+
     attr_accessor :total_price
 
     attr_accessor :currency
@@ -62,6 +66,8 @@ module Patch
         :'metadata' => :'metadata',
         :'state' => :'state',
         :'vintage_year' => :'vintage_year',
+        :'vintage_start_year' => :'vintage_start_year',
+        :'vintage_end_year' => :'vintage_end_year',
         :'total_price' => :'total_price',
         :'currency' => :'currency',
         :'amount' => :'amount',
@@ -82,6 +88,8 @@ module Patch
         :'metadata' => :'Object',
         :'state' => :'String',
         :'vintage_year' => :'Integer',
+        :'vintage_start_year' => :'Integer',
+        :'vintage_end_year' => :'Integer',
         :'total_price' => :'Integer',
         :'currency' => :'String',
         :'amount' => :'Integer',
@@ -97,6 +105,8 @@ module Patch
         :'metadata',
         :'state',
         :'vintage_year',
+        :'vintage_start_year',
+        :'vintage_end_year',
         :'total_price',
         :'currency',
         :'amount',
@@ -147,6 +157,14 @@ module Patch
         self.vintage_year = attributes[:'vintage_year']
       end
 
+      if attributes.key?(:'vintage_start_year')
+        self.vintage_start_year = attributes[:'vintage_start_year']
+      end
+
+      if attributes.key?(:'vintage_end_year')
+        self.vintage_end_year = attributes[:'vintage_end_year']
+      end
+
       if attributes.key?(:'total_price')
         self.total_price = attributes[:'total_price']
       end
@@ -180,12 +198,28 @@ module Patch
         invalid_properties.push('invalid value for "vintage_year", must be greater than or equal to 1900.')
       end
 
+      if !@vintage_start_year.nil? && @vintage_start_year > 2100
+        invalid_properties.push('invalid value for "vintage_start_year", must be smaller than or equal to 2100.')
+      end
+
+      if !@vintage_start_year.nil? && @vintage_start_year < 1900
+        invalid_properties.push('invalid value for "vintage_start_year", must be greater than or equal to 1900.')
+      end
+
+      if !@vintage_end_year.nil? && @vintage_end_year > 2100
+        invalid_properties.push('invalid value for "vintage_end_year", must be smaller than or equal to 2100.')
+      end
+
+      if !@vintage_end_year.nil? && @vintage_end_year < 1900
+        invalid_properties.push('invalid value for "vintage_end_year", must be greater than or equal to 1900.')
+      end
+
       if !@total_price.nil? && @total_price < 2
         invalid_properties.push('invalid value for "total_price", must be greater than or equal to 2.')
       end
 
-      if !@amount.nil? && @amount > 100000000000
-        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000.')
+      if !@amount.nil? && @amount > 100000000000000
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000000.')
       end
 
       if !@amount.nil? && @amount < 0
@@ -202,8 +236,12 @@ module Patch
       return false unless state_validator.valid?(@state)
       return false if !@vintage_year.nil? && @vintage_year > 2100
       return false if !@vintage_year.nil? && @vintage_year < 1900
+      return false if !@vintage_start_year.nil? && @vintage_start_year > 2100
+      return false if !@vintage_start_year.nil? && @vintage_start_year < 1900
+      return false if !@vintage_end_year.nil? && @vintage_end_year > 2100
+      return false if !@vintage_end_year.nil? && @vintage_end_year < 1900
       return false if !@total_price.nil? && @total_price < 2
-      return false if !@amount.nil? && @amount > 100000000000
+      return false if !@amount.nil? && @amount > 100000000000000
       return false if !@amount.nil? && @amount < 0
       unit_validator = EnumAttributeValidator.new('String', ["g", "Wh"])
       return false unless unit_validator.valid?(@unit)
@@ -235,6 +273,34 @@ module Patch
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] vintage_start_year Value to be assigned
+    def vintage_start_year=(vintage_start_year)
+      if !vintage_start_year.nil? && vintage_start_year > 2100
+        fail ArgumentError, 'invalid value for "vintage_start_year", must be smaller than or equal to 2100.'
+      end
+
+      if !vintage_start_year.nil? && vintage_start_year < 1900
+        fail ArgumentError, 'invalid value for "vintage_start_year", must be greater than or equal to 1900.'
+      end
+
+      @vintage_start_year = vintage_start_year
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] vintage_end_year Value to be assigned
+    def vintage_end_year=(vintage_end_year)
+      if !vintage_end_year.nil? && vintage_end_year > 2100
+        fail ArgumentError, 'invalid value for "vintage_end_year", must be smaller than or equal to 2100.'
+      end
+
+      if !vintage_end_year.nil? && vintage_end_year < 1900
+        fail ArgumentError, 'invalid value for "vintage_end_year", must be greater than or equal to 1900.'
+      end
+
+      @vintage_end_year = vintage_end_year
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] total_price Value to be assigned
     def total_price=(total_price)
       if !total_price.nil? && total_price < 2
@@ -247,8 +313,8 @@ module Patch
     # Custom attribute writer method with validation
     # @param [Object] amount Value to be assigned
     def amount=(amount)
-      if !amount.nil? && amount > 100000000000
-        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000.'
+      if !amount.nil? && amount > 100000000000000
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000000.'
       end
 
       if !amount.nil? && amount < 0
@@ -277,6 +343,8 @@ module Patch
           metadata == o.metadata &&
           state == o.state &&
           vintage_year == o.vintage_year &&
+          vintage_start_year == o.vintage_start_year &&
+          vintage_end_year == o.vintage_end_year &&
           total_price == o.total_price &&
           currency == o.currency &&
           amount == o.amount &&
@@ -293,7 +361,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [project_id, metadata, state, vintage_year, total_price, currency, amount, unit, issued_to].hash
+      [project_id, metadata, state, vintage_year, vintage_start_year, vintage_end_year, total_price, currency, amount, unit, issued_to].hash
     end
 
     # Builds the object from hash

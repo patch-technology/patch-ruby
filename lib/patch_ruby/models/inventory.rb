@@ -18,6 +18,12 @@ module Patch
     # The year in which the climate impacts of the project occurred, or will occur.
     attr_accessor :vintage_year
 
+    # The starting year in which the climate impacts of the project occurred, or will occur.
+    attr_accessor :vintage_start_year
+
+    # The ending year in which the climate impacts of the project occurred, or will occur.
+    attr_accessor :vintage_end_year
+
     # The amount available for this vintage year.
     attr_accessor :amount_available
 
@@ -34,6 +40,8 @@ module Patch
     def self.attribute_map
       {
         :'vintage_year' => :'vintage_year',
+        :'vintage_start_year' => :'vintage_start_year',
+        :'vintage_end_year' => :'vintage_end_year',
         :'amount_available' => :'amount_available',
         :'price' => :'price',
         :'currency' => :'currency',
@@ -50,6 +58,8 @@ module Patch
     def self.openapi_types
       {
         :'vintage_year' => :'Integer',
+        :'vintage_start_year' => :'Integer',
+        :'vintage_end_year' => :'Integer',
         :'amount_available' => :'Integer',
         :'price' => :'Integer',
         :'currency' => :'String',
@@ -94,6 +104,14 @@ module Patch
         self.vintage_year = attributes[:'vintage_year']
       end
 
+      if attributes.key?(:'vintage_start_year')
+        self.vintage_start_year = attributes[:'vintage_start_year']
+      end
+
+      if attributes.key?(:'vintage_end_year')
+        self.vintage_end_year = attributes[:'vintage_end_year']
+      end
+
       if attributes.key?(:'amount_available')
         self.amount_available = attributes[:'amount_available']
       end
@@ -119,6 +137,14 @@ module Patch
         invalid_properties.push('invalid value for "vintage_year", vintage_year cannot be nil.')
       end
 
+      if @vintage_start_year.nil?
+        invalid_properties.push('invalid value for "vintage_start_year", vintage_start_year cannot be nil.')
+      end
+
+      if @vintage_end_year.nil?
+        invalid_properties.push('invalid value for "vintage_end_year", vintage_end_year cannot be nil.')
+      end
+
       if @amount_available.nil?
         invalid_properties.push('invalid value for "amount_available", amount_available cannot be nil.')
       end
@@ -142,6 +168,8 @@ module Patch
     # @return true if the model is valid
     def valid?
       return false if @vintage_year.nil?
+      return false if @vintage_start_year.nil?
+      return false if @vintage_end_year.nil?
       return false if @amount_available.nil?
       return false if @price.nil?
       return false if @currency.nil?
@@ -155,6 +183,8 @@ module Patch
       return true if self.equal?(o)
       self.class == o.class &&
           vintage_year == o.vintage_year &&
+          vintage_start_year == o.vintage_start_year &&
+          vintage_end_year == o.vintage_end_year &&
           amount_available == o.amount_available &&
           price == o.price &&
           currency == o.currency &&
@@ -170,7 +200,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [vintage_year, amount_available, price, currency, unit].hash
+      [vintage_year, vintage_start_year, vintage_end_year, amount_available, price, currency, unit].hash
     end
 
     # Builds the object from hash

@@ -38,7 +38,7 @@ describe 'CreateOrderRequest' do
       metadata: @instance.metadata
     } }
     let(:nullable_properties) do
-      Set.new(%i[project_id metadata state vintage_year total_price currency amount unit])
+      Set.new(%i[project_id metadata state vintage_year vintage_start_year vintage_end_year total_price currency amount unit])
     end
   end
 

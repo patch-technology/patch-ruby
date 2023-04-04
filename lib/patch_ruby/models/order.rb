@@ -230,8 +230,8 @@ module Patch
         invalid_properties.push('invalid value for "amount", amount cannot be nil.')
       end
 
-      if @amount > 100000000000
-        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000.')
+      if @amount > 100000000000000
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 100000000000000.')
       end
 
       if @amount < 0
@@ -270,7 +270,7 @@ module Patch
       state_validator = EnumAttributeValidator.new('String', ["draft", "reserved", "placed", "processing", "complete", "cancelled"])
       return false unless state_validator.valid?(@state)
       return false if @amount.nil?
-      return false if @amount > 100000000000
+      return false if @amount > 100000000000000
       return false if @amount < 0
       return false if @unit.nil?
       return false if @price.nil?
@@ -297,8 +297,8 @@ module Patch
         fail ArgumentError, 'amount cannot be nil'
       end
 
-      if amount > 100000000000
-        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000.'
+      if amount > 100000000000000
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 100000000000000.'
       end
 
       if amount < 0
