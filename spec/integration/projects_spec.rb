@@ -80,6 +80,6 @@ RSpec.describe 'Projects Integration' do
 
     project_id = projects_response.data.last.id
     project_response = Patch::Project.retrieve_project(project_id, accept_language: 'fr')
-    expect(project_response.data.name).to include 'Démo' # Frenc
+    expect(project_response.data.name).to include 'Démo' # French
   end
 end
