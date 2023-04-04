@@ -9,12 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adds optional `vintage_start_year` and `vintage_end_year` field to `order` creation
-- Adds optional `vintage_start_year` and `vintage_end_year` field to `order_line_item` create and update
-- Adds optional `vintage_start_year` and `vintage_end_year` field to `inventory` creation
-- Adds `vintage_start_year` and `vintage_end_year` field to `order` response
-- Adds `vintage_start_year` and `vintage_end_year` field to `order_line_item` response
+- Adds optional `vintage_start_year` and `vintage_end_year` fields to `order` creation
+- Adds optional `vintage_start_year` and `vintage_end_year` fields to `order_line_item` create and update
+- Adds optional `vintage_start_year` and `vintage_end_year` fields to `inventory` creation
+- Adds `vintage_start_year` and `vintage_end_year` fields to `order` response
+- Adds `vintage_start_year` and `vintage_end_year` fields to `order_line_item` response
 - Adds optional `carrier_scac` field to `Patch::Estimate.create_road_shipping_estimate` method
+- Deprecates `Patch::Estimate.create_shipping_estimate` in favor of `Patch::Estimate.create_ecommerce_estimate`
 
 ## [1.24.2] - 2022-08-10
 
