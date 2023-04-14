@@ -42,7 +42,7 @@ module Patch
     # The currency code for the `price` and `patch_fee`.
     attr_accessor :currency
 
-    # The url of this order in the public registry.
+    # The URL of this order in the public registry. Use this URL to access the order's accompanying certificate.
     attr_accessor :registry_url
 
     # An optional JSON object containing metadata for this order.

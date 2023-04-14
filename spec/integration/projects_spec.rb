@@ -71,6 +71,18 @@ RSpec.describe 'Projects Integration' do
     expect(inventory[0].price).to be_an_instance_of(Integer)
     expect(inventory[0].currency).to be_an_instance_of(String)
     expect(inventory[0].unit).to be_an_instance_of(String)
+
+    issuance_type = project.issuance_type
+    expect(issuance_type).to be_an_instance_of(String)
+
+    disclaimers = project.disclaimers
+    expect(disclaimers).to be_an_instance_of(Array)
+    expect(disclaimers[0]).to be_an_instance_of(Patch::Disclaimer)
+    expect(disclaimers[0].body).to be_an_instance_of(String)
+    expect(disclaimers[0].header).to be_an_instance_of(String)
+    expect(disclaimers[0].severity).to be_an_instance_of(String)
+    expect(disclaimers[0].link_text).to be_an_instance_of(String)
+    expect(disclaimers[0].link_destination).to be_an_instance_of(String)
   end
 
   it 'retrieves projects in the requested language' do
