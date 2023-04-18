@@ -36,6 +36,9 @@ module Patch
     # The state where this project is located.
     attr_accessor :state
 
+    # The issuance type of the project. One of: ex-ante, ex-post.
+    attr_accessor :issuance_type
+
     # The latitude at which this project is located.
     attr_accessor :latitude
 
@@ -68,6 +71,31 @@ module Patch
     # An array of objects containing available inventory for a project. Available inventory is grouped by a project's vintage year and returns amount and pricing available for a given vintage year.
     attr_accessor :inventory
 
+    # An array of objects containing disclaimers about the project. Information, warnings, and critical concerns may be present.
+    attr_accessor :disclaimers
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -78,6 +106,7 @@ module Patch
         :'mechanism' => :'mechanism',
         :'country' => :'country',
         :'state' => :'state',
+        :'issuance_type' => :'issuance_type',
         :'latitude' => :'latitude',
         :'longitude' => :'longitude',
         :'project_partner' => :'project_partner',
@@ -88,7 +117,8 @@ module Patch
         :'tagline' => :'tagline',
         :'technology_type' => :'technology_type',
         :'highlights' => :'highlights',
-        :'inventory' => :'inventory'
+        :'inventory' => :'inventory',
+        :'disclaimers' => :'disclaimers'
       }
     end
 
@@ -107,6 +137,7 @@ module Patch
         :'mechanism' => :'String',
         :'country' => :'String',
         :'state' => :'String',
+        :'issuance_type' => :'String',
         :'latitude' => :'Float',
         :'longitude' => :'Float',
         :'project_partner' => :'String',
@@ -117,7 +148,8 @@ module Patch
         :'tagline' => :'String',
         :'technology_type' => :'TechnologyType',
         :'highlights' => :'Array<Highlight>',
-        :'inventory' => :'Array<Inventory>'
+        :'inventory' => :'Array<Inventory>',
+        :'disclaimers' => :'Array<Disclaimer>'
       }
     end
 
@@ -188,6 +220,10 @@ module Patch
         self.state = attributes[:'state']
       end
 
+      if attributes.key?(:'issuance_type')
+        self.issuance_type = attributes[:'issuance_type']
+      end
+
       if attributes.key?(:'latitude')
         self.latitude = attributes[:'latitude']
       end
@@ -240,6 +276,12 @@ module Patch
       if attributes.key?(:'inventory')
         if (value = attributes[:'inventory']).is_a?(Array)
           self.inventory = value
+        end
+      end
+
+      if attributes.key?(:'disclaimers')
+        if (value = attributes[:'disclaimers']).is_a?(Array)
+          self.disclaimers = value
         end
       end
     end
@@ -295,11 +337,23 @@ module Patch
       return false if @name.nil?
       return false if @description.nil?
       return false if @country.nil?
+      issuance_type_validator = EnumAttributeValidator.new('String', ["ex-ante", "ex-post"])
+      return false unless issuance_type_validator.valid?(@issuance_type)
       return false if @project_partner.nil?
       return false if @technology_type.nil?
       return false if @highlights.nil?
       return false if @inventory.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] issuance_type Object to be assigned
+    def issuance_type=(issuance_type)
+      validator = EnumAttributeValidator.new('String', ["ex-ante", "ex-post"])
+      unless validator.valid?(issuance_type)
+        fail ArgumentError, "invalid value for \"issuance_type\", must be one of #{validator.allowable_values}."
+      end
+      @issuance_type = issuance_type
     end
 
     # Checks equality by comparing each attribute.
@@ -314,6 +368,7 @@ module Patch
           mechanism == o.mechanism &&
           country == o.country &&
           state == o.state &&
+          issuance_type == o.issuance_type &&
           latitude == o.latitude &&
           longitude == o.longitude &&
           project_partner == o.project_partner &&
@@ -324,7 +379,8 @@ module Patch
           tagline == o.tagline &&
           technology_type == o.technology_type &&
           highlights == o.highlights &&
-          inventory == o.inventory
+          inventory == o.inventory &&
+          disclaimers == o.disclaimers
     end
 
     # @see the `==` method
@@ -336,7 +392,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, production, name, description, mechanism, country, state, latitude, longitude, project_partner, photos, verifier, standard, sdgs, tagline, technology_type, highlights, inventory].hash
+      [id, production, name, description, mechanism, country, state, issuance_type, latitude, longitude, project_partner, photos, verifier, standard, sdgs, tagline, technology_type, highlights, inventory, disclaimers].hash
     end
 
     # Builds the object from hash

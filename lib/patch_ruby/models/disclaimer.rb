@@ -14,46 +14,30 @@ require 'date'
 require 'time'
 
 module Patch
-  class OrderLineItem
-    # The identifier for this order line item
-    attr_accessor :id
+  class Disclaimer
+    # The body of the disclaimer.
+    attr_accessor :body
 
-    # An object containing information about the project associated with the inventory allocated.
-    attr_accessor :project
+    # The header for the disclaimer.
+    attr_accessor :header
 
-    # The year in which the climate impacts of the project occurred, or will occur.
-    attr_accessor :vintage_year
+    # The severity of the disclaimer.
+    attr_accessor :severity
 
-    # The starting year in which the climate impacts of the project occurred, or will occur.
-    attr_accessor :vintage_start_year
+    # The text for the provided link.
+    attr_accessor :link_text
 
-    # The ending year in which the climate impacts of the project occurred, or will occur.
-    attr_accessor :vintage_end_year
-
-    # The amount ordered for the given project and vintage year.
-    attr_accessor :amount
-
-    # The unit of measurement (ie \"g\" or \"Wh\") for the `amount` ordered for the given project and vintage year.
-    attr_accessor :unit
-
-    # The price for the given amount ordered for the given project and vintage year. Does not include any Patch fee. Prices are always represented in the smallest currency unit (ie cents for USD).
-    attr_accessor :price
-
-    # The currency code for the `price`.
-    attr_accessor :currency
+    # The destination of the provided link.
+    attr_accessor :link_destination
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'project' => :'project',
-        :'vintage_year' => :'vintage_year',
-        :'vintage_start_year' => :'vintage_start_year',
-        :'vintage_end_year' => :'vintage_end_year',
-        :'amount' => :'amount',
-        :'unit' => :'unit',
-        :'price' => :'price',
-        :'currency' => :'currency'
+        :'body' => :'body',
+        :'header' => :'header',
+        :'severity' => :'severity',
+        :'link_text' => :'link_text',
+        :'link_destination' => :'link_destination'
       }
     end
 
@@ -65,21 +49,20 @@ module Patch
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'project' => :'OrderLineItemProject',
-        :'vintage_year' => :'Integer',
-        :'vintage_start_year' => :'Integer',
-        :'vintage_end_year' => :'Integer',
-        :'amount' => :'Integer',
-        :'unit' => :'String',
-        :'price' => :'Integer',
-        :'currency' => :'String'
+        :'body' => :'String',
+        :'header' => :'String',
+        :'severity' => :'String',
+        :'link_text' => :'String',
+        :'link_destination' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'body',
+        :'link_text',
+        :'link_destination'
       ])
     end
 
@@ -88,8 +71,8 @@ module Patch
     # Exposes Model.operation_id which delegates to ModelsApi.new.operation_id
     # Eg. Order.create_order delegates to OrdersApi.new.create_order
     def self.method_missing(message, *args, &block)
-      if Object.const_defined?('Patch::OrderLineItemsApi::OPERATIONS') && Patch::OrderLineItemsApi::OPERATIONS.include?(message)
-        Patch::OrderLineItemsApi.new.send(message, *args)
+      if Object.const_defined?('Patch::DisclaimersApi::OPERATIONS') && Patch::DisclaimersApi::OPERATIONS.include?(message)
+        Patch::DisclaimersApi.new.send(message, *args)
       else
         super
       end
@@ -99,54 +82,35 @@ module Patch
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::OrderLineItem` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Patch::Disclaimer` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::OrderLineItem`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Patch::Disclaimer`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'body')
+        self.body = attributes[:'body']
       end
 
-      if attributes.key?(:'project')
-        if (value = attributes[:'project']).is_a?(Hash)
-          self.project = value
-        end
-        self.project = attributes[:'project']
+      if attributes.key?(:'header')
+        self.header = attributes[:'header']
       end
 
-      if attributes.key?(:'vintage_year')
-        self.vintage_year = attributes[:'vintage_year']
+      if attributes.key?(:'severity')
+        self.severity = attributes[:'severity']
       end
 
-      if attributes.key?(:'vintage_start_year')
-        self.vintage_start_year = attributes[:'vintage_start_year']
+      if attributes.key?(:'link_text')
+        self.link_text = attributes[:'link_text']
       end
 
-      if attributes.key?(:'vintage_end_year')
-        self.vintage_end_year = attributes[:'vintage_end_year']
-      end
-
-      if attributes.key?(:'amount')
-        self.amount = attributes[:'amount']
-      end
-
-      if attributes.key?(:'unit')
-        self.unit = attributes[:'unit']
-      end
-
-      if attributes.key?(:'price')
-        self.price = attributes[:'price']
-      end
-
-      if attributes.key?(:'currency')
-        self.currency = attributes[:'currency']
+      if attributes.key?(:'link_destination')
+        self.link_destination = attributes[:'link_destination']
       end
     end
 
@@ -154,36 +118,12 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @project.nil?
-        invalid_properties.push('invalid value for "project", project cannot be nil.')
+      if @header.nil?
+        invalid_properties.push('invalid value for "header", header cannot be nil.')
       end
 
-      if @vintage_year.nil?
-        invalid_properties.push('invalid value for "vintage_year", vintage_year cannot be nil.')
-      end
-
-      if @vintage_start_year.nil?
-        invalid_properties.push('invalid value for "vintage_start_year", vintage_start_year cannot be nil.')
-      end
-
-      if @vintage_end_year.nil?
-        invalid_properties.push('invalid value for "vintage_end_year", vintage_end_year cannot be nil.')
-      end
-
-      if @amount.nil?
-        invalid_properties.push('invalid value for "amount", amount cannot be nil.')
-      end
-
-      if @unit.nil?
-        invalid_properties.push('invalid value for "unit", unit cannot be nil.')
-      end
-
-      if @price.nil?
-        invalid_properties.push('invalid value for "price", price cannot be nil.')
-      end
-
-      if @currency.nil?
-        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
+      if @severity.nil?
+        invalid_properties.push('invalid value for "severity", severity cannot be nil.')
       end
 
       invalid_properties
@@ -192,14 +132,8 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @project.nil?
-      return false if @vintage_year.nil?
-      return false if @vintage_start_year.nil?
-      return false if @vintage_end_year.nil?
-      return false if @amount.nil?
-      return false if @unit.nil?
-      return false if @price.nil?
-      return false if @currency.nil?
+      return false if @header.nil?
+      return false if @severity.nil?
       true
     end
 
@@ -208,15 +142,11 @@ module Patch
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          project == o.project &&
-          vintage_year == o.vintage_year &&
-          vintage_start_year == o.vintage_start_year &&
-          vintage_end_year == o.vintage_end_year &&
-          amount == o.amount &&
-          unit == o.unit &&
-          price == o.price &&
-          currency == o.currency
+          body == o.body &&
+          header == o.header &&
+          severity == o.severity &&
+          link_text == o.link_text &&
+          link_destination == o.link_destination
     end
 
     # @see the `==` method
@@ -228,7 +158,7 @@ module Patch
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, project, vintage_year, vintage_start_year, vintage_end_year, amount, unit, price, currency].hash
+      [body, header, severity, link_text, link_destination].hash
     end
 
     # Builds the object from hash
