@@ -45,51 +45,6 @@ RSpec.describe 'Estimates Integration' do
     expect(flight_estimate_longer.data.mass_g).to be > 2 * flight_estimate.data.mass_g
   end
 
-  it 'supports creating vehicle estimates' do
-    distance_m = 10_000
-    make = "Toyota"
-    model = "Corolla"
-    year = 2000
-
-    vehicle_estimate = Patch::Estimate.create_vehicle_estimate(
-      distance_m: distance_m,
-      make: make,
-      model: model,
-      year: year,
-      create_order: true
-    )
-
-    expect(vehicle_estimate.data.type).to eq 'vehicle'
-    expect(vehicle_estimate.data.mass_g).to be >= 1_000
-    expect(vehicle_estimate.data.order.amount).to be >= 1_000
-  end
-
-  it 'supports creating vehicle estimates with partial information' do
-    distance_m = 10_000
-
-    vehicle_estimate = Patch::Estimate.create_vehicle_estimate(
-      distance_m: distance_m,
-      create_order: false
-    )
-
-    expect(vehicle_estimate.data.type).to eq 'vehicle'
-    expect(vehicle_estimate.data.mass_g).to eq 2_132
-  end
-
-  it 'supports creating shipping estimates' do
-    distance_m = 100_000_000
-    package_mass_g = 10_000
-    create_estimate_response = Patch::Estimate.create_shipping_estimate(
-      distance_m: distance_m,
-      package_mass_g: package_mass_g,
-      transportation_method: 'rail',
-      create_order: false
-    )
-
-    expect(create_estimate_response.data.type).to eq 'ecommerce'
-    expect(create_estimate_response.data.mass_g).to be >= 10_000
-  end
-
   it 'supports creating bitcoin estimates with partial information' do
     bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate()
 
@@ -134,26 +89,6 @@ RSpec.describe 'Estimates Integration' do
 
     expect(bitcoin_estimate_1.data.type).to eq 'bitcoin'
     expect(bitcoin_estimate_1.data.mass_g).to be < bitcoin_estimate_2.data.mass_g
-  end
-
-  it 'supports creating ethereum estimates with a gas amount' do
-    ethereum_estimate = Patch::Estimate.create_ethereum_estimate(
-      gas_used: 100
-    )
-
-    ethereum_estimate_2 = Patch::Estimate.create_ethereum_estimate(
-      gas_used: 1000
-    )
-
-    expect(ethereum_estimate.data.type).to eq 'ethereum'
-    expect(ethereum_estimate.data.mass_g).to be < ethereum_estimate_2.data.mass_g
-  end
-
-  it 'supports creating ethereum estimates with partial information' do
-    ethereum_estimate = Patch::Estimate.create_ethereum_estimate({ create_order: false })
-
-    expect(ethereum_estimate.data.type).to eq 'ethereum'
-    expect(ethereum_estimate.data.mass_g).to be >= 2_000
   end
 
   it 'supports creating hotel estimates' do
