@@ -65,7 +65,7 @@ module Patch
 
     attr_accessor :technology_type
 
-    # An array of objects containing the highlight's slug, title, and a URL for the corresponding icon. A highlight's title is a short string that spotlights a characteristic about the project.
+    # DEPRECATED. An array of objects containing the highlight's slug, title, and a URL for the corresponding icon. A highlight's title is a short string that spotlights a characteristic about the project. Highlights are deprecated and not populated for recent projects.
     attr_accessor :highlights
 
     # An array of objects containing available inventory for a project. Available inventory is grouped by a project's vintage year and returns amount and pricing available for a given vintage year.

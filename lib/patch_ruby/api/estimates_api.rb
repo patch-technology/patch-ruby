@@ -18,15 +18,12 @@ module Patch
       :create_air_shipping_estimate,
       :create_bitcoin_estimate,
       :create_ecommerce_estimate,
-      :create_ethereum_estimate,
       :create_flight_estimate,
       :create_hotel_estimate,
       :create_mass_estimate,
       :create_rail_shipping_estimate,
       :create_road_shipping_estimate,
       :create_sea_shipping_estimate,
-      :create_shipping_estimate,
-      :create_vehicle_estimate,
       :retrieve_estimate,
       :retrieve_estimates,
     ]
@@ -254,80 +251,6 @@ module Patch
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: EstimatesApi#create_ecommerce_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Create an ethereum estimate
-    # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
-    # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [EstimateResponse]
-    def create_ethereum_estimate(create_ethereum_estimate_request = {}, opts = {})
-      _create_ethereum_estimate_request = Patch::CreateEthereumEstimateRequest.new(create_ethereum_estimate_request) 
-      data, _status_code, _headers = create_ethereum_estimate_with_http_info(_create_ethereum_estimate_request, opts)
-      data
-    end
-
-    # Create an ethereum estimate
-    # Creates an ethereum estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
-    # @param create_ethereum_estimate_request [CreateEthereumEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
-    def create_ethereum_estimate_with_http_info(create_ethereum_estimate_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_ethereum_estimate ...'
-      end
-      # verify the required parameter 'create_ethereum_estimate_request' is set
-      if @api_client.config.client_side_validation && create_ethereum_estimate_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_ethereum_estimate_request' when calling EstimatesApi.create_ethereum_estimate"
-      end
-      # resource path
-      local_var_path = '/v1/estimates/crypto/eth'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-      header_params['Patch-Version'] = 2
-      header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_ethereum_estimate_request)
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'EstimateResponse'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['bearer_auth']
-
-      new_options = opts.merge(
-        :operation => :"EstimatesApi.create_ethereum_estimate",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EstimatesApi#create_ethereum_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -772,154 +695,6 @@ module Patch
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: EstimatesApi#create_sea_shipping_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Create a shipping estimate given the distance traveled in meters, package weight, and transportation method.
-    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
-    # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [EstimateResponse]
-    def create_shipping_estimate(create_shipping_estimate_request = {}, opts = {})
-      _create_shipping_estimate_request = Patch::CreateShippingEstimateRequest.new(create_shipping_estimate_request) 
-      data, _status_code, _headers = create_shipping_estimate_with_http_info(_create_shipping_estimate_request, opts)
-      data
-    end
-
-    # Create a shipping estimate given the distance traveled in meters, package weight, and transportation method.
-    # Creates a shipping estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
-    # @param create_shipping_estimate_request [CreateShippingEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
-    def create_shipping_estimate_with_http_info(create_shipping_estimate_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_shipping_estimate ...'
-      end
-      # verify the required parameter 'create_shipping_estimate_request' is set
-      if @api_client.config.client_side_validation && create_shipping_estimate_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_shipping_estimate_request' when calling EstimatesApi.create_shipping_estimate"
-      end
-      # resource path
-      local_var_path = '/v1/estimates/shipping'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-      header_params['Patch-Version'] = 2
-      header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_shipping_estimate_request)
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'EstimateResponse'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['bearer_auth']
-
-      new_options = opts.merge(
-        :operation => :"EstimatesApi.create_shipping_estimate",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EstimatesApi#create_shipping_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Create a vehicle estimate given the distance traveled in meters and the type of vehicle
-    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
-    # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [EstimateResponse]
-    def create_vehicle_estimate(create_vehicle_estimate_request = {}, opts = {})
-      _create_vehicle_estimate_request = Patch::CreateVehicleEstimateRequest.new(create_vehicle_estimate_request) 
-      data, _status_code, _headers = create_vehicle_estimate_with_http_info(_create_vehicle_estimate_request, opts)
-      data
-    end
-
-    # Create a vehicle estimate given the distance traveled in meters and the type of vehicle
-    # Creates an estimate and calculates the amount of CO2 to be compensated depending on the distance and the vehicle. An order in the `draft` state may be created based on the parameters, linked to the estimate. 
-    # @param create_vehicle_estimate_request [CreateVehicleEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
-    def create_vehicle_estimate_with_http_info(create_vehicle_estimate_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_vehicle_estimate ...'
-      end
-      # verify the required parameter 'create_vehicle_estimate_request' is set
-      if @api_client.config.client_side_validation && create_vehicle_estimate_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_vehicle_estimate_request' when calling EstimatesApi.create_vehicle_estimate"
-      end
-      # resource path
-      local_var_path = '/v1/estimates/vehicle'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-      header_params['Patch-Version'] = 2
-      header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_vehicle_estimate_request)
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'EstimateResponse'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['bearer_auth']
-
-      new_options = opts.merge(
-        :operation => :"EstimatesApi.create_vehicle_estimate",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EstimatesApi#create_vehicle_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

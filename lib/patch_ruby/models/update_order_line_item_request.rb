@@ -155,24 +155,24 @@ module Patch
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@vintage_year.nil? && @vintage_year > 2100
-        invalid_properties.push('invalid value for "vintage_year", must be smaller than or equal to 2100.')
+      if !@vintage_year.nil? && @vintage_year > 2225
+        invalid_properties.push('invalid value for "vintage_year", must be smaller than or equal to 2225.')
       end
 
       if !@vintage_year.nil? && @vintage_year < 1900
         invalid_properties.push('invalid value for "vintage_year", must be greater than or equal to 1900.')
       end
 
-      if !@vintage_start_year.nil? && @vintage_start_year > 2100
-        invalid_properties.push('invalid value for "vintage_start_year", must be smaller than or equal to 2100.')
+      if !@vintage_start_year.nil? && @vintage_start_year > 2225
+        invalid_properties.push('invalid value for "vintage_start_year", must be smaller than or equal to 2225.')
       end
 
       if !@vintage_start_year.nil? && @vintage_start_year < 1900
         invalid_properties.push('invalid value for "vintage_start_year", must be greater than or equal to 1900.')
       end
 
-      if !@vintage_end_year.nil? && @vintage_end_year > 2100
-        invalid_properties.push('invalid value for "vintage_end_year", must be smaller than or equal to 2100.')
+      if !@vintage_end_year.nil? && @vintage_end_year > 2225
+        invalid_properties.push('invalid value for "vintage_end_year", must be smaller than or equal to 2225.')
       end
 
       if !@vintage_end_year.nil? && @vintage_end_year < 1900
@@ -197,16 +197,16 @@ module Patch
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@vintage_year.nil? && @vintage_year > 2100
+      return false if !@vintage_year.nil? && @vintage_year > 2225
       return false if !@vintage_year.nil? && @vintage_year < 1900
-      return false if !@vintage_start_year.nil? && @vintage_start_year > 2100
+      return false if !@vintage_start_year.nil? && @vintage_start_year > 2225
       return false if !@vintage_start_year.nil? && @vintage_start_year < 1900
-      return false if !@vintage_end_year.nil? && @vintage_end_year > 2100
+      return false if !@vintage_end_year.nil? && @vintage_end_year > 2225
       return false if !@vintage_end_year.nil? && @vintage_end_year < 1900
       return false if !@price.nil? && @price < 2
       return false if !@amount.nil? && @amount > 100000000000000
       return false if !@amount.nil? && @amount < 0
-      unit_validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      unit_validator = EnumAttributeValidator.new('String', ["g"])
       return false unless unit_validator.valid?(@unit)
       true
     end
@@ -214,8 +214,8 @@ module Patch
     # Custom attribute writer method with validation
     # @param [Object] vintage_year Value to be assigned
     def vintage_year=(vintage_year)
-      if !vintage_year.nil? && vintage_year > 2100
-        fail ArgumentError, 'invalid value for "vintage_year", must be smaller than or equal to 2100.'
+      if !vintage_year.nil? && vintage_year > 2225
+        fail ArgumentError, 'invalid value for "vintage_year", must be smaller than or equal to 2225.'
       end
 
       if !vintage_year.nil? && vintage_year < 1900
@@ -228,8 +228,8 @@ module Patch
     # Custom attribute writer method with validation
     # @param [Object] vintage_start_year Value to be assigned
     def vintage_start_year=(vintage_start_year)
-      if !vintage_start_year.nil? && vintage_start_year > 2100
-        fail ArgumentError, 'invalid value for "vintage_start_year", must be smaller than or equal to 2100.'
+      if !vintage_start_year.nil? && vintage_start_year > 2225
+        fail ArgumentError, 'invalid value for "vintage_start_year", must be smaller than or equal to 2225.'
       end
 
       if !vintage_start_year.nil? && vintage_start_year < 1900
@@ -242,8 +242,8 @@ module Patch
     # Custom attribute writer method with validation
     # @param [Object] vintage_end_year Value to be assigned
     def vintage_end_year=(vintage_end_year)
-      if !vintage_end_year.nil? && vintage_end_year > 2100
-        fail ArgumentError, 'invalid value for "vintage_end_year", must be smaller than or equal to 2100.'
+      if !vintage_end_year.nil? && vintage_end_year > 2225
+        fail ArgumentError, 'invalid value for "vintage_end_year", must be smaller than or equal to 2225.'
       end
 
       if !vintage_end_year.nil? && vintage_end_year < 1900
@@ -280,7 +280,7 @@ module Patch
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] unit Object to be assigned
     def unit=(unit)
-      validator = EnumAttributeValidator.new('String', ["g", "Wh"])
+      validator = EnumAttributeValidator.new('String', ["g"])
       unless validator.valid?(unit)
         fail ArgumentError, "invalid value for \"unit\", must be one of #{validator.allowable_values}."
       end
