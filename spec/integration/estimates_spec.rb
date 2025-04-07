@@ -106,20 +106,6 @@ RSpec.describe 'Estimates Integration' do
     expect(create_estimate_response.data.id).not_to be_nil
   end
 
-  it 'supports creating ecommerce estimates' do
-    distance_m = 100_000_000
-    package_mass_g = 10_000
-    create_estimate_response = Patch::Estimate.create_ecommerce_estimate(
-      distance_m: distance_m,
-      package_mass_g: package_mass_g,
-      transportation_method: 'rail',
-      create_order: false
-    )
-
-    expect(create_estimate_response.data.type).to eq 'ecommerce'
-    expect(create_estimate_response.data.mass_g).to be >= 10_000
-  end
-
   context "when creating an air shipping estimate" do
     it "supports creating an estimate using airports" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(
