@@ -19,7 +19,6 @@ require 'patch_ruby/configuration'
 # Models
 require 'patch_ruby/models/create_air_shipping_estimate_request'
 require 'patch_ruby/models/create_bitcoin_estimate_request'
-require 'patch_ruby/models/create_ecommerce_estimate_request'
 require 'patch_ruby/models/create_flight_estimate_request'
 require 'patch_ruby/models/create_hotel_estimate_request'
 require 'patch_ruby/models/create_mass_estimate_request'
