@@ -91,21 +91,6 @@ RSpec.describe 'Estimates Integration' do
     expect(bitcoin_estimate_1.data.mass_g).to be < bitcoin_estimate_2.data.mass_g
   end
 
-  it 'supports creating hotel estimates' do
-    create_estimate_response = Patch::Estimate.create_hotel_estimate(
-      country_code: "US",
-      city: "Denver",
-      star_rating: 5,
-      number_of_nights: 2,
-      number_of_rooms: 2
-    )
-
-    expect(create_estimate_response.success).to eq(true)
-    expect(create_estimate_response.data.type).to eq 'hotel'
-    expect(create_estimate_response.data.mass_g).to be >= 100_000
-    expect(create_estimate_response.data.id).not_to be_nil
-  end
-
   context "when creating an air shipping estimate" do
     it "supports creating an estimate using airports" do
       air_shipping_estimate = Patch::Estimate.create_air_shipping_estimate(

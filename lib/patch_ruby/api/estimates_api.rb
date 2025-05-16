@@ -18,7 +18,6 @@ module Patch
       :create_air_shipping_estimate,
       :create_bitcoin_estimate,
       :create_flight_estimate,
-      :create_hotel_estimate,
       :create_mass_estimate,
       :create_rail_shipping_estimate,
       :create_road_shipping_estimate,
@@ -39,7 +38,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_air_shipping_estimate(create_air_shipping_estimate_request = {}, opts = {})
-      _create_air_shipping_estimate_request = Patch::CreateAirShippingEstimateRequest.new(create_air_shipping_estimate_request) 
+        _create_air_shipping_estimate_request = Patch::CreateAirShippingEstimateRequest.new(create_air_shipping_estimate_request) 
       data, _status_code, _headers = create_air_shipping_estimate_with_http_info(_create_air_shipping_estimate_request, opts)
       data
     end
@@ -72,7 +71,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -113,7 +112,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_bitcoin_estimate(create_bitcoin_estimate_request = {}, opts = {})
-      _create_bitcoin_estimate_request = Patch::CreateBitcoinEstimateRequest.new(create_bitcoin_estimate_request) 
+        _create_bitcoin_estimate_request = Patch::CreateBitcoinEstimateRequest.new(create_bitcoin_estimate_request) 
       data, _status_code, _headers = create_bitcoin_estimate_with_http_info(_create_bitcoin_estimate_request, opts)
       data
     end
@@ -146,7 +145,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -187,7 +186,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_flight_estimate(create_flight_estimate_request = {}, opts = {})
-      _create_flight_estimate_request = Patch::CreateFlightEstimateRequest.new(create_flight_estimate_request) 
+        _create_flight_estimate_request = Patch::CreateFlightEstimateRequest.new(create_flight_estimate_request) 
       data, _status_code, _headers = create_flight_estimate_with_http_info(_create_flight_estimate_request, opts)
       data
     end
@@ -220,7 +219,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -254,80 +253,6 @@ module Patch
       return data, status_code, headers
     end
 
-    # Create a hotel estimate.
-    # Creates a hotel estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
-    # @param create_hotel_estimate_request [CreateHotelEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [EstimateResponse]
-    def create_hotel_estimate(create_hotel_estimate_request = {}, opts = {})
-      _create_hotel_estimate_request = Patch::CreateHotelEstimateRequest.new(create_hotel_estimate_request) 
-      data, _status_code, _headers = create_hotel_estimate_with_http_info(_create_hotel_estimate_request, opts)
-      data
-    end
-
-    # Create a hotel estimate.
-    # Creates a hotel estimate for the amount of CO2 to be compensated. An order in the `draft` state may be created based on the parameters. 
-    # @param create_hotel_estimate_request [CreateHotelEstimateRequest] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :patch_version 
-    # @return [Array<(EstimateResponse, Integer, Hash)>] EstimateResponse data, response status code and response headers
-    def create_hotel_estimate_with_http_info(create_hotel_estimate_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EstimatesApi.create_hotel_estimate ...'
-      end
-      # verify the required parameter 'create_hotel_estimate_request' is set
-      if @api_client.config.client_side_validation && create_hotel_estimate_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_hotel_estimate_request' when calling EstimatesApi.create_hotel_estimate"
-      end
-      # resource path
-      local_var_path = '/v1/estimates/hotel'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
-      if !content_type.nil?
-        header_params['Content-Type'] = content_type
-      end
-      header_params['Patch-Version'] = 2
-      header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(create_hotel_estimate_request)
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'EstimateResponse'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['bearer_auth']
-
-      new_options = opts.merge(
-        :operation => :"EstimatesApi.create_hotel_estimate",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EstimatesApi#create_hotel_estimate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Create an estimate based on mass of CO2
     # Creates an estimate for the mass of CO2 to be compensated. An order in the `draft` state will also be created, linked to the estimate. 
     # @param create_mass_estimate_request [CreateMassEstimateRequest] 
@@ -335,7 +260,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_mass_estimate(create_mass_estimate_request = {}, opts = {})
-      _create_mass_estimate_request = Patch::CreateMassEstimateRequest.new(create_mass_estimate_request) 
+        _create_mass_estimate_request = Patch::CreateMassEstimateRequest.new(create_mass_estimate_request) 
       data, _status_code, _headers = create_mass_estimate_with_http_info(_create_mass_estimate_request, opts)
       data
     end
@@ -368,7 +293,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -409,7 +334,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_rail_shipping_estimate(create_rail_shipping_estimate_request = {}, opts = {})
-      _create_rail_shipping_estimate_request = Patch::CreateRailShippingEstimateRequest.new(create_rail_shipping_estimate_request) 
+        _create_rail_shipping_estimate_request = Patch::CreateRailShippingEstimateRequest.new(create_rail_shipping_estimate_request) 
       data, _status_code, _headers = create_rail_shipping_estimate_with_http_info(_create_rail_shipping_estimate_request, opts)
       data
     end
@@ -442,7 +367,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -483,7 +408,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_road_shipping_estimate(create_road_shipping_estimate_request = {}, opts = {})
-      _create_road_shipping_estimate_request = Patch::CreateRoadShippingEstimateRequest.new(create_road_shipping_estimate_request) 
+        _create_road_shipping_estimate_request = Patch::CreateRoadShippingEstimateRequest.new(create_road_shipping_estimate_request) 
       data, _status_code, _headers = create_road_shipping_estimate_with_http_info(_create_road_shipping_estimate_request, opts)
       data
     end
@@ -516,7 +441,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -557,7 +482,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [EstimateResponse]
     def create_sea_shipping_estimate(create_sea_shipping_estimate_request = {}, opts = {})
-      _create_sea_shipping_estimate_request = Patch::CreateSeaShippingEstimateRequest.new(create_sea_shipping_estimate_request) 
+        _create_sea_shipping_estimate_request = Patch::CreateSeaShippingEstimateRequest.new(create_sea_shipping_estimate_request) 
       data, _status_code, _headers = create_sea_shipping_estimate_with_http_info(_create_sea_shipping_estimate_request, opts)
       data
     end
@@ -590,7 +515,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-        header_params['Content-Type'] = content_type
+          header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?

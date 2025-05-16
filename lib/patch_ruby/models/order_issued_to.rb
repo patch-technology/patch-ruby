@@ -238,5 +238,6 @@ module Patch
         value
       end
     end
+
   end
 end

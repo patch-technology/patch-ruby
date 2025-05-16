@@ -242,7 +242,8 @@ module Patch
     end
 
     def operation_server_settings
-      {}
+      {
+      }
     end
 
     # Returns URL based on server settings
@@ -278,5 +279,6 @@ module Patch
 
       url
     end
+
   end
 end
