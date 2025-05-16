@@ -104,7 +104,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [OrderResponse]
     def create_order(create_order_request = {}, opts = {})
-        _create_order_request = Patch::CreateOrderRequest.new(create_order_request) 
+      _create_order_request = Patch::CreateOrderRequest.new(create_order_request) 
       data, _status_code, _headers = create_order_with_http_info(_create_order_request, opts)
       data
     end
@@ -137,7 +137,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-          header_params['Content-Type'] = content_type
+        header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -282,7 +282,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-          header_params['Content-Type'] = content_type
+        header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?

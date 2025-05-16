@@ -33,7 +33,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [OrderLineItemResponse]
     def create_order_line_item(order_id, create_order_line_item_request = {}, opts = {})
-        _create_order_line_item_request = Patch::CreateOrderLineItemRequest.new(create_order_line_item_request) 
+      _create_order_line_item_request = Patch::CreateOrderLineItemRequest.new(create_order_line_item_request) 
       data, _status_code, _headers = create_order_line_item_with_http_info(order_id, _create_order_line_item_request, opts)
       data
     end
@@ -71,7 +71,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-          header_params['Content-Type'] = content_type
+        header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
@@ -189,7 +189,7 @@ module Patch
     # @option opts [Integer] :patch_version 
     # @return [OrderLineItemResponse]
     def update_order_line_item(order_id, serial_number, update_order_line_item_request = {}, opts = {})
-        _update_order_line_item_request = Patch::UpdateOrderLineItemRequest.new(update_order_line_item_request) 
+      _update_order_line_item_request = Patch::UpdateOrderLineItemRequest.new(update_order_line_item_request) 
       data, _status_code, _headers = update_order_line_item_with_http_info(order_id, serial_number, _update_order_line_item_request, opts)
       data
     end
@@ -232,7 +232,7 @@ module Patch
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
-          header_params['Content-Type'] = content_type
+        header_params['Content-Type'] = content_type
       end
       header_params['Patch-Version'] = 2
       header_params[:'Patch-Version'] = opts[:'patch_version'] if !opts[:'patch_version'].nil?
