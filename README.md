@@ -123,10 +123,6 @@ Estimates allow API users to get a quote for the cost of compensating a certain 
 mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
 Patch::Estimate.create_mass_estimate(mass_g: mass)
 
-# Create a flight estimate
-distance_m = 1_000_000 # Pass in the distance traveled in meters
-Patch::Estimate.create_flight_estimate(distance_m: distance_m)
-
 # Create a vehicle estimate
 distance_m = 1_000_000 # Pass in the shipping distance in meters
 make = "Toyota" # Pass in the car make

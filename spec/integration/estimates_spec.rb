@@ -19,32 +19,6 @@ RSpec.describe 'Estimates Integration' do
     expect(estimates.length).not_to be_zero
   end
 
-  it 'supports creating flight estimates' do
-    distance_m = 10_000_000
-    flight_estimate = Patch::Estimate.create_flight_estimate(
-      distance_m: distance_m,
-      create_order: false
-    )
-
-    expect(flight_estimate.data.type).to eq 'flight'
-    expect(flight_estimate.data.mass_g).to be >= 1_000_000
-  end
-
-  it 'supports creating flight estimates with origin and destination' do
-    flight_estimate = Patch::Estimate.create_flight_estimate(
-      origin_airport: "SFO",
-      destination_airport: "LAX"
-    )
-
-    flight_estimate_longer = Patch::Estimate.create_flight_estimate(
-      origin_airport: "SFO",
-      destination_airport: "JFK"
-    )
-
-    expect(flight_estimate.data.type).to eq 'flight'
-    expect(flight_estimate_longer.data.mass_g).to be > 2 * flight_estimate.data.mass_g
-  end
-
   it 'supports creating bitcoin estimates with partial information' do
     bitcoin_estimate = Patch::Estimate.create_bitcoin_estimate()
 
