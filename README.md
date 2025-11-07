@@ -110,58 +110,6 @@ page = 1 # Pass in which page of orders you'd like
 Patch::Order.retrieve_orders(page: page)
 ```
 
-### Estimates
-
-Estimates allow API users to get a quote for the cost of compensating a certain amount of CO2. When creating an estimate, an order in the `draft` state will also be created, reserving the allocation of a project for 5 minutes. If you don't place your draft order within those 5 minutes, the order will automatically be cancelled.
-
-[API Reference](https://docs.patch.io/#/?id=estimates)
-
-#### Examples
-
-```ruby
-# Create a mass estimate
-mass = 1_000_000 # Pass in the mass in grams (i.e. 1 metric tonne)
-Patch::Estimate.create_mass_estimate(mass_g: mass)
-
-# Create a vehicle estimate
-distance_m = 1_000_000 # Pass in the shipping distance in meters
-make = "Toyota" # Pass in the car make
-model = "Corolla" # Pass in the car model
-year = 2000 # Pass in the car year
-Patch::Estimate.create_vehicle_estimate(
-  distance_m: distance_m,
-  make: make,
-  model: model,
-  year: year
-)
-
-# Create a Bitcoin estimate
-transaction_value_btc_sats = 1000; # [Optional] Pass in the transaction value in satoshis
-Patch::Estimate.create_bitcoin_estimate(transaction_value_btc_sats: transaction_value_btc_sats)
-
-# Create an ecommerce estimate
-distance_m = 1_000_000 # Pass in the shipping distance in meters
-package_mass_g = 10_000 # Pass in the weight of the package shipped in grams
-transportation_method = "air" # Pass in the transportation method (air, rail, road, sea)
-Patch::Estimate.create_ecommerce_estimate(
-  distance_m: distance_m,
-  package_mass_g: package_mass_g,
-  transportation_method: transportation_method
-)
-
-## You can also specify a project-id field (optional) to be used instead of the preferred one
-project_id = 'pro_test_1234' # Pass in the project's ID
-Patch::Estimate.create_mass_estimate(mass_g: mass, project_id: project_id)
-
-# Retrieve an estimate
-estimate_id = 'est_test_1234'
-Patch::Estimate.retrieve_estimate(estimate_id)
-
-# Retrieve a list of estimates
-page = 1 # Pass in which page of estimates you'd like
-Patch::Estimate.retrieve_estimates(page: page)
-```
-
 ### Projects
 
 Projects are the ways Patch takes CO2 out of the air. They can represent reforestation, enhanced weathering, direct air carbon capture, etc. When you place an order via Patch, it is allocated to a project.

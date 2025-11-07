@@ -99,31 +99,6 @@ RSpec.describe 'Orders Integration' do
     expect(create_order_response.data.state).to eq("draft")
   end
 
-  it 'supports place and cancel for orders created via an estimate' do
-    create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
-    order_to_place_id = create_estimate_to_place_response.data.order.id
-
-    place_order_response = Patch::Order.place_order(order_to_place_id)
-    expect(place_order_response.data.state).to eq 'placed'
-
-    create_estimate_to_cancel_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
-    order_to_cancel_id = create_estimate_to_cancel_response.data.order.id
-
-    cancel_order_response = Patch::Order.cancel_order(order_to_cancel_id)
-    expect(cancel_order_response.data.state).to eq 'cancelled'
-  end
-
-  it 'supports place order with issued_to' do
-    create_estimate_to_place_response = Patch::Estimate.create_mass_estimate(mass_g: 100, create_order: true)
-    order_to_place_id = create_estimate_to_place_response.data.order.id
-
-    issued_to = { email: 'envimpact@companya.com', name: 'Company A' }
-    place_order_response = Patch::Order.place_order(order_to_place_id, issued_to: issued_to)
-    expect(place_order_response.data.state).to eq 'placed'
-    expect(place_order_response.data.issued_to.email).to eq(issued_to[:email])
-    expect(place_order_response.data.issued_to.name).to eq(issued_to[:name])
-  end
-
   it 'supports create with a vintage year' do
     create_order_response =
       Patch::Order.create_order(amount: 100, unit: "g", vintage_year: 2022)
