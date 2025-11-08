@@ -28,6 +28,7 @@ GEM
     jaro_winkler (1.5.6)
     method_source (1.0.0)
     minitest (5.18.0)
+    mutex_m (0.3.0)
     parallel (1.27.0)
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -84,6 +85,7 @@ PLATFORMS
 
 DEPENDENCIES
   factory_bot (~> 6.2)
+  mutex_m
   patch_ruby!
   pry
   pry-byebug
