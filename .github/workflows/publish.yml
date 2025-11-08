@@ -30,7 +30,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.3
+          ruby-version: 3.3.6
 
       - name: Build Gem
         run: gem build -o patch_ruby.gem patch_ruby.gemspec
