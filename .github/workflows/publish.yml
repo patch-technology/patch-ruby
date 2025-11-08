@@ -3,6 +3,11 @@ on:
   release:
     types: [created]
 
+permissions:
+  id-token: write # Required for OIDC
+  deployments: write
+  contents: read
+
 jobs:
   publish:
     name: Publish
@@ -25,7 +30,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@1a615958ad9d422dd932dc1d5823942ee002799f # v1.227.0
         with:
-          ruby-version: 2.7.1
+          ruby-version: 3.4.3
 
       - name: Build Gem
         run: gem build -o patch_ruby.gem patch_ruby.gemspec
