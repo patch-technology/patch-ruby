@@ -28,12 +28,9 @@ jobs:
           environment: production
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@1a615958ad9d422dd932dc1d5823942ee002799f # v1.227.0
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.3
-
-      - name: Build Gem
-        run: gem build -o patch_ruby.gem patch_ruby.gemspec
 
       - name: Install Ruby Dependencies
         run: bundle install
@@ -43,8 +40,7 @@ jobs:
           SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: bundle exec rspec
 
-      - name: Push to RubyGems
-        run: gem push patch_ruby.gem
+      - uses: rubygems/release-gem@v1
 
       - name: Update deployment status (success)
         if: success()
