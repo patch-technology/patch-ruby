@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
   # Start custom
   s.add_development_dependency 'factory_bot', '~> 6.2'
   s.add_development_dependency 'pry'
+  s.add_development_dependency 'mutex_m' # Required for Ruby 3.4+
   # End custom
 
 end
