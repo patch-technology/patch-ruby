@@ -3,6 +3,11 @@ on:
   release:
     types: [created]
 
+permissions:
+  id-token: write # Required for OIDC
+  deployments: write
+  contents: read
+
 jobs:
   publish:
     name: Publish
@@ -23,12 +28,9 @@ jobs:
           environment: production
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@1a615958ad9d422dd932dc1d5823942ee002799f # v1.227.0
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.1
-
-      - name: Build Gem
-        run: gem build -o patch_ruby.gem patch_ruby.gemspec
+          ruby-version: 3.4.3
 
       - name: Install Ruby Dependencies
         run: bundle install
@@ -38,10 +40,7 @@ jobs:
           SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: bundle exec rspec
 
-      - name: Push to RubyGems
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
-        run: gem push patch_ruby.gem
+      - uses: rubygems/release-gem@v1
 
       - name: Update deployment status (success)
         if: success()
