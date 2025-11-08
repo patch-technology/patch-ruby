@@ -12,6 +12,7 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+    environment: production
     env:
       TARGET_URL: https://rubygems.org/gems/patch_ruby
 
